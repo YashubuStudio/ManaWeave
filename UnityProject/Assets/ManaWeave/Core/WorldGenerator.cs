@@ -7,7 +7,7 @@ namespace ManaWeave.Core
         public static WorldState Generate(int width = 48, int height = 24, int depth = 48, int seed = 731)
         {
             if (width < 12 || height < 12 || depth < 12)
-                throw new ArgumentOutOfRangeException("dimensions", "Generated worlds need at least 12 cells on each axis.");
+                throw new ArgumentOutOfRangeException("dimensions", "世界の生成には、各方向に12セル以上の大きさが必要です。");
             var w = new WorldState(width, height, depth, seed);
             for (int z = 0; z < depth; z++)
             for (int x = 0; x < width; x++)
@@ -101,7 +101,7 @@ namespace ManaWeave.Core
                 for (int dx = -2; dx <= 2; dx++)
                 for (int dz = -2; dz <= 2; dz++)
                     if (w.InBounds(cx + dx, floor + 1, cz + dz))
-                        w.SetMaterial(cx + dx, floor + 1, cz + dz, MaterialId.Wood);
+                        w.SetMaterial(cx + dx, floor + 1, cz + dz, MaterialId.Stone);
             if (id == 2)
             {
                 w.SetMaterial(cx, floor + 1, cz, MaterialId.Iron);

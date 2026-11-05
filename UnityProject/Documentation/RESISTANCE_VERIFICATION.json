@@ -1,0 +1,450 @@
+{
+  "revision": "2026-11-05-mana-resistance",
+  "checked_at_utc": "2026-11-05T09:31:17.189070+00:00",
+  "status": "passed",
+  "ui_language": "Japanese",
+  "unity_editor_executed": false,
+  "source_sha256": {
+    "UnityProject/Assets/ManaWeave/Core/JapaneseNames.cs": "5d1f593cbc379636ce5123f70c351a4bd67632275722de1107211e92b0764e6c",
+    "UnityProject/Assets/ManaWeave/Core/Materials.cs": "294bea1aa4ee3bc9b01851026a4f2aba1f14cd1d6c84280df346c2807d88a9ac",
+    "UnityProject/Assets/ManaWeave/Core/SimulationConfig.cs": "a8b4fd6f5b75f42b6f049d6f5471bca64bbedd20778a0e3b5906097fc30c8812",
+    "UnityProject/Assets/ManaWeave/Core/Spells.cs": "b360953a29b4888af5458c2d1f408f656f033fecb25490e209d1283011ab73f9",
+    "UnityProject/Assets/ManaWeave/Core/WorldGenerator.cs": "618f8ecf2ef60c26b5bc76d13d206ceb5aa8ebc06ba26b193601937db33d7ca6",
+    "UnityProject/Assets/ManaWeave/Core/WorldPersistence.cs": "594d0f56f9d189553789fafe28c257c3a3adf10cc54c51b683b636d36be74add",
+    "UnityProject/Assets/ManaWeave/Core/WorldSimulator.cs": "87206c7d1d283f4860065c1262e65e468a30999e65204d6682e6b3ab2a765907",
+    "UnityProject/Assets/ManaWeave/Core/WorldState.cs": "385f087f8303b9c8ca6b36ffa2deac71bf41573a10609f52a2f25b5ba82bdd90",
+    "UnityProject/Assets/ManaWeave/Editor/HudFontTools.cs": "0288a685aff7419c481dad1887e9bd10a773c3735ff4c10c54ad7145959a9bfb",
+    "UnityProject/Assets/ManaWeave/Editor/ProjectTools.cs": "e05d6081a31a42513c22b0eb7cf6c4d383d10c86d8be5b5fb55566847c87478a",
+    "UnityProject/Assets/ManaWeave/Magic/MagicParser.cs": "17bd6f779210b1f4585a8b5060be0b82898ae05484f34029790707ccb1dc69ce",
+    "UnityProject/Assets/ManaWeave/Magic/RuneLanguageModel.cs": "c793e63e515ab3313973481c0fa6fb0fb58438e9106e10754988f282763d388d",
+    "UnityProject/Assets/ManaWeave/Magic/WeightSpaceMagic.cs": "232b9a97a0b0fd46c4e7c543a9bfeb5a3bb89cbbdc2c3f739f7287f120fd6a7a",
+    "UnityProject/Assets/ManaWeave/Runtime/ManaHud.cs": "faa8e79809231327ff89f621e163528743a2f94b03f81e288cd6285525481d69",
+    "UnityProject/Assets/ManaWeave/Runtime/ManaWorldController.cs": "d7fa9fab7c2e2bd316308666c002d09108ab0c8ae57a31fdc81dc29fe0e86522",
+    "UnityProject/Assets/ManaWeave/Runtime/RuntimeBootstrap.cs": "9738d39de9739cedd8c6756830ed3aafd38b11ebb96e7b0e643ee6833a89a5ff",
+    "UnityProject/Assets/ManaWeave/Runtime/SurveyCamera.cs": "118df3c73654bc41ae592cf4110ef4b9fec18c173e1df973c2f5f7ee04973dc6",
+    "UnityProject/Assets/ManaWeave/Runtime/VoxelRay.cs": "2562a2443b64285e773a85f6344dfc7c36cfba7cd6a6a1f68dfe94b3dc87633b",
+    "UnityProject/Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs": "60131c3021cf9bfec00eca67198ce75e7efc47517de87b1847d88ad19c7eb5b2"
+  },
+  "weights_sha256": {
+    "wsp": "c8e4a93882896563c25d4b103f718838280eac11e9e29469fc3853ea0408197e",
+    "runelm": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931"
+  },
+  "font_coverage": {
+    "checked_at_utc": "2026-11-05T09:31:17.170679+00:00",
+    "revision": "2026-11-05-mana-resistance",
+    "tool": "fontTools.ttLib.TTFont",
+    "coverage_scope": "All non-whitespace C# source characters under Assets/ManaWeave and WSP v2 input vocabulary",
+    "unique_source_characters": 589,
+    "unique_lexicon_characters": 270,
+    "unique_combined_characters": 638,
+    "missing_source_and_lexicon_characters": {
+      "Bold": [],
+      "Regular": []
+    },
+    "unity_runtime_tested": false,
+    "limitation": "File character coverage, not native Unity rendering or every possible user-entered Unicode character."
+  },
+  "fonts": [
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf",
+      "sha256": "1b0edfb500b73a4fa8a4fcaae1bbbd403994e08e73e3e0da37e70d3853f42c5f",
+      "bytes": 4656448,
+      "missing_characters": []
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf",
+      "sha256": "dff723ba59d57d136764a04b9b2d03205544f7cd785a711442d6d2d085ac5073",
+      "bytes": 4533028,
+      "missing_characters": []
+    }
+  ],
+  "tests": {
+    "revision": "2026-11-05-mana-resistance",
+    "date_jst": "2026-11-05",
+    "core": {
+      "passed": 32,
+      "failed": 0
+    },
+    "magic": {
+      "passed": 90,
+      "failed": 0
+    },
+    "resistance": {
+      "passed": 60,
+      "failed": 0,
+      "skipped": []
+    },
+    "before_diagnostic": {
+      "passed": 33,
+      "expected_failures": 9,
+      "skipped": [
+        "space:new-SpatialResistance-toggle-not-present-in-baseline",
+        "directed-window:metadata-not-present-in-baseline"
+      ]
+    },
+    "chant_integration": {
+      "model_sha256": "c8e4a93882896563c25d4b103f718838280eac11e9e29469fc3853ea0408197e",
+      "parameters": 14709,
+      "positive_cases": 2359,
+      "negative_cases": 159,
+      "rejected_positive_cases": 0,
+      "accepted_negative_cases": 0,
+      "passed_checks": 4902,
+      "failed_checks": 0,
+      "cases_file": "chant_cases.json",
+      "elapsed_ms_this_host": 722.2725,
+      "unity_editor_executed": false,
+      "failures": [],
+      "scope": "Author-defined game parser and world-law integration cases; not general Japanese accuracy or Unity rendering."
+    },
+    "chant_additional": {
+      "model_sha256": "c8e4a93882896563c25d4b103f718838280eac11e9e29469fc3853ea0408197e",
+      "parameters": 14709,
+      "positive_cases": 38,
+      "negative_cases": 36,
+      "rejected_positive_cases": 0,
+      "accepted_negative_cases": 0,
+      "passed_checks": 137,
+      "failed_checks": 0,
+      "cases_file": "chant_additional_cases.json",
+      "elapsed_ms_this_host": 78.1864,
+      "unity_editor_executed": false,
+      "failures": [],
+      "scope": "Author-defined game parser and world-law integration cases; not general Japanese accuracy or Unity rendering."
+    },
+    "portable_target": "netstandard2.1",
+    "language_version": "C#7.3",
+    "runtime_compile": "Succeeded against temporary API stubs; not real Unity assemblies",
+    "unity_editor_available": false,
+    "unity_player_build_attempted": false,
+    "wsp_parameters": 14709,
+    "wsp_bytes": 65248,
+    "wsp_weights_changed_this_revision": false,
+    "runelm_parameters": 247776,
+    "runelm_weights_changed_this_revision": false,
+    "warnings": "These tests do not estimate general Japanese comprehension or native Unity frame rate."
+  },
+  "comparison": {
+    "protocol": {
+      "dimensions": [
+        12,
+        12,
+        12
+      ],
+      "upper_target": [
+        6,
+        9,
+        6
+      ],
+      "lower_target": [
+        6,
+        3,
+        6
+      ],
+      "command_j": 120000,
+      "radius_cells": 1,
+      "heat_casts": 10,
+      "cool_casts": 10,
+      "casting_seconds": 5,
+      "source_free_seconds": 60,
+      "caster_initial_mana": 1800,
+      "external_refills": 0,
+      "combustion_enabled": false,
+      "fluid_flow_enabled": false
+    },
+    "before": {
+      "id": "vertical_finite_heating_cooling",
+      "dimensions": [
+        12,
+        12,
+        12
+      ],
+      "upper_target": [
+        6,
+        9,
+        6
+      ],
+      "lower_target": [
+        6,
+        3,
+        6
+      ],
+      "command_j": 120000,
+      "radius_cells": 1,
+      "heat_casts": 10,
+      "cool_casts": 10,
+      "successful_casts": 20,
+      "casting_seconds": 5,
+      "source_free_seconds": 60,
+      "caster_initial_mana": 1800,
+      "external_refills": 0,
+      "ordinary_generation_and_absorption_enabled": true,
+      "combustion_enabled": false,
+      "fluid_flow_enabled": false,
+      "max_observed_c": 12004.8681640625,
+      "min_observed_c": -69.77207946777344,
+      "snapshots": [
+        {
+          "seconds_after_last_cast": 0,
+          "upper_c": 11543.6826171875,
+          "lower_c": -11.707244873046875,
+          "maximum_c": 11543.6826171875,
+          "minimum_c": -11.707244873046875
+        },
+        {
+          "seconds_after_last_cast": 1,
+          "upper_c": 11873.255859375,
+          "lower_c": -6.1920166015625,
+          "maximum_c": 11873.255859375,
+          "minimum_c": -6.1920166015625
+        },
+        {
+          "seconds_after_last_cast": 10,
+          "upper_c": 10227.36328125,
+          "lower_c": -6.023895263671875,
+          "maximum_c": 10227.36328125,
+          "minimum_c": -11.0614013671875
+        },
+        {
+          "seconds_after_last_cast": 30,
+          "upper_c": 6738.2373046875,
+          "lower_c": -6.129058837890625,
+          "maximum_c": 6738.2373046875,
+          "minimum_c": -66.68769836425781
+        },
+        {
+          "seconds_after_last_cast": 60,
+          "upper_c": 5536.35693359375,
+          "lower_c": -4.8173828125,
+          "maximum_c": 5536.35693359375,
+          "minimum_c": -9.459991455078125
+        }
+      ],
+      "amplified_j": 96160328.73999023,
+      "stabilized_j": 20295.23095703125,
+      "transport_suppressed_j": 0,
+      "source_free_deviation_increases": 600,
+      "final_caster_mana": 759.4988,
+      "initial_absolute_deviation_j": 3492462.3115234375,
+      "final_absolute_deviation_j": 91683991.00488281,
+      "energy_ledger_error_j": -15.932861328125,
+      "mana_ledger_error_mu": -0.00217659400368575
+    },
+    "after": {
+      "id": "vertical_finite_heating_cooling",
+      "dimensions": [
+        12,
+        12,
+        12
+      ],
+      "upper_target": [
+        6,
+        9,
+        6
+      ],
+      "lower_target": [
+        6,
+        3,
+        6
+      ],
+      "command_j": 120000,
+      "radius_cells": 1,
+      "heat_casts": 10,
+      "cool_casts": 10,
+      "successful_casts": 20,
+      "casting_seconds": 5,
+      "source_free_seconds": 60,
+      "caster_initial_mana": 1800,
+      "external_refills": 0,
+      "ordinary_generation_and_absorption_enabled": true,
+      "combustion_enabled": false,
+      "fluid_flow_enabled": false,
+      "max_observed_c": 125.20935821533203,
+      "min_observed_c": -10.690876960754395,
+      "snapshots": [
+        {
+          "seconds_after_last_cast": 0,
+          "upper_c": 118.46870422363281,
+          "lower_c": -8.84205150604248,
+          "maximum_c": 118.46870422363281,
+          "minimum_c": -10.690876960754395
+        },
+        {
+          "seconds_after_last_cast": 1,
+          "upper_c": 101.41118621826172,
+          "lower_c": 0,
+          "maximum_c": 101.41118621826172,
+          "minimum_c": 0
+        },
+        {
+          "seconds_after_last_cast": 10,
+          "upper_c": 20.048078536987305,
+          "lower_c": 11.807524681091309,
+          "maximum_c": 20.048198699951172,
+          "minimum_c": 11.807524681091309
+        },
+        {
+          "seconds_after_last_cast": 30,
+          "upper_c": 20.045133590698242,
+          "lower_c": 19.950525283813477,
+          "maximum_c": 20.045133590698242,
+          "minimum_c": 19.95051383972168
+        },
+        {
+          "seconds_after_last_cast": 60,
+          "upper_c": 20.037460327148438,
+          "lower_c": 19.956926345825195,
+          "maximum_c": 20.037460327148438,
+          "minimum_c": 19.956865310668945
+        }
+      ],
+      "amplified_j": 0,
+      "stabilized_j": 2363713.6099010706,
+      "transport_suppressed_j": 7493637.246894836,
+      "source_free_deviation_increases": 0,
+      "final_caster_mana": 768.81476,
+      "initial_absolute_deviation_j": 1789786.1245663087,
+      "final_absolute_deviation_j": 35607.201320515625,
+      "energy_ledger_error_j": 1.5486293705180287e-06,
+      "mana_ledger_error_mu": 0.017208019271492958
+    },
+    "single_cast_before": {
+      "id": "direct_locality_and_budget",
+      "direct_total_j": 119999.99853515625,
+      "changed_cells_inside_radius": 7,
+      "changed_cells_outside_radius": 0,
+      "upper_center_after_one_120kj_cast_c": 872.8784,
+      "mana_cost": 77.56
+    },
+    "single_cast_after": {
+      "id": "direct_locality_and_budget",
+      "direct_total_j": 120000.00000000012,
+      "changed_cells_inside_radius": 7,
+      "changed_cells_outside_radius": 0,
+      "upper_center_after_one_120kj_cast_c": 34.21464,
+      "mana_cost": 77.56
+    },
+    "air_hot_before": {
+      "id": "uncommanded_connected_hot_air",
+      "initial_temperature_c": 500,
+      "elapsed_seconds": 10,
+      "active_cells": 75,
+      "initial_mana_per_cell": 28,
+      "source_energy_after_initialization": 0,
+      "final_center_c": 2728.3804,
+      "final_max_c": 2728.38037109375,
+      "initial_absolute_deviation_j": 723600.0366210938,
+      "final_absolute_deviation_j": 4082883.2153320312,
+      "amplified_j": 3359283.1787109375,
+      "stabilized_j": 0,
+      "source_free_deviation_increases": 100
+    },
+    "air_hot_after": {
+      "id": "uncommanded_connected_hot_air",
+      "initial_temperature_c": 500,
+      "elapsed_seconds": 10,
+      "active_cells": 75,
+      "initial_mana_per_cell": 28,
+      "source_energy_after_initialization": 0,
+      "final_center_c": 462.85242,
+      "final_max_c": 462.8524169921875,
+      "initial_absolute_deviation_j": 43416002.34375,
+      "final_absolute_deviation_j": 40056002.34536709,
+      "amplified_j": 0,
+      "stabilized_j": 3359999.9983829563,
+      "source_free_deviation_increases": 0
+    },
+    "stone_cold_before": {
+      "id": "uncommanded_connected_cold_stone",
+      "initial_temperature_c": -80,
+      "elapsed_seconds": 10,
+      "active_cells": 9,
+      "initial_mana_per_cell": 100,
+      "source_energy_after_initialization": 0,
+      "final_center_c": -127.05879,
+      "final_min_c": -127.05879211425781,
+      "initial_absolute_deviation_j": 3060000,
+      "final_absolute_deviation_j": 4499999.15625,
+      "amplified_j": 1439999.15625,
+      "stabilized_j": 0,
+      "source_free_deviation_increases": 26
+    },
+    "stone_cold_after": {
+      "id": "uncommanded_connected_cold_stone",
+      "initial_temperature_c": -80,
+      "elapsed_seconds": 10,
+      "active_cells": 9,
+      "initial_mana_per_cell": 100,
+      "source_energy_after_initialization": 0,
+      "final_center_c": -32.94117,
+      "final_min_c": -32.94116973876953,
+      "initial_absolute_deviation_j": 3060000,
+      "final_absolute_deviation_j": 1620000.000165152,
+      "amplified_j": 0,
+      "stabilized_j": 1439999.9998348474,
+      "source_free_deviation_increases": 0
+    },
+    "propagation_after": {
+      "id": "space_attenuation",
+      "spatial_toggle_present": true,
+      "elapsed_seconds": 0.25,
+      "initial_center_temperature_c": 500,
+      "initial_ambient_mu": 100,
+      "local_relaxation_enabled": false,
+      "distance_samples": [
+        {
+          "distance_cells": 1,
+          "resistance_temperature_c": 22.785204,
+          "no_spatial_resistance_temperature_c": 60.874817
+        },
+        {
+          "distance_cells": 2,
+          "resistance_temperature_c": 20.006428,
+          "no_spatial_resistance_temperature_c": 21.700167
+        },
+        {
+          "distance_cells": 3,
+          "resistance_temperature_c": 20.000046,
+          "no_spatial_resistance_temperature_c": 20.035397
+        },
+        {
+          "distance_cells": 4,
+          "resistance_temperature_c": 20,
+          "no_spatial_resistance_temperature_c": 20.00037
+        }
+      ],
+      "adjacent_energy_fraction_of_control": 0.0681398536646786,
+      "suppressed_j": 108502.99072265625,
+      "mana_spent": 67.81436920166016,
+      "energy_change_j": 0
+    },
+    "window_after": {
+      "id": "directed_window_expiry_and_space",
+      "first_quarter_second_directed_loss_fraction": 0.04758666992187499,
+      "first_quarter_second_ordinary_loss_fraction": 0.456182861328125,
+      "quarter_second_loss_fraction_after_expiry": 0.45572461416365084,
+      "command_expires_at": 1,
+      "fluid_command_metadata_remains_spatial": true
+    }
+  },
+  "save_version": 2,
+  "readable_save_versions": [
+    1,
+    2
+  ],
+  "metadata": {
+    "asset_meta_count": 50,
+    "duplicate_guids": 0
+  },
+  "limits": [
+    "Current independent resistance solvers cover thermal deviation and heat transport.",
+    "Finite mana can be depleted; explicit high energy inside the command region remains possible.",
+    "The comparison is a fixed C# scenario, not the user screenshot save or Unity performance.",
+    "The existing 6-operation parsing models were not expanded to arbitrary programs in this revision."
+  ],
+  "historical_evidence": [
+    "Documentation/JAPANESE_CHANTS_VERIFICATION.json",
+    "Tests/Results/History/"
+  ],
+  "archive_verification": "See RESISTANCE_PACKAGE_CHECK.json and the per-ZIP manifest."
+}

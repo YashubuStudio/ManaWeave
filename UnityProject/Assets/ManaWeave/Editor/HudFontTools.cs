@@ -10,33 +10,33 @@ namespace ManaWeave.Editor
     {
         internal const string RegularAsset = "Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf";
         internal const string BoldAsset = "Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf";
-        private const string Sample = "MANAWEAVE 0123456789 魔法 錬金術 科学 魔力 目の前を小さく熱して ✓ → ↑ ≥ °C";
+        private const string Sample = "MANAWEAVE 0123456789 魔法工房 詠唱を解析 この術式を装備して戻る 錬金術 科学 魔力 紅蓮の炎よ ✓ → ↑ ≥ − °C";
 
-        [MenuItem("Tools/ManaWeave/Verify HUD Fonts")]
+        [MenuItem("Tools/ManaWeave/HUDフォントを検証")]
         public static void VerifyFontAssets()
         {
             Verify("ManaWeave/Fonts/UIJapanese-Regular", RegularAsset);
             Verify("ManaWeave/Fonts/UIJapanese-Bold", BoldAsset);
-            Debug.Log("ManaWeave HUD fonts verified: bundled Regular/Bold, Dynamic, Include Font Data, " +
-                      "and sample glyphs. Check Game view in Play Mode to confirm rendering.");
+            Debug.Log("ManaWeave：HUDフォントの検証に成功しました。同梱の通常・太字フォント、Dynamic、Include Font Data、代表文字を確認しました。" +
+                      "実際の表示はPlayモードのGameビューで確認してください。");
         }
 
         private static void Verify(string resourcePath, string expectedAssetPath)
         {
             Font font = Resources.Load<Font>(resourcePath);
             if (font == null)
-                throw new FileNotFoundException("ManaWeave HUD font missing. Restore the Fonts folder and its .meta files: " + expectedAssetPath);
+                throw new FileNotFoundException("HUDフォントが見つかりません。Fontsフォルダーと.metaファイルを復元してください：" + expectedAssetPath);
             string path = AssetDatabase.GetAssetPath(font);
             if (!string.Equals(path, expectedAssetPath, StringComparison.Ordinal))
-                throw new InvalidOperationException("ManaWeave HUD font resolved to an unexpected asset: " + path);
+                throw new InvalidOperationException("HUDフォントとして想定外のアセットが読み込まれました：" + path);
             var importer = AssetImporter.GetAtPath(path) as TrueTypeFontImporter;
             if (importer == null || !importer.includeFontData ||
                 importer.fontTextureCase != FontTextureCase.Dynamic || !font.dynamic)
-                throw new InvalidOperationException("ManaWeave HUD font must use Dynamic and Include Font Data. Reimport: " + path);
+                throw new InvalidOperationException("HUDフォントにはDynamicとInclude Font Dataの有効化が必要です。次のファイルを再インポートしてください：" + path);
             foreach (char character in Sample)
             {
                 if (!char.IsWhiteSpace(character) && !font.HasCharacter(character))
-                    throw new InvalidOperationException("ManaWeave HUD font is missing U+" + ((int)character).ToString("X4") + ": " + path);
+                    throw new InvalidOperationException("HUDフォントに文字 U+" + ((int)character).ToString("X4") + " がありません：" + path);
             }
         }
 

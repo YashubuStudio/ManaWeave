@@ -6,7 +6,11 @@ namespace ManaWeave.Core
     public struct Cell
     {
         public MaterialId Material;
-        public float Mass, Energy, AmbientMana, StoredMana, Fuel;
+        public float Mass, AmbientMana, StoredMana, Fuel;
+        // Store heat in double precision: repeated independently rounded float fluxes can create a net heat bias.
+        public double Energy;
+        // A spatial authorization window. It stays in the cell when matter flows, like AmbientMana.
+        public double ThermalCommandUntil;
     }
 
     public sealed class WorldState
@@ -20,12 +24,15 @@ namespace ManaWeave.Core
         public float CasterMana = 1800f, CasterManaMax = 1800f;
         public int CasterX, CasterY, CasterZ;
         public readonly HashSet<int> Dirty = new HashSet<int>();
+        // Import metadata for a v1 -> v2 balance migration, separate from simulated physical work.
+        public string MigrationNotice = string.Empty;
+        public double MigrationEnergyJoules, MigrationMassKg;
 
         public WorldState(int width, int height, int depth, int seed)
         {
             long size = (long)width * height * depth;
             if (width < 1 || height < 1 || depth < 1 || width > 256 || height > 256 || depth > 256 || size > MaximumCells)
-                throw new ArgumentOutOfRangeException("dimensions", "World must contain 1..2,097,152 cells, with each dimension <= 256.");
+                throw new ArgumentOutOfRangeException("dimensions", "世界の大きさは各方向256セル以下、合計1～2,097,152セルで指定してください。");
             Width = width; Height = height; Depth = depth; Seed = seed;
             Cells = new Cell[(int)size];
             CasterX = width / 2; CasterY = Math.Min(height - 1, 12); CasterZ = depth / 2;
@@ -55,6 +62,8 @@ namespace ManaWeave.Core
         /// <summary>
         /// Initial/editor placement helper, NOT a physical reaction. Runtime changes should use WorldSimulator.Cast.
         /// Replacing matter never creates stored mana; overflow is released into local space.
+        /// Explicit replacement cancels the previous thermal instruction. Laboratory preparation uses this reset;
+        /// ordinary flow, in contrast, leaves thermal authorization fixed in space.
         /// </summary>
         public void SetMaterial(int x, int y, int z, MaterialId material)
         {
@@ -63,7 +72,7 @@ namespace ManaWeave.Core
             Cell c = new Cell { Material = material, Mass = d.DefaultMass,
                 Energy = MaterialCatalog.EnergyAtTemperature(material, d.DefaultMass, 20f),
                 AmbientMana = old.AmbientMana, StoredMana = old.StoredMana,
-                Fuel = material == MaterialId.Wood ? d.DefaultMass : 0f };
+                Fuel = material == MaterialId.Wood ? d.DefaultMass : 0f, ThermalCommandUntil = 0.0 };
             float overflow = Math.Max(0f, c.StoredMana - MaterialCatalog.StorageCapacity(c));
             c.StoredMana -= overflow; c.AmbientMana += overflow;
             Cells[i] = c; MarkDirty(i);

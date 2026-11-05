@@ -35,12 +35,12 @@ namespace ManaWeave.Runtime
     [Serializable]
     internal sealed class SurveyBookmark
     {
-        public int schema = 1;
+        public int schema = 2;
         public int seed;
         public long tick;
         public float x, y, z, qx, qy, qz, qw;
         public int mode;
-        public bool stabilization, resonance, crystal, alloy, observed;
+        public bool stabilization, propagationResistance, crystal, alloy, observed;
         public int successfulCasts;
         public SpellRecipe spell;
         public int selectedSlot = -1;
@@ -81,10 +81,21 @@ namespace ManaWeave.Runtime
         public bool DirectWeightsAvailable { get; private set; }
         public bool ParseBusy { get { return _parseTask != null; } }
         public double ParseMilliseconds { get; private set; }
-        public string ModelStatus { get { return _parser != null ? (UseDirectWeights ? _parser.ModelStatus : _parser.LearnedModelStatus) : _modelError; } }
+        public string ModelStatus
+        {
+            get
+            {
+                if (_parser == null) return _modelError;
+                if (UseDirectWeights)
+                    return DirectWeightsAvailable ? "詠唱を" + MagicParser.MaxInputLength + "文字まで入力できます。改行も使えます。" :
+                        "詠唱解析のデータがありません。短文解析または数値指定を使ってください。";
+                return _parser.LearnedModelAvailable ? "短文を" + MagicParser.MaxLearnedInputLength + "文字まで解析します。長い詠唱は「詠唱解析」へ。" :
+                    "短文解析のデータがありません。数値指定の術式は使えます。";
+            }
+        }
         public int SuccessfulCasts { get; private set; }
         public bool ObservedStabilization { get; private set; }
-        public bool ObservedResonance { get; private set; }
+        public bool ObservedPropagationResistance { get; private set; }
         public bool ChargedCrystal { get; private set; }
         public bool CreatedAlloy { get; private set; }
         public bool ObservedMaterial { get; private set; }
@@ -94,16 +105,16 @@ namespace ManaWeave.Runtime
         public string SavePath { get { return Path.Combine(Application.persistentDataPath,"ManaWeave","world.mwsv"); } }
 
         public static readonly SpellRecipe[] Presets = {
-            new SpellRecipe { Name="THERMAL", Description="Add heat", Source="Preset / explicit operation", Operation=SpellOperation.Heat, Radius=1, Power=120000, Material=MaterialId.Air },
-            new SpellRecipe { Name="CRYOSTASIS", Description="Remove heat", Source="Preset / explicit operation", Operation=SpellOperation.Cool, Radius=1, Power=120000, Material=MaterialId.Air },
-            new SpellRecipe { Name="EXCAVATE", Description="Remove material", Source="Preset / explicit operation", Operation=SpellOperation.Excavate, Radius=1, Power=0, Material=MaterialId.Air },
-            new SpellRecipe { Name="CONSTRUCT", Description="Place stone", Source="Preset / explicit operation", Operation=SpellOperation.Build, Radius=1, Power=0, Material=MaterialId.Stone },
-            new SpellRecipe { Name="INFUSE", Description="Store mana", Source="Preset / explicit operation", Operation=SpellOperation.Charge, Radius=1, Power=80, Material=MaterialId.Crystal },
-            new SpellRecipe { Name="ALCHEMY", Description="Bind charged iron", Source="Preset / explicit operation", Operation=SpellOperation.Transmute, Radius=1, Power=0, Material=MaterialId.Alloy }
+            new SpellRecipe { Name="加熱", Description="熱を加える", Source="基本術式", Operation=SpellOperation.Heat, Radius=1, Power=120000, Material=MaterialId.Air },
+            new SpellRecipe { Name="冷却", Description="熱を取り除く", Source="基本術式", Operation=SpellOperation.Cool, Radius=1, Power=120000, Material=MaterialId.Air },
+            new SpellRecipe { Name="掘削", Description="物質を取り除く", Source="基本術式", Operation=SpellOperation.Excavate, Radius=1, Power=0, Material=MaterialId.Air },
+            new SpellRecipe { Name="建築", Description="素材を配置する", Source="基本術式", Operation=SpellOperation.Build, Radius=1, Power=0, Material=MaterialId.Stone },
+            new SpellRecipe { Name="魔力充填", Description="物質へ魔力を移す", Source="基本術式", Operation=SpellOperation.Charge, Radius=1, Power=80, Material=MaterialId.Crystal },
+            new SpellRecipe { Name="錬成", Description="鉄を魔導合金へ", Source="基本術式", Operation=SpellOperation.Transmute, Radius=1, Power=0, Material=MaterialId.Alloy }
         };
 
         private MagicParser _parser;
-        private string _modelError = "Model not loaded";
+        private string _modelError = "解析データを読み込んでいます。";
         private Task<MagicParseResult> _parseTask;
         private System.Diagnostics.Stopwatch _parseWatch;
         private readonly List<JournalLine> _journal = new List<JournalLine>();
@@ -114,6 +125,7 @@ namespace ManaWeave.Runtime
         private Material _selectionMaterial, _skyMaterial;
         private bool _initialized;
         private ManaHud _hud;
+        private GUIStyle _startupStyle;
 
         private void Awake()
         {
@@ -124,7 +136,7 @@ namespace ManaWeave.Runtime
                 SetAtmosphere();
                 World = WorldGenerator.Generate(48,24,48,731);
                 Simulator = new WorldSimulator(World);
-                var terrainObject = new GameObject("Voxel terrain");
+                var terrainObject = new GameObject("ボクセル地形");
                 terrainObject.transform.SetParent(transform,false);
                 Terrain = terrainObject.AddComponent<VoxelWorldRenderer>();
                 Terrain.Attach(World);
@@ -144,19 +156,25 @@ namespace ManaWeave.Runtime
                     else UseDirectWeights=false;
                     _parser = new MagicParser(model == null ? null : model.bytes,direct);
                 }
-                catch (Exception error) { _modelError="LLM unavailable: " + error.Message; Debug.LogWarning(_modelError); }
+                catch (Exception error)
+                {
+                    _modelError="解析器を読み込めませんでした。基本術式（1～6）を使用してください。";
+                    Debug.LogWarning(_modelError);
+                    Debug.LogException(error);
+                }
                 _hud=gameObject.AddComponent<ManaHud>();
                 _hud.Attach(this);
                 EquipPreset(0);
                 SpawnSurveyor();
                 Surveyor.Capture(false);
                 _initialized = true;
-                Announce("Click ENTER WORLD to fly. TAB opens the spell workbench.");
-                AddJournal("New research island: seed " + World.Seed + ".");
+                Announce("「世界へ入る」で移動を開始します。Tabで魔法工房を開けます。");
+                AddJournal("研究用の島を生成しました。生成番号：" + World.Seed + "。");
+                AddJournal("世界法則：命令のない魔力は熱の変化を抑えます。加熱・冷却は指定範囲へ直接作用し、範囲外への伝播には強い抵抗が働きます。");
             }
             catch (Exception error)
             {
-                LastMessage="Initialization failed: " + error.Message;
+                LastMessage="世界の初期化に失敗しました。UnityのConsole（コンソール）で詳細を確認してください。";
                 LastMessageError=true;
                 Debug.LogException(error);
             }
@@ -173,7 +191,7 @@ namespace ManaWeave.Runtime
             RenderSettings.fogEndDistance=145;
             Shader sky = Resources.Load<Shader>("ManaWeave/Sky");
             if (sky != null) { _skyMaterial=new Material(sky); RenderSettings.skybox=_skyMaterial; }
-            var sunObject=new GameObject("Research island / sun");
+            var sunObject=new GameObject("研究島の太陽");
             sunObject.transform.SetParent(transform,false);
             sunObject.transform.rotation=Quaternion.Euler(43,-34,0);
             var light=sunObject.AddComponent<Light>();
@@ -189,7 +207,7 @@ namespace ManaWeave.Runtime
             ViewCamera=Camera.main;
             if (ViewCamera == null)
             {
-                var obj=new GameObject("Surveyor camera");
+                var obj=new GameObject("調査者のカメラ");
                 obj.tag="MainCamera";
                 ViewCamera=obj.AddComponent<Camera>();
             }
@@ -209,9 +227,9 @@ namespace ManaWeave.Runtime
         {
             Shader shader=Resources.Load<Shader>("ManaWeave/Aura");
             _selectionMaterial=new Material(shader);
-            _selection=MakeLine("Voxel selection",0.025f);
-            _radius=MakeLine("Spell footprint",0.018f);
-            _probe=MakeLine("Pinned experiment probe",0.028f);
+            _selection=MakeLine("対象セルの枠",0.025f);
+            _radius=MakeLine("術式の効果範囲",0.018f);
+            _probe=MakeLine("固定した実験観測点",0.028f);
             _probe.enabled=false;
         }
 
@@ -257,12 +275,12 @@ namespace ManaWeave.Runtime
             if (!ObservedStabilization && Simulator.Stats.StabilizedJoules>1)
             {
                 ObservedStabilization=true;
-                AddJournal("Discovery: ambient mana can suppress a small thermal disturbance.");
+                AddJournal("発見：命令のない魔力が、熱の変化を基準状態へ戻す抵抗として働きました。");
             }
-            if (!ObservedResonance && Simulator.Stats.AmplifiedJoules>1)
+            if (!ObservedPropagationResistance && Simulator.Stats.SuppressedTransportJoules>1)
             {
-                ObservedResonance=true;
-                AddJournal("Discovery: a connected large disturbance can resonate with ambient mana.");
+                ObservedPropagationResistance=true;
+                AddJournal("発見：命令のない空間魔力が、隣のセルへ伝わる熱を抑えました。");
             }
             Terrain.Synchronize(Time.unscaledDeltaTime);
         }
@@ -388,12 +406,13 @@ namespace ManaWeave.Runtime
         {
             if(Parsed==null||!Parsed.Success)return;
             Equipped=new SpellRecipe {
-                Name=Parsed.Operation.ToString().ToUpperInvariant(), Description=Parsed.Canonical,
-                Source=Parsed.Source, Operation=Parsed.Operation, Radius=Parsed.Radius, Power=Parsed.Power, Material=Parsed.Material
+                Name=JapaneseNames.Operation(Parsed.Operation),
+                Source=LocalizedSource(Parsed.Source,"解析した術式"), Operation=Parsed.Operation, Radius=Parsed.Radius, Power=Parsed.Power, Material=Parsed.Material
             };
+            Equipped.Description=DescribeSpell(Equipped);
             SelectedSlot=-1;
-            AddJournal("Equipped parsed spell ["+Parsed.Source+"]: "+Parsed.Canonical);
-            Announce("Spell equipped. Aim at the world and click to cast.");
+            AddJournal("術式を装備しました［"+Equipped.Source+"］："+Equipped.Description);
+            Announce("術式を装備しました。対象を狙い、左クリックで発動できます。");
             SetWorkbench(false);
         }
 
@@ -402,9 +421,9 @@ namespace ManaWeave.Runtime
             if(_parseTask!=null)return;
             Parsed=null;
             if(_parser==null) { Announce(ModelStatus,true); return; }
-            if(string.IsNullOrWhiteSpace(text)) { Announce("Enter a chant or an explicit spell command.",true); return; }
-            if(text.Length>240) { Announce("The input limit is 240 characters.",true); return; }
-            if(UseDirectWeights&&!DirectWeightsAvailable) { Announce("The direct-weight model resource is unavailable.",true); return; }
+            if(string.IsNullOrWhiteSpace(text)) { Announce("詠唱文を入力するか、数値指定の術式を入力してください。",true); return; }
+            if(text.Length>MagicParser.MaxInputLength) { Announce("入力は"+MagicParser.MaxInputLength+"文字以内にしてください。",true); return; }
+            if(UseDirectWeights&&!DirectWeightsAvailable) { Announce("詠唱解析のデータがありません。",true); return; }
             string request=text.Trim();
             MagicParser parser=_parser;
             bool direct=UseDirectWeights;
@@ -415,7 +434,7 @@ namespace ManaWeave.Runtime
         public void SetParserMode(bool direct)
         {
             if(ParseBusy)return;
-            if(direct&&!DirectWeightsAvailable) { Announce("The direct-weight model resource is unavailable.",true); return; }
+            if(direct&&!DirectWeightsAvailable) { Announce("詠唱解析のデータがありません。",true); return; }
             UseDirectWeights=direct;
             Parsed=null;
         }
@@ -427,20 +446,20 @@ namespace ManaWeave.Runtime
             ParseMilliseconds=_parseWatch.Elapsed.TotalMilliseconds;
             if(_parseTask.IsFaulted)
             {
-                string message=_parseTask.Exception==null?"Unknown model error":_parseTask.Exception.GetBaseException().Message;
-                Announce("Analysis failed: "+message,true);
+                if(_parseTask.Exception!=null)Debug.LogException(_parseTask.Exception.GetBaseException());
+                Announce("解析中にエラーが発生しました。入力を確認し、もう一度解析してください。",true);
             }
             else if(!_parseTask.IsCanceled)
             {
                 Parsed=_parseTask.Result;
-                Announce(Parsed!=null&&Parsed.Success?"Analysis ready. Review the command, then equip it.":"Input could not be mapped to a supported spell.",Parsed==null||!Parsed.Success);
+                Announce(Parsed!=null&&Parsed.Success?"解析できました。効果と範囲を確認し、術式を装備してください。":"この入力は術式にできませんでした。魔法工房の説明を確認してください。",Parsed==null||!Parsed.Success);
             }
             _parseTask=null;
         }
 
         public void CastEquipped()
         {
-            if(Equipped==null||!TargetInWorld) { Announce("Aim inside the research island.",true); return; }
+            if(Equipped==null||!TargetInWorld) { Announce("術式を装備し、研究島の範囲内を狙ってください。",true); return; }
             // Target IDs are resolved at cast time. Neither language inference nor a stale preview owns a world reference.
             var command=new SpellCommand {
                 Operation=Equipped.Operation,X=TargetX,Y=TargetY,Z=TargetZ,
@@ -449,12 +468,12 @@ namespace ManaWeave.Runtime
             float crystalBefore=SumStoredInRadius(MaterialId.Crystal,command);
             int alloyBefore=CountInRadius(MaterialId.Alloy,command);
             SpellResult result=Simulator.Cast(command);
-            Announce(result.Message+(result.Success?"  ["+result.ManaCost.ToString("0.0",CultureInfo.InvariantCulture)+" MU]":""),!result.Success);
+            Announce(result.Message+(result.Success?"  ［体内魔力 −"+result.ManaCost.ToString("0.0",CultureInfo.InvariantCulture)+" MU］":""),!result.Success);
             if(!result.Success)return;
             SuccessfulCasts++;
             if(command.Operation==SpellOperation.Charge&&SumStoredInRadius(MaterialId.Crystal,command)>crystalBefore+0.001f)ChargedCrystal=true;
             if(command.Operation==SpellOperation.Transmute&&CountInRadius(MaterialId.Alloy,command)>alloyBefore)CreatedAlloy=true;
-            AddJournal(command.Operation+" at ("+TargetX+", "+TargetY+", "+TargetZ+") — "+result.Message);
+            AddJournal(JapaneseNames.Operation(command.Operation)+"（座標 "+TargetX+", "+TargetY+", "+TargetZ+"）："+result.Message);
         }
 
         private float SumStoredInRadius(MaterialId material,SpellCommand command)
@@ -487,9 +506,9 @@ namespace ManaWeave.Runtime
             int index=World.Index(ObservationX,ObservationY,ObservationZ);
             Cell c=World.Cells[index];
             ObservedMaterial=true;
-            string text=MaterialCatalog.Get(c.Material).Name+" / "+World.Temperature(index).ToString("0.0",CultureInfo.InvariantCulture)+" °C / ambient "+c.AmbientMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU / stored "+c.StoredMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU";
+            string text=JapaneseNames.Material(c.Material)+" / "+World.Temperature(index).ToString("0.0",CultureInfo.InvariantCulture)+" °C / 空間魔力 "+c.AmbientMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU / 保有魔力 "+c.StoredMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU";
             Announce(text);
-            if(_scanned.Add(c.Material))AddJournal("Material observation: "+text);
+            if(_scanned.Add(c.Material))AddJournal("物質を観測："+text);
         }
 
         public void ReleaseProbe() { ProbePinned=false; }
@@ -509,10 +528,10 @@ namespace ManaWeave.Runtime
             Vector3 point=new Vector3(Simulator.LastExperimentCenterX+0.5f,Simulator.LastExperimentCenterY+0.5f,Simulator.LastExperimentCenterZ+0.5f);
             Surveyor.Focus(point,new Vector3(7,7,-10));
             Terrain.SetMode(id==3?ObservationMode.Mana:ObservationMode.Temperature);
-            string[] titles={"Small disturbance / stabilization","Large disturbance / resonance","Alchemy preparation","Direct ambient action in empty space"};
-            string next=id==2?". Simulation paused: equip 6, cast on iron, then P to resume.":(WorkbenchOpen?". Press TAB to return to the world.":". Read the pinned probe.");
-            Announce("Lab fixture prepared: "+titles[Mathf.Clamp(id,0,3)]+next);
-            AddJournal("Lab fixture: "+Simulator.Stats.LastEvent);
+            string[] titles={"小規模な熱変化への抵抗","大規模な熱変化への抵抗","錬成の準備","空間魔力の直接抵抗"};
+            string next=id==2?"。時間を停止しました。6で錬成を装備して鉄へ発動し、Pで再開してください。":(WorkbenchOpen?"。Tabで世界に戻れます。":"。固定された観測点の数値を確認してください。");
+            Announce("実験を準備しました："+titles[Mathf.Clamp(id,0,3)]+next);
+            AddJournal("実験の準備："+Simulator.Stats.LastEvent);
             Paused=id==2;
         }
 
@@ -522,10 +541,10 @@ namespace ManaWeave.Runtime
             ReplaceWorld(WorldGenerator.Generate(48,24,48,next));
             _journal.Clear();_scanned.Clear();
             SuccessfulCasts=0;
-            ObservedStabilization=ObservedResonance=ChargedCrystal=CreatedAlloy=ObservedMaterial=WorldSaved=false;
+            ObservedStabilization=ObservedPropagationResistance=ChargedCrystal=CreatedAlloy=ObservedMaterial=WorldSaved=false;
             SpawnSurveyor();
-            AddJournal("New island created: seed "+next+".");
-            Announce("New island generated. The existing save has not been overwritten.");
+            AddJournal("新しい島を生成しました。生成番号："+next+"。");
+            Announce("新しい島を生成しました。前の保存データはそのまま残っています。");
         }
 
         private void ReplaceWorld(WorldState world)
@@ -573,7 +592,7 @@ namespace ManaWeave.Runtime
                 Vector3 p=Surveyor.transform.position;Quaternion q=Surveyor.transform.rotation;
                 var bookmark=new SurveyBookmark {
                     seed=World.Seed,tick=World.Tick,x=p.x,y=p.y,z=p.z,qx=q.x,qy=q.y,qz=q.z,qw=q.w,mode=(int)Terrain.Mode,
-                    stabilization=ObservedStabilization,resonance=ObservedResonance,crystal=ChargedCrystal,alloy=CreatedAlloy,
+                    stabilization=ObservedStabilization,propagationResistance=ObservedPropagationResistance,crystal=ChargedCrystal,alloy=CreatedAlloy,
                     observed=ObservedMaterial,successfulCasts=SuccessfulCasts,spell=Equipped==null?null:Equipped.Copy(),selectedSlot=SelectedSlot
                 };
                 string viewPath=Path.ChangeExtension(SavePath,"view.json");
@@ -581,10 +600,14 @@ namespace ManaWeave.Runtime
                 if(File.Exists(viewPath))File.Delete(viewPath);
                 File.Move(viewPath+".tmp",viewPath);
                 WorldSaved=true;
-                Announce("World saved. F9 restores this snapshot.");
-                AddJournal("Snapshot saved at tick "+World.Tick+".");
+                Announce("世界を保存しました。F9でこの状態に戻せます。");
+                AddJournal("世界を保存しました。計算回数："+World.Tick+"。");
             }
-            catch(Exception error) { Announce("Save failed: "+error.Message,true); }
+            catch(Exception error)
+            {
+                Debug.LogException(error);
+                Announce(PersistenceFailure(error,false),true);
+            }
         }
 
         public void LoadWorld()
@@ -594,7 +617,7 @@ namespace ManaWeave.Runtime
                 // Load validates the entire snapshot before replacing the active world.
                 WorldState loaded=WorldPersistence.Load(SavePath);
                 ReplaceWorld(loaded);
-                ObservedStabilization=ObservedResonance=ChargedCrystal=CreatedAlloy=ObservedMaterial=false;
+                ObservedStabilization=ObservedPropagationResistance=ChargedCrystal=CreatedAlloy=ObservedMaterial=false;
                 SuccessfulCasts=0;
                 _journal.Clear();_scanned.Clear();
                 EquipPreset(0);
@@ -605,13 +628,17 @@ namespace ManaWeave.Runtime
                     if(File.Exists(viewPath))
                     {
                         var v=JsonUtility.FromJson<SurveyBookmark>(File.ReadAllText(viewPath));
-                        if(v!=null&&v.schema==1&&v.seed==World.Seed&&v.tick==World.Tick&&Finite(v.x)&&Finite(v.y)&&Finite(v.z)&&Finite(v.qx)&&Finite(v.qy)&&Finite(v.qz)&&Finite(v.qw))
+                        if(v!=null&&(v.schema==1||v.schema==2)&&v.seed==World.Seed&&v.tick==World.Tick&&Finite(v.x)&&Finite(v.y)&&Finite(v.z)&&Finite(v.qx)&&Finite(v.qy)&&Finite(v.qz)&&Finite(v.qw))
                         {
                             var rotation=new Quaternion(v.qx,v.qy,v.qz,v.qw);
                             if(rotation.x*rotation.x+rotation.y*rotation.y+rotation.z*rotation.z+rotation.w*rotation.w>0.01f)
                                 Surveyor.SetPose(new Vector3(Mathf.Clamp(v.x,-20,World.Width+20),Mathf.Clamp(v.y,0.8f,World.Height+30),Mathf.Clamp(v.z,-20,World.Depth+20)),rotation.normalized);
                             Terrain.SetMode((ObservationMode)Mathf.Clamp(v.mode,0,2));
-                            ObservedStabilization=v.stabilization;ObservedResonance=v.resonance;ChargedCrystal=v.crystal;CreatedAlloy=v.alloy;ObservedMaterial=v.observed;
+                            ObservedStabilization=v.stabilization;
+                            // The old resonance objective is not evidence of the new resistance law.
+                            // Schema 1 camera/spell bookmarks remain readable, but only schema 2 stores this observation.
+                            ObservedPropagationResistance=v.schema==2&&v.propagationResistance;
+                            ChargedCrystal=v.crystal;CreatedAlloy=v.alloy;ObservedMaterial=v.observed;
                             SuccessfulCasts=Math.Max(0,v.successfulCasts);
                             RestoreSpell(v.spell,v.selectedSlot);
                         }
@@ -619,10 +646,16 @@ namespace ManaWeave.Runtime
                 }
                 catch(Exception) { /* A missing/broken camera bookmark does not invalidate a valid world. */ }
                 WorldSaved=true;
-                Announce("Snapshot restored. Simulation resumes from its saved tick.");
-                AddJournal("Snapshot restored at tick "+World.Tick+".");
+                string migration=World.MigrationNotice;
+                Announce("世界を読み込みました。保存時点から時間を再開します。"+(string.IsNullOrEmpty(migration)?"":"\n"+migration));
+                AddJournal("保存した世界を読み込みました。計算回数："+World.Tick+"。");
+                if(!string.IsNullOrEmpty(migration))AddJournal(migration);
             }
-            catch(Exception error) { Announce("Load failed; current world retained: "+error.Message,true); }
+            catch(Exception error)
+            {
+                Debug.LogException(error);
+                Announce(PersistenceFailure(error,true),true);
+            }
         }
 
         private static bool Finite(float value) { return !float.IsNaN(value)&&!float.IsInfinity(value); }
@@ -630,15 +663,48 @@ namespace ManaWeave.Runtime
         {
             if(saved==null||!Enum.IsDefined(typeof(SpellOperation),saved.Operation)||!Enum.IsDefined(typeof(MaterialId),saved.Material)||saved.Radius<1||saved.Radius>5||!Finite(saved.Power)||saved.Power<0)return;
             Equipped=saved.Copy();
-            Equipped.Name=BoundedText(saved.Name,64,saved.Operation.ToString().ToUpperInvariant());
-            Equipped.Description=BoundedText(saved.Description,512,"Restored spell");
-            Equipped.Source=BoundedText(saved.Source,128,"Saved spell");
             SelectedSlot=slot>=0&&slot<Presets.Length&&Presets[slot].Operation==saved.Operation?slot:-1;
+            // Older view.json files stored English presentation strings. Rebuild
+            // labels from the unchanged identifiers and numerical spell fields.
+            Equipped.Name=JapaneseNames.Operation(saved.Operation);
+            Equipped.Description=DescribeSpell(Equipped);
+            Equipped.Source=LocalizedSource(saved.Source,SelectedSlot>=0?"基本術式":"保存した術式");
         }
-        private static string BoundedText(string value,int maximum,string fallback)
+        private static string LocalizedSource(string value,string fallback)
         {
             if(string.IsNullOrWhiteSpace(value))return fallback;
-            return value.Length<=maximum?value:value.Substring(0,maximum);
+            if(value.IndexOf("WSP",StringComparison.OrdinalIgnoreCase)>=0||value.IndexOf("direct",StringComparison.OrdinalIgnoreCase)>=0||value.Contains("詠唱"))return "詠唱解析";
+            if(value.IndexOf("Transformer",StringComparison.OrdinalIgnoreCase)>=0||value.IndexOf("RuneLM",StringComparison.OrdinalIgnoreCase)>=0||value.Contains("短文"))return "短文解析";
+            if(value.IndexOf("DSL",StringComparison.OrdinalIgnoreCase)>=0||value.Contains("数値"))return "数値指定";
+            if(value.IndexOf("Preset",StringComparison.OrdinalIgnoreCase)>=0||value.Contains("基本"))return "基本術式";
+            return fallback;
+        }
+        private static string DescribeSpell(SpellRecipe spell)
+        {
+            string text=JapaneseNames.Operation(spell.Operation)+" / 半径 "+spell.Radius+" m";
+            if(spell.Operation==SpellOperation.Heat)
+                return text+" / 指定した総熱量 "+spell.Power.ToString("0.###",CultureInfo.InvariantCulture)+" J";
+            if(spell.Operation==SpellOperation.Cool)
+                return text+" / 最大除去熱量 "+spell.Power.ToString("0.###",CultureInfo.InvariantCulture)+" J";
+            if(spell.Operation==SpellOperation.Charge)
+                return text+" / 最大充填量 "+spell.Power.ToString("0.###",CultureInfo.InvariantCulture)+" MU";
+            if(spell.Operation==SpellOperation.Build)
+                return text+" / 素材："+JapaneseNames.Material(spell.Material);
+            if(spell.Operation==SpellOperation.Transmute)
+                return text+" / 条件を満たす鉄を魔導合金へ";
+            return text+" / 対象範囲の物質を取り除く";
+        }
+        private static string PersistenceFailure(Exception error,bool loading)
+        {
+            if(error is FileNotFoundException||error is DirectoryNotFoundException)
+                return loading?"保存データが見つかりません。先にF5で世界を保存してください。":"保存先が見つかりません。保存フォルダーを確認してください。";
+            if(error is UnauthorizedAccessException)
+                return "保存先へアクセスできません。フォルダーの読み書き権限を確認してください。";
+            if(error is InvalidDataException||error is EndOfStreamException)
+                return loading?"保存データを読み込めません。形式が未対応か、データが破損しています。":"世界の状態に不正な値があるため、保存できませんでした。";
+            if(error is IOException)
+                return loading?"保存ファイルを開けません。ファイルとアクセス権限を確認してください。":"保存処理を完了できませんでした。空き容量と書き込み権限を確認してください。";
+            return loading?"世界の読み込みを完了できませんでした。UnityのConsole（コンソール）で詳細を確認してください。":"世界の保存を完了できませんでした。UnityのConsole（コンソール）で詳細を確認してください。";
         }
         private void Announce(string message,bool error=false) { LastMessage=message;LastMessageError=error;LastMessageTime=Time.unscaledTime; }
         private void AddJournal(string text)
@@ -663,7 +729,16 @@ namespace ManaWeave.Runtime
         private void OnGUI()
         {
             if(_initialized)return;
-            GUI.Box(new Rect(20,20,Mathf.Max(300,Screen.width-40),120),LastMessage??"Initializing ManaWeave…");
+            if(_startupStyle==null)
+            {
+                Font font=Resources.Load<Font>("ManaWeave/Fonts/UIJapanese-Regular");
+                if(font==null)font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                _startupStyle=new GUIStyle(GUI.skin.label) { font=font,fontSize=16,fontStyle=FontStyle.Normal,wordWrap=true,padding=new RectOffset(14,14,12,12) };
+                _startupStyle.normal.textColor=Color.white;
+            }
+            Rect rect=new Rect(20,20,Mathf.Max(300,Screen.width-40),120);
+            GUI.Box(rect,string.Empty);
+            GUI.Label(rect,LastMessage??"ManaWeaveを準備しています…",_startupStyle);
         }
 
         private void OnDestroy()

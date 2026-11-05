@@ -42,15 +42,18 @@
     }
   ],
   "validation": {
+    "checked_at_utc": "2026-11-05T09:31:17.170679+00:00",
+    "revision": "2026-11-05-mana-resistance",
     "tool": "fontTools.ttLib.TTFont",
-    "coverage_scope": "All non-whitespace codepoints in all C# sources under Assets/ManaWeave, including comments and string literals",
-    "unique_source_characters": 233,
-    "missing_source_characters": {
+    "coverage_scope": "All non-whitespace C# source characters under Assets/ManaWeave and WSP v2 input vocabulary",
+    "unique_source_characters": 589,
+    "unique_lexicon_characters": 270,
+    "unique_combined_characters": 638,
+    "missing_source_and_lexicon_characters": {
       "Bold": [],
       "Regular": []
     },
     "unity_runtime_tested": false,
-    "limitation": "This validates the bundled font files and existing source characters. It does not guarantee glyphs for every possible user-entered character and does not replace an actual Unity import or Player test.",
-    "checked_at_utc": "2026-11-05T07:33:13.298196+00:00"
+    "limitation": "File character coverage, not native Unity rendering or every possible user-entered Unicode character."
   }
 }

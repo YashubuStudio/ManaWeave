@@ -14,14 +14,14 @@ namespace ManaWeave.Editor
     {
         public const string SandboxScene = "Assets/Scenes/Sandbox.unity";
 
-        [MenuItem("Tools/ManaWeave/Open Sandbox")]
+        [MenuItem("Tools/ManaWeave/魔力世界を開く")]
         public static void OpenSandbox()
         {
             if (EditorSceneManager.SaveCurrentModifiedScenesIfUserWantsTo())
                 EditorSceneManager.OpenScene(SandboxScene);
         }
 
-        [MenuItem("Tools/ManaWeave/Verify Core and Model")]
+        [MenuItem("Tools/ManaWeave/世界法則と魔法を検証")]
         public static void Verify()
         {
             HudFontTools.VerifyFontAssets();
@@ -29,48 +29,74 @@ namespace ManaWeave.Editor
             var sim = new WorldSimulator(world);
             for (int i = 0; i < 20; i++) sim.Step(0.1f);
             if (world.Tick < 20 || Math.Abs(world.SimulatedSeconds - 2.0) > 0.001 || sim.Stats.GeneratedMana <= 0)
-                throw new InvalidOperationException("Mana generation or simulation clock failed.");
+                throw new InvalidOperationException("魔力の自然発生または世界の時刻の検証に失敗しました。");
             for (int i = 0; i < world.Cells.Length; i++)
             {
                 Cell c = world.Cells[i];
                 if (!Finite(c.Energy) || !Finite(c.AmbientMana) || !Finite(c.StoredMana) ||
-                    c.Energy < 0 || c.AmbientMana < 0 || c.StoredMana < 0)
-                    throw new InvalidOperationException("Invalid cell state at " + i);
+                    c.Energy < 0 || c.AmbientMana < 0 || c.StoredMana < 0 ||
+                    !Finite(world.Temperature(i)) || world.Temperature(i) < MaterialCatalog.AbsoluteZero)
+                    throw new InvalidOperationException("セル " + i + " の状態が不正です。");
             }
+            VerifyThermalResistance();
             var model = Resources.Load<TextAsset>("ManaWeave/magic_model");
-            if (model == null) throw new FileNotFoundException("The original trained model is missing.");
+            if (model == null) throw new FileNotFoundException("短文解析用の学習済みモデルが見つかりません。");
             var parser = new MagicParser(model.bytes);
             var result = parser.Parse("heat r=2 power=120000");
             if (!result.Success || result.Operation != SpellOperation.Heat)
-                throw new InvalidOperationException("Magic parser validation failed.");
+                throw new InvalidOperationException("魔法解析器の検証に失敗しました。");
             var directAsset = Resources.Load<TextAsset>("ManaWeave/wsp_model");
-            if (directAsset == null) throw new FileNotFoundException("Direct-weight model missing.");
+            if (directAsset == null) throw new FileNotFoundException("詠唱解析用の直接生成モデルが見つかりません。");
             var direct = new WeightSpaceMagic(directAsset.bytes);
             var directResult = direct.Parse("目の前を小さく熱して");
             if (!directResult.Success || directResult.Operation != SpellOperation.Heat)
-                throw new InvalidOperationException("Direct-weight model verification failed.");
+                throw new InvalidOperationException("直接生成モデルの検証に失敗しました。");
             if (Resources.Load<Shader>("ManaWeave/Voxel") == null)
-                throw new FileNotFoundException("ManaWeave vertex-color shader missing.");
+                throw new FileNotFoundException("ManaWeaveの地形描画用シェーダーが見つかりません。");
             string path = Path.Combine(Application.temporaryCachePath, "manaweave_verification.mw");
             try
             {
                 WorldPersistence.Save(world, path);
                 WorldState restored = WorldPersistence.Load(path);
                 if (restored.Tick != world.Tick || restored.Cells.Length != world.Cells.Length)
-                    throw new InvalidOperationException("Save round trip failed.");
+                    throw new InvalidOperationException("世界データの保存・読み込み検証に失敗しました。");
             }
             finally { if (File.Exists(path)) File.Delete(path); }
-            Debug.Log("ManaWeave verification passed. " + parser.ModelStatus +
-                      ". This menu does not replace Play-mode/rendering checks.");
+            Debug.Log("ManaWeave：世界法則と魔法の検証に成功しました。熱の抵抗と温度下限も確認しました。" + parser.ModelStatus +
+                      "。実際の操作と描画はPlayモードで確認してください。");
         }
 
-        [MenuItem("Tools/ManaWeave/Build Windows x64")]
+        private static void VerifyThermalResistance()
+        {
+            // Isolate passive mana from conduction, fuel and commands. Both
+            // disturbance polarities must move toward the reference state.
+            var world = new WorldState(3, 1, 1, 731);
+            world.SetMaterial(0, 0, 0, MaterialId.Stone);
+            world.SetMaterial(2, 0, 0, MaterialId.Stone);
+            Cell hot = world.Cells[0], cold = world.Cells[2];
+            hot.Energy += 300000f;
+            cold.Energy -= 300000f;
+            world.Cells[0] = hot;
+            world.Cells[2] = cold;
+            var config = new SimulationConfig {
+                ManaGeneration = 0f, ManaDiffusion = 0f, AbsorptionScale = 0f,
+                ThermalDiffusion = 0f, CasterAbsorptionRate = 0f,
+                EnableCombustion = false, EnableFluidFlow = false, EnablePhaseChanges = false
+            };
+            var sim = new WorldSimulator(world, config);
+            sim.Step(0.1f);
+            if (!(world.Cells[0].Energy < hot.Energy) || !(world.Cells[2].Energy > cold.Energy) ||
+                sim.Stats.AmplifiedJoules != 0 || sim.Stats.StabilizedJoules <= 0)
+                throw new InvalidOperationException("命令のない魔力が、加熱・冷却の両方へ抵抗する法則の検証に失敗しました。");
+        }
+
+        [MenuItem("Tools/ManaWeave/Windows版をビルド")]
         public static void BuildWindows()
         {
             Build(BuildTarget.StandaloneWindows64, "Builds/Windows/ManaWeave.exe");
         }
 
-        [MenuItem("Tools/ManaWeave/Build Linux x64")]
+        [MenuItem("Tools/ManaWeave/Linux版をビルド")]
         public static void BuildLinux()
         {
             Build(BuildTarget.StandaloneLinux64, "Builds/Linux/ManaWeave.x86_64");
@@ -96,12 +122,12 @@ namespace ManaWeave.Editor
             };
             BuildReport report = BuildPipeline.BuildPlayer(options);
             if (report.summary.result != BuildResult.Succeeded)
-                throw new InvalidOperationException("ManaWeave build failed: " + report.summary.result);
-            Debug.Log("ManaWeave built: " + Path.GetFullPath(output));
+                throw new InvalidOperationException("ManaWeaveのビルドが完了しませんでした。Console（コンソール）の結果を確認してください。");
+            Debug.Log("ManaWeaveのビルドが完了しました：" + Path.GetFullPath(output));
         }
 
-        private static bool Finite(float value)
-        { return !float.IsNaN(value) && !float.IsInfinity(value); }
+        private static bool Finite(double value)
+        { return !double.IsNaN(value) && !double.IsInfinity(value); }
 
         private static string Arg(string name)
         {

@@ -36,7 +36,8 @@ namespace ManaWeave.Core
 
         static readonly MaterialDefinition[] Definitions =
         {
-            new MaterialDefinition("Air",    .42f,.67f,.80f,1005f, .8f, .10f,.04f,.020f,false),
+            // Effective heat capacity for a displayed metre-sized cell. The original .020 kg was 60 times too small.
+            new MaterialDefinition("Air",    .42f,.67f,.80f,1005f, .8f, .10f,.04f,1.20f,false),
             new MaterialDefinition("Soil",   .28f,.43f,.24f, 800f,  4f, .18f,.20f,2.00f,true),
             new MaterialDefinition("Stone",  .37f,.43f,.46f, 850f,  6f, .07f,.55f,4.00f,true),
             new MaterialDefinition("Wood",   .46f,.28f,.12f,1800f, 30f, .65f,.10f,.40f,true),
@@ -58,6 +59,8 @@ namespace ManaWeave.Core
         }
         public static bool IsWaterFamily(MaterialId id)
         { return id == MaterialId.Water || id == MaterialId.Ice || id == MaterialId.Steam; }
+        public static bool IsGas(MaterialId id)
+        { return id == MaterialId.Air || id == MaterialId.Steam; }
 
         public static float EnergyAtTemperature(MaterialId id, float mass, float temperature)
         {
@@ -75,15 +78,15 @@ namespace ManaWeave.Core
         public static float Temperature(Cell cell)
         {
             if (cell.Mass <= 0f) return RoomTemperature;
-            float h = Math.Max(0f, cell.Energy) / cell.Mass;
+            double h = Math.Max(0f, cell.Energy) / (double)cell.Mass;
             switch (cell.Material)
             {
-                case MaterialId.Ice: return Math.Min(0f, AbsoluteZero + h / 2100f);
+                case MaterialId.Ice: return (float)Math.Max(AbsoluteZero, Math.Min(0.0, AbsoluteZero + h / 2100.0));
                 case MaterialId.Water:
                     if (h <= WaterAtZero) return 0f;
-                    return Math.Min(100f, (h - WaterAtZero) / 4184f);
-                case MaterialId.Steam: return Math.Max(100f, 100f + (h - SteamAtBoiling) / 2010f);
-                default: return AbsoluteZero + h / Get(cell.Material).HeatCapacity;
+                    return (float)Math.Min(100.0, (h - WaterAtZero) / 4184.0);
+                case MaterialId.Steam: return (float)Math.Min(float.MaxValue, Math.Max(100.0, 100.0 + (h - SteamAtBoiling) / 2010.0));
+                default: return (float)Math.Min(float.MaxValue, Math.Max(AbsoluteZero, AbsoluteZero + h / Get(cell.Material).HeatCapacity));
             }
         }
 

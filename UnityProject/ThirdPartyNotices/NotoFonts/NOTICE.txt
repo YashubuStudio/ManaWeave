@@ -1,0 +1,31 @@
+Noto Sans JP — third-party font notice
+=====================================
+
+Copyright as embedded in both distributed font files:
+© 2014-2021 Adobe (http://www.adobe.com/).
+
+This Font Software is licensed under the SIL Open Font License,
+Version 1.1. The complete license is included in OFL.txt.
+
+Fonts included in ManaWeave:
+  UIJapanese-Regular.otf = upstream NotoSansJP-Regular.otf
+  UIJapanese-Bold.otf    = upstream NotoSansJP-Bold.otf
+
+Upstream project: https://github.com/notofonts/noto-cjk
+Release tag: Sans2.004
+Upstream directory: Sans/SubsetOTF/JP
+License source: https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE
+
+These are static, single-face OpenType/CFF Japanese subset fonts supplied
+by the upstream project. Only the external file basenames were renamed
+for predictable Unity Resources paths. The downloaded font bytes,
+internal names, glyphs and tables are unmodified. ManaWeave has not
+subsetted, converted, or instantiated these fonts.
+
+Exact source URLs, byte lengths, SHA-256 checksums and metadata are in
+SOURCE.json. The license applies to the font software; it does not
+replace the license of ManaWeave's own code.
+
+Retain this notice and OFL.txt when redistributing the font files or a
+product that includes them. The game build contains copies in
+StreamingAssets/ThirdPartyNotices/NotoFonts.

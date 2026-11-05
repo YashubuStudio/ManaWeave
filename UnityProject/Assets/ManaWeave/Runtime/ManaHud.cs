@@ -1,6 +1,7 @@
 using System;
 using System.Globalization;
 using ManaWeave.Core;
+using ManaWeave.Magic;
 using UnityEngine;
 
 namespace ManaWeave.Runtime
@@ -11,12 +12,31 @@ namespace ManaWeave.Runtime
         private ManaWorldController _world;
         private Font _font,_boldFont;
         private GUIStyle _label,_small,_title,_heading,_button,_input,_guide,_centerSmall,_rightSmall;
-        private Vector2 _workScroll;
-        private string _chant="目の前を小さく熱して";
+        private GUIContent _measureContent;
+        private Vector2 _workScroll,_chantScroll;
+        private string _chant="紅蓮の炎よ、我が前に集いて、小さく対象を焼け。";
+        private string _submittedChant;
+        private int _chantCursor=-1;
+        private SpellRecipe _powerSliderRecipe;
+        private float _powerSliderMinimum,_powerSliderMaximum;
+        private bool _submittedDirect,_showRawSpell;
         private bool _stylesReady,_fontsLoaded;
         private bool _lastWorkbench;
         private const string RegularFontResource="ManaWeave/Fonts/UIJapanese-Regular";
         private const string BoldFontResource="ManaWeave/Fonts/UIJapanese-Bold";
+        private static readonly string[] ObservationLabels={"物質","魔力","温度"};
+        private static readonly string[] ExampleLabels={"加熱の例","冷却の例","掘削の例","建築の例","充填の例","錬成の例"};
+        private static readonly string[] ChantExamples={
+            "紅蓮の炎よ、我が前に集いて、小さく対象を焼け。",
+            "凍てつく霜よ、我が前に集いて、広範囲に対象を冷やせ。",
+            "大地よ、我が意に応じて、対象を穿て。",
+            "大地よ、我が意に応じて、石を創り出せ。",
+            "巡る魔力よ、我が意に応じて、対象に満ちよ。",
+            "錬金の理よ、我が意に応じて、対象を錬成せよ。"
+        };
+        private static readonly string[] ShortExamples={"目の前を小さく熱して","広範囲に冷やして","対象を掘削して","石で建てて","魔力を充填して","錬成して"};
+        private static readonly MaterialId[] BuildMaterials={MaterialId.Stone,MaterialId.Wood,MaterialId.Water,MaterialId.Iron,MaterialId.Crystal};
+        private const string FixtureGuide="命令のない魔力は、大きい熱変化にも小さい熱変化にも抵抗します。実験では観測点を固定します。錬成準備では時間が止まります。6番を装備して鉄に発動し、Pで時間を再開してください。魔法は自分の魔力を消費します。";
         private static readonly Color Ink=new Color(0.88f,0.94f,0.98f);
         private static readonly Color Muted=new Color(0.49f,0.63f,0.73f);
         private static readonly Color Teal=new Color(0.30f,0.89f,0.79f);
@@ -43,9 +63,9 @@ namespace ManaWeave.Runtime
                 if(_font==null)_font=GUI.skin.font;
                 if(_boldFont==null)_boldFont=_font;
                 if(missingRegular||missingBold)
-                    Debug.LogWarning("ManaWeave HUD: bundled UIJapanese font asset(s) are missing. "+
-                        (missingRegular?"Using a built-in fallback; Japanese glyphs may be unavailable. ":"Using the regular face for headings. ")+
-                        "Restore Assets/Resources/ManaWeave/Fonts and restart Play Mode.");
+                    Debug.LogWarning("ManaWeave：同梱の日本語フォントが見つかりません。"+
+                        (missingRegular?"代替フォントを使います。日本語を表示できない場合があります。":"見出しにも通常のフォントを使います。")+
+                        "Assets/Resources/ManaWeave/Fonts を復元し、Playをやり直してください。");
             }
             // If even the built-in fallback is absent, skip labels instead of
             // repeatedly attempting to resolve a missing font while repainting.
@@ -63,6 +83,7 @@ namespace ManaWeave.Runtime
             _guide=new GUIStyle(_label){font=_font,fontSize=12,fontStyle=FontStyle.Normal};
             _centerSmall=new GUIStyle(_small){font=_font,fontStyle=FontStyle.Normal,alignment=TextAnchor.MiddleCenter};
             _rightSmall=new GUIStyle(_small){font=_font,fontStyle=FontStyle.Normal,alignment=TextAnchor.UpperRight};
+            _measureContent=new GUIContent();
             _stylesReady=true;
         }
 
@@ -111,18 +132,18 @@ namespace ManaWeave.Runtime
         {
             RectPanel(new Rect(24,22,398,67),Teal);
             Text(new Rect(40,30,260,35),"MANAWEAVE",_title,Ink);
-            Text(new Rect(42,64,360,18),"WORLD SYSTEMS LABORATORY  /  ORIGINAL SANDBOX",_small,Muted);
+            Text(new Rect(42,64,360,18),"魔法・錬金術・科学の研究サンドボックス",_small,Muted);
             float x=width-612;
-            if(Button(new Rect(x,28,98,30),_world.Paused?"RESUME":"PAUSE",_world.Paused,Teal))_world.Paused=!_world.Paused;
-            if(Button(new Rect(x+105,28,54,30),_world.SimulationSpeed.ToString("0",CultureInfo.InvariantCulture)+"x",false,Teal))
+            if(Button(new Rect(x,28,98,30),_world.Paused?"再開":"一時停止",_world.Paused,Teal))_world.Paused=!_world.Paused;
+            if(Button(new Rect(x+105,28,54,30),_world.SimulationSpeed.ToString("0",CultureInfo.InvariantCulture)+"倍",false,Teal))
                 _world.SimulationSpeed=_world.SimulationSpeed==1?2:_world.SimulationSpeed==2?4:1;
-            if(Button(new Rect(x+166,28,120,30),"WORKBENCH",_world.WorkbenchOpen,Violet))_world.SetWorkbench(!_world.WorkbenchOpen);
-            Text(new Rect(x,64,300,19),"SEED "+_world.World.Seed+"    TICK "+_world.World.Tick+"    "+_world.SmoothedFps.ToString("0")+" FPS",_small,Muted);
+            if(Button(new Rect(x+166,28,120,30),"魔法工房",_world.WorkbenchOpen,Violet))_world.SetWorkbench(!_world.WorkbenchOpen);
+            Text(new Rect(x,64,300,19),"生成番号 "+_world.World.Seed+"  計算回数 "+_world.World.Tick+"  "+_world.SmoothedFps.ToString("0")+" FPS",_small,Muted);
             float mx=width-306;
-            string[] modes={"WORLD","MANA","HEAT"};
+            string[] modes=ObservationLabels;
             for(int i=0;i<3;i++)
                 if(Button(new Rect(mx+i*91,28,85,30),modes[i],(int)_world.Terrain.Mode==i,Teal))_world.SetObservation((ObservationMode)i);
-            string legend=_world.Terrain.Mode==ObservationMode.Material?"MATERIAL VIEW  /  F2 changes instrument":_world.Terrain.Mode==ObservationMode.Mana?"TEAL: AMBIENT     VIOLET: STORED":"BLUE: COLD      RED: HOT (1000 °C+)";
+            string legend=_world.Terrain.Mode==ObservationMode.Material?"物質の表示 ／ F2で切替":_world.Terrain.Mode==ObservationMode.Mana?"青緑：空間魔力　紫：保有魔力":"青：低温　赤：高温（1000 °C以上）";
             Text(new Rect(mx,65,290,20),legend,_small,Muted);
         }
 
@@ -131,29 +152,33 @@ namespace ManaWeave.Runtime
             float x=width-322;
             RectPanel(new Rect(x,104,298,156),Teal);
             var stats=_world.Simulator.Stats;
-            Text(new Rect(x+16,116,270,19),"SESSION LEDGER  /  "+stats.ActivePhenomena+" EVENTS",_heading,Teal);
-            KeyValue(x+16,140,265,"Ambient mana created",Units(stats.GeneratedMana,"MU"),Ink);
-            KeyValue(x+16,162,265,"Mana manifested",Units(stats.ManifestedMana,"MU"),Ink);
-            KeyValue(x+16,184,265,"Stabilization",Units(stats.StabilizedJoules,"J"),new Color(0.38f,0.76f,1f));
-            KeyValue(x+16,206,265,"Resonance",Units(stats.AmplifiedJoules,"J"),new Color(1f,0.67f,0.40f));
-            KeyValue(x+16,230,265,"Direct ambient consumed",Units(stats.DirectManifestedMana,"MU"),Teal);
+            Text(new Rect(x+16,116,270,19),"抵抗対象セル："+stats.ActivePhenomena,_heading,Teal);
+            KeyValue(x+16,140,265,"自然発生した魔力",Units(stats.GeneratedMana,"MU"),Ink);
+            KeyValue(x+16,162,265,"事象化した魔力",Units(stats.ManifestedMana,"MU"),Ink);
+            KeyValue(x+16,184,265,"熱変化への抵抗量",Units(stats.StabilizedJoules,"J"),new Color(0.38f,0.76f,1f));
+            KeyValue(x+16,206,265,"熱伝播の抑制量",Units(stats.SuppressedTransportJoules,"J"),new Color(1f,0.67f,0.40f));
+            KeyValue(x+16,230,265,"空間魔力の直接消費",Units(stats.DirectManifestedMana,"MU"),Teal);
 
             RectPanel(new Rect(x,272,298,172),Violet);
-            Text(new Rect(x+16,284,260,19),_world.ProbePinned?"PINNED EXPERIMENT PROBE":"TARGET OBSERVATION  /  E TO LOG",_heading,Violet);
+            Text(new Rect(x+16,284,260,19),_world.ProbePinned?"観測点を固定中":"照準先の観測 ／ Eで記録",_heading,Violet);
             if(_world.ObservationInWorld)
             {
                 int index=_world.World.Index(_world.ObservationX,_world.ObservationY,_world.ObservationZ);
                 Cell cell=_world.World.Cells[index];
                 var material=MaterialCatalog.Get(cell.Material);
-                Text(new Rect(x+16,310,258,24),material.Name.ToUpperInvariant(),_label,Ink);
-                Text(new Rect(x+16,337,250,18),"CELL "+_world.ObservationX+" : "+_world.ObservationY+" : "+_world.ObservationZ+"     "+_world.World.Temperature(index).ToString("0.0",CultureInfo.InvariantCulture)+" °C",_small,Muted);
-                KeyValue(x+16,362,265,"Ambient",cell.AmbientMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU",Teal);
+                Text(new Rect(x+16,310,258,24),JapaneseNames.Material(cell.Material),_label,Ink);
+                Text(new Rect(x+16,337,250,18),"位置 "+_world.ObservationX+" : "+_world.ObservationY+" : "+_world.ObservationZ+"     "+_world.World.Temperature(index).ToString("0.0",CultureInfo.InvariantCulture)+" °C",_small,Muted);
+                KeyValue(x+16,362,265,"空間魔力",cell.AmbientMana.ToString("0.00",CultureInfo.InvariantCulture)+" MU",Teal);
                 float capacity=material.ManaCapacity*cell.Mass;
-                KeyValue(x+16,385,265,"Stored",cell.StoredMana.ToString("0.00",CultureInfo.InvariantCulture)+" / "+capacity.ToString("0.0",CultureInfo.InvariantCulture),Violet);
+                KeyValue(x+16,385,265,"保有魔力",cell.StoredMana.ToString("0.00",CultureInfo.InvariantCulture)+" / "+capacity.ToString("0.0",CultureInfo.InvariantCulture)+" MU",Violet);
                 Bar(new Rect(x+16,414,266,5),cell.StoredMana/Mathf.Max(capacity,0.001f),Violet);
-                if(_world.ProbePinned&&Button(new Rect(x+176,309,106,24),"FOLLOW AIM",false,Violet))_world.ReleaseProbe();
+                float directed=_world.Simulator.DirectedThermalRemaining(index);
+                Text(new Rect(x+16,424,266,16),directed>0?
+                    "熱の指示が有効：残り "+directed.ToString("0.0",CultureInfo.InvariantCulture)+" 秒":
+                    "熱の指示なし：通常の抵抗",_small,directed>0?Teal:Muted);
+                if(_world.ProbePinned&&Button(new Rect(x+176,309,106,24),"照準に戻す",false,Violet))_world.ReleaseProbe();
             }
-            else Text(new Rect(x+16,315,260,80),"Aim inside the 48 × 24 × 48 research volume.\nA missed surface targets air 8 m ahead.",_label,Muted);
+            else Text(new Rect(x+16,315,260,80),"48 × 24 × 48 mの研究領域内を狙ってください。\n地形に当たらない照準は、8 m先の空間を指します。",_label,Muted);
 
             if(height>748)
             {
@@ -165,9 +190,9 @@ namespace ManaWeave.Runtime
                 float px=map.x+Mathf.Clamp01(camera.x/_world.World.Width)*map.width;
                 float py=map.y+(1-Mathf.Clamp01(camera.z/_world.World.Depth))*map.height;
                 Fill(new Rect(px-3,py-3,6,6),Color.white);
-                Text(new Rect(x+186,mapY+15,100,20),"SURVEY MAP",_heading,Teal);
-                Text(new Rect(x+186,mapY+47,96,97),"N ↑\n\nClick a point to move the survey camera.",_small,Muted);
-                Text(new Rect(x+186,mapY+151,96,27),"F5 SAVE\nF9 LOAD",_small,Ink);
+                Text(new Rect(x+186,mapY+15,100,20),"調査地図",_heading,Teal);
+                Text(new Rect(x+186,mapY+47,96,97),"北 ↑\n\n地点をクリックして\nカメラを移動。",_small,Muted);
+                Text(new Rect(x+186,mapY+143,96,34),"F5 保存\nF9 読込",_small,Ink);
                 if(!_world.Surveyor.Captured&&Event.current.type==EventType.MouseDown&&Event.current.button==0&&map.Contains(Event.current.mousePosition))
                 {
                     Vector2 p=Event.current.mousePosition;
@@ -180,10 +205,10 @@ namespace ManaWeave.Runtime
         private void DrawGuide()
         {
             RectPanel(new Rect(24,104,350,246),Teal);
-            Text(new Rect(42,118,315,20),"SURVEYOR MODE",_heading,Teal);
+            Text(new Rect(42,118,315,20),"操作ガイド",_heading,Teal);
             Text(new Rect(42,149,305,147),
-                "W A S D       Fly / survey\nMouse           Look around\nSpace / Ctrl   Ascend / descend\nShift              Fly faster\n1 — 6             Equip a spell\nLeft click       Cast at the crosshair\nWheel            Change effect radius\nTab / right click   Spell workbench\nEsc                Release or capture cursor",_guide,Ink);
-            string label=_world.Surveyor.Captured?"CLOSE GUIDE  [F1]":"ENTER WORLD";
+                "WASD：移動　マウス：視点\nSpace：上昇　Ctrl：下降\nShift：高速移動\n1～6：魔法を選択\n左クリック：照準に魔法を発動\nホイール：効果半径を変更\nTab / 右クリック：魔法工房\nEsc：マウスの解放 / 再捕捉",_guide,Ink);
+            string label=_world.Surveyor.Captured?"操作ガイドを閉じる [F1]":"世界へ入る";
             if(Button(new Rect(42,306,314,29),label,true,Teal))
             {
                 if(_world.Surveyor.Captured)_world.HelpOpen=false;
@@ -193,15 +218,15 @@ namespace ManaWeave.Runtime
 
         private void DrawObjectives(float y)
         {
-            RectPanel(new Rect(24,y,350,213),Violet);
-            Text(new Rect(42,y+14,310,20),"FIELD RESEARCH",_heading,Violet);
-            Check(42,y+46,"Observe a material [E]",_world.ObservedMaterial);
-            Check(42,y+70,"Measure natural stabilization",_world.ObservedStabilization);
-            Check(42,y+94,"Measure natural resonance",_world.ObservedResonance);
-            Check(42,y+118,"Charge a crystal with a spell",_world.ChargedCrystal);
-            Check(42,y+142,"Create an alloy through alchemy",_world.CreatedAlloy);
-            Check(42,y+166,"Save the changed world [F5]",_world.WorldSaved);
-            Text(new Rect(42,y+191,310,14),"FIXTURES: F6 weak · F7 large · F8 alloy · F10 air",_small,Muted);
+            RectPanel(new Rect(24,y,350,218),Violet);
+            Text(new Rect(42,y+14,310,20),"野外研究の目標",_heading,Violet);
+            Check(42,y+46,"物質を観測する [E]",_world.ObservedMaterial);
+            Check(42,y+68,"熱変化への抵抗を観測する",_world.ObservedStabilization);
+            Check(42,y+90,"熱の伝播抵抗を観測する",_world.ObservedPropagationResistance);
+            Check(42,y+112,"魔法で結晶に魔力を充填する",_world.ChargedCrystal);
+            Check(42,y+134,"錬金術で魔導合金を作る",_world.CreatedAlloy);
+            Check(42,y+156,"変化した世界を保存する [F5]",_world.WorldSaved);
+            Text(new Rect(42,y+178,310,34),"抵抗実験：F6 小規模 ／ F7 大規模\n　　　　　F8 錬成準備 ／ F10 空間魔力",_small,Muted);
         }
 
         private void DrawCrosshair(float width,float height)
@@ -212,7 +237,7 @@ namespace ManaWeave.Runtime
             Fill(new Rect(x,y-10,1,6),color);Fill(new Rect(x,y+4,1,6),color);
             if(_world.Surveyor.Captured&&_world.Equipped!=null)
             {
-                Text(new Rect(x-180,y+21,360,24),_world.Equipped.Name+"  ·  R"+_world.Equipped.Radius+"  ·  CLICK TO CAST",_centerSmall,ManaWorldController.SpellColor(_world.Equipped.Operation));
+                Text(new Rect(x-180,y+21,360,24),_world.Equipped.Name+" ／ 半径 "+_world.Equipped.Radius+" m ／ 左クリックで発動",_centerSmall,ManaWorldController.SpellColor(_world.Equipped.Operation));
             }
         }
 
@@ -220,7 +245,7 @@ namespace ManaWeave.Runtime
         {
             float y=height-132;
             RectPanel(new Rect(24,y,width-48,104),Teal);
-            Text(new Rect(42,y+12,190,19),"PERSONAL MANA",_heading,Violet);
+            Text(new Rect(42,y+12,190,19),"自分の魔力",_heading,Violet);
             string mana=_world.World.CasterMana.ToString("0.0",CultureInfo.InvariantCulture)+" / "+_world.World.CasterManaMax.ToString("0",CultureInfo.InvariantCulture)+" MU";
             Text(new Rect(42,y+36,190,26),mana,_label,Ink);
             Bar(new Rect(42,y+73,170,6),_world.World.CasterMana/Mathf.Max(1,_world.World.CasterManaMax),Violet);
@@ -243,14 +268,14 @@ namespace ManaWeave.Runtime
             float rw=width-rx-43;
             if(_world.Equipped!=null)
             {
-                Text(new Rect(rx,y+12,rw,19),_world.SelectedSlot<0?"PARSED SPELL":"EFFECT",_heading,_world.SelectedSlot<0?Violet:Teal);
-                string effect="RADIUS "+_world.Equipped.Radius+" m";
+                Text(new Rect(rx,y+12,rw,19),_world.SelectedSlot<0?"解析した術式":"効果",_heading,_world.SelectedSlot<0?Violet:Teal);
+                string effect="半径 "+_world.Equipped.Radius+" m";
                 if(_world.Equipped.Operation==SpellOperation.Heat||_world.Equipped.Operation==SpellOperation.Cool)effect+="\n"+Units(_world.Equipped.Power,"J");
                 else if(_world.Equipped.Operation==SpellOperation.Charge)effect+="\n"+Units(_world.Equipped.Power,"MU");
-                else effect+="\n"+_world.Equipped.Operation;
+                else effect+="\n"+JapaneseNames.Operation(_world.Equipped.Operation);
                 Text(new Rect(rx,y+37,rw,49),effect,_small,Ink);
             }
-            Text(new Rect(26,height-20,width-52,17),"TAB WORKBENCH     F2 INSTRUMENT     P PAUSE     F5 SAVE     F9 LOAD     F1 GUIDE        •        All visible changes are resolved by the world law engine.",_small,Muted);
+            Text(new Rect(26,height-20,width-52,17),"Tab 魔法工房　 F2 表示切替　 P 一時停止　 F5 保存　 F9 読込　 F1 ガイド　 E 観測",_small,Muted);
         }
 
         private void DrawToast(float width,float height)
@@ -258,21 +283,26 @@ namespace ManaWeave.Runtime
             if(string.IsNullOrEmpty(_world.LastMessage)||Time.unscaledTime-_world.LastMessageTime>12)return;
             float w=Mathf.Min(width-420,740);
             float x=(width-w)/2;
-            RectPanel(new Rect(x,height-192,w,48),_world.LastMessageError?Error:Teal);
-            Text(new Rect(x+14,height-183,w-28,33),_world.LastMessage,_small,_world.LastMessageError?Error:Ink);
+            float textHeight=ParagraphHeight(_world.LastMessage,_small,w-28,30);
+            float top=height-144-textHeight-18;
+            RectPanel(new Rect(x,top,w,textHeight+18),_world.LastMessageError?Error:Teal);
+            Text(new Rect(x+14,top+9,w-28,textHeight),_world.LastMessage,_small,_world.LastMessageError?Error:Ink);
         }
 
         private void DrawWorkbench(float height)
         {
-            float panelHeight=height-318;
-            panelHeight=Mathf.Max(330,panelHeight);
+            float panelHeight=Mathf.Max(190,height-302);
             RectPanel(new Rect(24,104,564,panelHeight),Violet);
-            Text(new Rect(42,118,390,24),"SPELL WORKBENCH / 魔法解析",_heading,Violet);
-            if(Button(new Rect(476,115,94,27),"CLOSE",false,Teal))_world.SetWorkbench(false);
+            Text(new Rect(42,118,390,24),"魔法工房",_heading,Violet);
+            if(Button(new Rect(476,115,94,27),"閉じる [Tab]",false,Teal))_world.SetWorkbench(false);
+            float resultHeight=ParsedCardHeight();
+            float fixtureHeight=ParagraphHeight(FixtureGuide,_small,504,50);
+            string adjustmentGuide=AdjustmentGuide();
+            float adjustmentHeight=ParagraphHeight(adjustmentGuide,_small,504,32);
             Rect view=new Rect(38,152,538,panelHeight-60);
-            _workScroll=GUI.BeginScrollView(view,_workScroll,new Rect(0,0,516,1160));
+            _workScroll=GUI.BeginScrollView(view,_workScroll,new Rect(0,0,516,WorkbenchContentHeight(resultHeight,fixtureHeight,adjustmentHeight)));
             bool previousEnabled=GUI.enabled;
-            try { DrawWorkbenchContents(); }
+            try { DrawWorkbenchContents(resultHeight,fixtureHeight,adjustmentGuide,adjustmentHeight); }
             finally
             {
                 GUI.enabled=previousEnabled;
@@ -280,89 +310,255 @@ namespace ManaWeave.Runtime
             }
         }
 
-        private void DrawWorkbenchContents()
+        private void DrawWorkbenchContents(float resultHeight,float fixtureHeight,string adjustmentGuide,float adjustmentHeight)
         {
-            Text(new Rect(2,0,508,22),"解析 → 命令を確認 → 装備 → 狙って発動",_small,Muted);
-            GUI.enabled=!_world.ParseBusy;
-            GUI.enabled=GUI.enabled&&_world.DirectWeightsAvailable;
-            if(Button(new Rect(2,30,248,30),"DIRECT WEIGHTS",_world.UseDirectWeights,Violet))_world.SetParserMode(true);
-            GUI.enabled=!_world.ParseBusy;
-            if(Button(new Rect(258,30,248,30),"TRAINED TRANSFORMER",!_world.UseDirectWeights,Teal))_world.SetParserMode(false);
-            GUI.enabled=true;
-            Text(new Rect(2,69,504,40),_world.ModelStatus,_small,Muted);
-            GUI.SetNextControlName("mana-chant");
-            _chant=GUI.TextArea(new Rect(2,115,504,66),_chant,240,_input);
-            if(GUI.GetNameOfFocusedControl()=="mana-chant")
+            bool controlsEnabled=GUI.enabled;
+            bool composing=!string.IsNullOrEmpty(Input.compositionString);
+            // Geometry was measured before this GUI event. Apply a details-toggle
+            // change on the next event so the current rectangles keep valid sizes.
+            bool showRawDetails=_showRawSpell;
+            Text(new Rect(2,0,508,20),"1. 入力 → 2. 解析 → 3. 装備して戻る → 左クリックで発動",_small,Muted);
+            GUI.enabled=controlsEnabled&&!_world.ParseBusy&&_world.DirectWeightsAvailable;
+            if(Button(new Rect(2,26,248,28),"詠唱解析",_world.UseDirectWeights,Violet))_world.SetParserMode(true);
+            GUI.enabled=controlsEnabled&&!_world.ParseBusy;
+            if(Button(new Rect(258,26,248,28),"短文解析",!_world.UseDirectWeights,Teal))_world.SetParserMode(false);
+            GUI.enabled=controlsEnabled;
+            Text(new Rect(2,60,504,34),_world.ModelStatus,_small,Muted);
+            Text(new Rect(2,96,270,20),"1. 詠唱を入力",_heading,Violet);
+            int inputLimit=_world.UseDirectWeights?MagicParser.MaxInputLength:MagicParser.MaxLearnedInputLength;
+            Text(new Rect(286,97,220,19),composing?"Enterで変換を確定":_chant.Length+" / "+inputLimit+"文字",_rightSmall,_chant.Length>inputLimit?Error:Muted);
+
+            // Give long, multiline chants their own scrollable editing area.
+            // Keep more than the parser limit: truncating exactly at 512 could
+            // drop a pasted condition while leaving a valid, unintended spell.
+            float inputHeight=ParagraphHeight(_chant+"\n",_input,482,80);
+            _chantScroll=GUI.BeginScrollView(new Rect(2,120,504,84),_chantScroll,new Rect(0,0,482,inputHeight));
+            try
             {
-                Input.imeCompositionMode=IMECompositionMode.On;
-                Input.compositionCursorPos=new Vector2(60,240);
+                GUI.SetNextControlName("mana-chant");
+                string previousInput=_chant;
+                _chant=GUI.TextArea(new Rect(0,0,482,inputHeight),_chant,MagicParser.MaxInputLength*4,_input);
+                if(GUI.GetNameOfFocusedControl()=="mana-chant")
+                {
+                    Input.imeCompositionMode=IMECompositionMode.On;
+                    // Unity's TextEditor positions the IME candidates using the
+                    // actual caret and GUI clip transforms; do not override it.
+                    FollowChantCursor(previousInput,inputHeight);
+                }
+                else _chantCursor=-1;
             }
-            string[] samples={"目の前を小さく熱して","広範囲に冷やして","対象を掘削して","石で建てて","魔力を充填して","錬成して"};
-            string[] labels={"加熱","冷却","掘削","建築","充填","錬成"};
+            finally { GUI.EndScrollView(); }
+            string[] samples=_world.UseDirectWeights?ChantExamples:ShortExamples;
             for(int i=0;i<6;i++)
-                if(Button(new Rect(2+i*85,189,79,25),labels[i],false,Muted))_chant=samples[i];
-            GUI.enabled=!_world.ParseBusy;
-            if(Button(new Rect(2,224,180,34),_world.ParseBusy?"ANALYZING…":"ANALYZE",true,Violet))_world.Analyze(_chant);
-            GUI.enabled=true;
-            if(Button(new Rect(192,224,314,34),"INSERT EXPLICIT DSL",false,Teal))_chant="heat r=1 power=120000";
-            if(Event.current.type==EventType.KeyDown&&Event.current.control&&Event.current.keyCode==KeyCode.Return&&!_world.ParseBusy)
+                if(Button(new Rect(2+i*85,212,79,25),ExampleLabels[i],false,Muted))SetChant(samples[i]);
+            GUI.enabled=controlsEnabled&&!_world.ParseBusy&&!composing&&string.IsNullOrEmpty(Input.compositionString);
+            if(Button(new Rect(2,247,180,32),_world.ParseBusy?"解析中…":"詠唱を解析",true,Violet))AnalyzeChant();
+            GUI.enabled=controlsEnabled;
+            if(Button(new Rect(192,247,314,32),"数値指定の例を入力",false,Teal))SetChant("heat r=1 power=120000");
+            if(Event.current.type==EventType.KeyDown&&Event.current.control&&Event.current.keyCode==KeyCode.Return&&
+               !_world.ParseBusy&&controlsEnabled&&!composing&&string.IsNullOrEmpty(Input.compositionString))
             {
-                _world.Analyze(_chant);Event.current.Use();
+                AnalyzeChant();Event.current.Use();
             }
+
             var parsed=_world.Parsed;
-            Fill(new Rect(2,268,504,112),new Color(0.04f,0.075f,0.11f,1));
-            if(parsed!=null)
+            bool current=IsCurrentResult();
+            bool ready=current&&parsed!=null&&parsed.Success&&!composing;
+            Color resultColor=ready?Teal:(current&&parsed!=null&&!parsed.Success?Error:Muted);
+            Fill(new Rect(2,289,504,resultHeight),new Color(0.04f,0.075f,0.11f,1));
+            string heading=_world.ParseBusy?"2. 解析しています…":
+                parsed==null?"2. 解析結果を確認":!current?"2. 入力が変更されています":
+                parsed.Success?"2. 解析結果：発動内容を確認":"2. この詠唱は使えません";
+            Text(new Rect(14,297,478,20),heading,_heading,resultColor);
+            if(ready)
             {
-                Text(new Rect(14,278,478,18),(parsed.Source??"ANALYSIS")+"  /  "+_world.ParseMilliseconds.ToString("0",CultureInfo.InvariantCulture)+" ms",_small,parsed.Success?Teal:Error);
-                Text(new Rect(14,304,478,64),parsed.Success?parsed.Canonical:parsed.Error,_label,parsed.Success?Ink:Error);
+                Text(new Rect(14,320,478,46),SpellSummary(parsed),_label,Ink);
+                if(Button(new Rect(14,372,168,20),showRawDetails?"術式の詳細を閉じる":"術式の詳細を表示",false,Muted))_showRawSpell=!showRawDetails;
+                Text(new Rect(190,373,302,18),"対象は発動時の照準です",_small,Muted);
+                if(showRawDetails&&resultHeight>120)
+                    Text(new Rect(14,400,478,resultHeight-120),parsed.Canonical,_small,Muted);
             }
-            else Text(new Rect(14,282,478,82),"Analysis creates a proposed command. It does not cast a spell. Unsupported wording returns an error; no substitute spell is selected.",_small,Muted);
-            GUI.enabled=parsed!=null&&parsed.Success;
-            if(Button(new Rect(2,390,504,34),"EQUIP REVIEWED SPELL → RETURN TO WORLD",true,Teal))_world.EquipParsed();
-            GUI.enabled=true;
-            Section(440,"EQUIPPED SPELL PARAMETERS");
+            else Text(new Rect(14,320,478,resultHeight-39),ParseMessage(),_label,current&&parsed!=null?Error:Muted);
+            GUI.enabled=controlsEnabled&&ready&&!_world.ParseBusy;
+            if(Button(new Rect(2,299+resultHeight,504,34),"この術式を装備して戻る",true,Teal))_world.EquipParsed();
+            GUI.enabled=controlsEnabled;
+
+            float y=349+resultHeight;
+            Section(y,"装備中の術式を調整");
             if(_world.Equipped!=null)
             {
-                Text(new Rect(2,468,290,20),_world.Equipped.Name+"  /  "+_world.Equipped.Source,_small,Muted);
-                Text(new Rect(2,498,160,22),"Radius: "+_world.Equipped.Radius+" m",_label,Ink);
-                _world.Equipped.Radius=Mathf.RoundToInt(GUI.HorizontalSlider(new Rect(180,504,320,18),_world.Equipped.Radius,1,5));
+                Text(new Rect(2,y+40,504,22),_world.Equipped.Name+" ／ "+_world.Equipped.Source,_small,Muted);
+                Text(new Rect(2,y+70,160,24),"半径："+_world.Equipped.Radius+" m",_label,Ink);
+                _world.Equipped.Radius=Mathf.RoundToInt(GUI.HorizontalSlider(new Rect(180,y+76,320,18),_world.Equipped.Radius,1,5));
                 if(_world.Equipped.Operation==SpellOperation.Heat||_world.Equipped.Operation==SpellOperation.Cool)
                 {
-                    Text(new Rect(2,530,170,22),Units(_world.Equipped.Power,"J"),_label,Ink);
-                    _world.Equipped.Power=Mathf.Round(GUI.HorizontalSlider(new Rect(180,536,320,18),_world.Equipped.Power,10000,800000)/1000)*1000;
+                    Text(new Rect(2,y+104,170,24),"指定熱量："+Units(_world.Equipped.Power,"J"),_small,Ink);
+                    DrawPowerSlider(new Rect(180,y+110,320,18),10000,800000,1000);
                 }
                 else if(_world.Equipped.Operation==SpellOperation.Charge)
                 {
-                    Text(new Rect(2,530,170,22),Units(_world.Equipped.Power,"MU"),_label,Ink);
-                    _world.Equipped.Power=Mathf.Round(GUI.HorizontalSlider(new Rect(180,536,320,18),_world.Equipped.Power,1,200));
+                    Text(new Rect(2,y+104,170,24),"指定魔力："+Units(_world.Equipped.Power,"MU"),_small,Ink);
+                    DrawPowerSlider(new Rect(180,y+110,320,18),1,200,1);
                 }
                 else if(_world.Equipped.Operation==SpellOperation.Build)
                 {
-                    MaterialId[] materials={MaterialId.Stone,MaterialId.Wood,MaterialId.Water,MaterialId.Iron,MaterialId.Crystal};
-                    for(int i=0;i<materials.Length;i++)
-                        if(Button(new Rect(2+i*102,530,96,27),materials[i].ToString(),_world.Equipped.Material==materials[i],Teal))_world.Equipped.Material=materials[i];
+                    for(int i=0;i<BuildMaterials.Length;i++)
+                        if(Button(new Rect(2+i*102,y+104,96,27),JapaneseNames.Material(BuildMaterials[i]),_world.Equipped.Material==BuildMaterials[i],Teal))_world.Equipped.Material=BuildMaterials[i];
                 }
-                else Text(new Rect(2,530,504,33),_world.Equipped.Operation==SpellOperation.Transmute?"Iron requires ≥250 °C and ≥6 stored MU per cell. The alchemy fixture prepares it.":"Resource checks and material conditions are enforced at cast time.",_small,Muted);
+                else Text(new Rect(2,y+103,504,38),_world.Equipped.Operation==SpellOperation.Transmute?
+                    "鉄の温度250 °C以上・保有魔力6 MU以上が必要です（1ブロックあたり）。下の錬成準備で条件を整えられます。":
+                    "発動時に魔力と対象の条件を確認します。",_small,Muted);
+                Text(new Rect(2,y+147,504,adjustmentHeight),adjustmentGuide,_small,Muted);
             }
-            Section(582,"REPRODUCIBLE LAB FIXTURES");
-            if(Button(new Rect(2,612,248,33),"01  STABILIZATION",false,Teal))_world.RunExperiment(0);
-            if(Button(new Rect(258,612,248,33),"02  RESONANCE",false,new Color(1f,0.65f,0.37f)))_world.RunExperiment(1);
-            if(Button(new Rect(2,654,248,33),"03  ALCHEMY SETUP",false,Violet))_world.RunExperiment(2);
-            if(Button(new Rect(258,654,248,33),"04  DIRECT AMBIENT",false,Teal))_world.RunExperiment(3);
-            Text(new Rect(2,696,504,49),"Fixtures prepare known test conditions and pin a probe. Alchemy pauses the simulation: equip 6, cast on iron, then P to resume. Spells still consume personal mana.",_small,Muted);
-            Section(758,"SNAPSHOTS & WORLD");
-            if(Button(new Rect(2,788,160,31),"SAVE  [F5]",false,Teal))_world.SaveWorld();
-            if(Button(new Rect(174,788,160,31),"LOAD  [F9]",false,Teal))_world.LoadWorld();
-            if(Button(new Rect(346,788,160,31),"NEW ISLAND",false,Violet))_world.NewWorld();
-            Text(new Rect(2,828,504,32),"New island replaces the active unsaved world. Load restores the last snapshot.",_small,Muted);
-            Section(878,"RESEARCH JOURNAL");
+            else Text(new Rect(2,y+42,504,70),"まだ術式を装備していません。1～6で選ぶか、詠唱を解析して装備してください。",_label,Muted);
+
+            y+=158+adjustmentHeight;
+            Section(y,"世界法則の実験");
+            if(Button(new Rect(2,y+34,248,33),"01 小規模な熱変化への抵抗",false,Teal))_world.RunExperiment(0);
+            if(Button(new Rect(258,y+34,248,33),"02 大規模な熱変化への抵抗",false,new Color(1f,0.65f,0.37f)))_world.RunExperiment(1);
+            if(Button(new Rect(2,y+75,248,33),"03 錬成の条件を準備",false,Violet))_world.RunExperiment(2);
+            if(Button(new Rect(258,y+75,248,33),"04 空間魔力の直接抵抗",false,Teal))_world.RunExperiment(3);
+            Text(new Rect(2,y+116,504,fixtureHeight),FixtureGuide,_small,Muted);
+            y+=116+fixtureHeight+18;
+            Section(y,"保存とワールド");
+            if(Button(new Rect(2,y+34,160,31),"保存 [F5]",false,Teal))_world.SaveWorld();
+            if(Button(new Rect(174,y+34,160,31),"読込 [F9]",false,Teal))_world.LoadWorld();
+            if(Button(new Rect(346,y+34,160,31),"新しい島を生成",false,Violet))_world.NewWorld();
+            Text(new Rect(2,y+77,504,36),"新しい島を生成すると、現在の未保存の変更を失います。読込は最後に保存した状態へ戻ります。",_small,Muted);
+            y+=130;
+            Section(y,"研究日誌");
+            y+=38;
             int shown=Math.Min(5,_world.Journal.Count);
             for(int i=0;i<shown;i++)
             {
-                var entry=_world.Journal[i];
-                Text(new Rect(2,910+i*45,504,40),"T"+entry.Tick+"  "+entry.Text,_small,i==0?Ink:Muted);
+                string entry=JournalText(_world.Journal[i]);
+                float rowHeight=ParagraphHeight(entry,_small,504,40);
+                Text(new Rect(2,y,504,rowHeight),entry,_small,i==0?Ink:Muted);
+                y+=rowHeight+8;
             }
-            if(shown==0)Text(new Rect(2,910,504,42),"Observe a target with E, cast a spell, or run a fixture to record a result.",_small,Muted);
+            if(shown==0)Text(new Rect(2,y,504,48),"Eで対象を観測するか、魔法や実験を使うと、ここへ結果が記録されます。",_small,Muted);
+        }
+
+        private void SetChant(string value)
+        {
+            _chant=value;
+            _chantScroll=Vector2.zero;
+            _chantCursor=-1;
+            _showRawSpell=false;
+        }
+
+        private void AnalyzeChant()
+        {
+            if(_world.ParseBusy||!string.IsNullOrEmpty(Input.compositionString))return;
+            _submittedChant=_chant;
+            _submittedDirect=_world.UseDirectWeights;
+            _showRawSpell=false;
+            _world.Analyze(_chant);
+        }
+
+        private void FollowChantCursor(string previousInput,float inputHeight)
+        {
+            var editor=GUIUtility.GetStateObject(typeof(TextEditor),GUIUtility.keyboardControl) as TextEditor;
+            if(editor==null)return;
+            int cursor=Mathf.Clamp(editor.cursorIndex,0,_chant.Length);
+            bool moved=cursor!=_chantCursor||!string.Equals(previousInput,_chant,StringComparison.Ordinal);
+            _chantCursor=cursor;
+            // Mouse-wheel and scrollbar reading must not be pulled back to an
+            // unchanged caret. Follow only focus, edit, or caret changes.
+            if(!moved)return;
+            _measureContent.text=_chant;
+            Vector2 caret=_input.GetCursorPixelPosition(new Rect(0,0,482,inputHeight),_measureContent,cursor);
+            float lineHeight=Mathf.Max(_input.lineHeight,_input.fontSize+2);
+            if(caret.y<_chantScroll.y+4)_chantScroll.y=caret.y-4;
+            else if(caret.y+lineHeight>_chantScroll.y+80)_chantScroll.y=caret.y+lineHeight-80;
+            float contentHeight=ParagraphHeight(_chant+"\n",_input,482,80);
+            _chantScroll.y=Mathf.Clamp(_chantScroll.y,0,Mathf.Max(0,contentHeight-84));
+        }
+
+        private bool IsCurrentResult()
+        {
+            return _world.Parsed!=null&&string.IsNullOrEmpty(Input.compositionString)&&
+                   string.Equals(_submittedChant,_chant,StringComparison.Ordinal)&&
+                   _submittedDirect==_world.UseDirectWeights;
+        }
+
+        private string ParseMessage()
+        {
+            if(_world.ParseBusy)return "詠唱を読み解いています。解析が終わるまでお待ちください。";
+            if(!string.IsNullOrEmpty(Input.compositionString))return "変換中の文字があります。Enterで確定し、『詠唱を解析』を押してください。";
+            if(_world.Parsed==null)
+                return "上の欄に入力し、『詠唱を解析』を押してください。対応する言葉から1種類の効果を読み取ります。まず例文を試してください。";
+            if(!IsCurrentResult())return "詠唱または解析方法を変更しました。『詠唱を解析』を押して、新しい結果を確認してください。";
+            return _world.Parsed.Error??"解析できませんでした。例文の言葉を使い、1種類の効果を指定してください。";
+        }
+
+        private float ParsedCardHeight()
+        {
+            if(IsCurrentResult()&&_world.Parsed.Success)
+                return _showRawSpell?120+ParagraphHeight(_world.Parsed.Canonical,_small,478,32):110;
+            return Mathf.Max(110,ParagraphHeight(ParseMessage(),_label,478,60)+42);
+        }
+
+        private float WorkbenchContentHeight(float resultHeight,float fixtureHeight,float adjustmentHeight)
+        {
+            float y=349+resultHeight+158+adjustmentHeight+116+fixtureHeight+18+130+38;
+            int shown=Math.Min(5,_world.Journal.Count);
+            if(shown==0)y+=48;
+            for(int i=0;i<shown;i++)y+=ParagraphHeight(JournalText(_world.Journal[i]),_small,504,40)+8;
+            return y+18;
+        }
+
+        private string AdjustmentGuide()
+        {
+            if(_world.Equipped!=null&&(_world.Equipped.Operation==SpellOperation.Heat||_world.Equipped.Operation==SpellOperation.Cool))
+                return "熱量は指定範囲全体の合計です。範囲外への伝播は空間魔力が抑えます。発動後"+
+                    _world.Simulator.Config.DirectedThermalSeconds.ToString("0.##",CultureInfo.InvariantCulture)+
+                    "秒は範囲内の抵抗が弱まり、その後は通常の抵抗へ戻ります。";
+            return "解析した術式は、装備ボタンを押すとここへ反映されます。";
+        }
+
+        private void DrawPowerSlider(Rect rect,float minimum,float maximum,float increment)
+        {
+            SpellRecipe recipe=_world.Equipped;
+            if(_powerSliderRecipe!=recipe)
+            {
+                _powerSliderRecipe=recipe;
+                _powerSliderMinimum=minimum;
+                _powerSliderMaximum=maximum;
+            }
+            float original=recipe.Power;
+            // Include analyzed/saved values and keep the range stable while dragging.
+            // Merely drawing the control must not clamp or round a spell's power.
+            _powerSliderMinimum=Mathf.Min(_powerSliderMinimum,original);
+            _powerSliderMaximum=Mathf.Max(_powerSliderMaximum,original);
+            float value=GUI.HorizontalSlider(rect,original,_powerSliderMinimum,_powerSliderMaximum);
+            if(value!=original)recipe.Power=Mathf.Max(1,Mathf.Round(value/increment)*increment);
+        }
+
+        private static string JournalText(JournalLine entry)
+        {
+            return "経過 "+entry.Tick+" ／ "+entry.Text;
+        }
+
+        private static string SpellSummary(MagicParseResult parsed)
+        {
+            string summary="効果："+JapaneseNames.Operation(parsed.Operation)+"　半径："+parsed.Radius+" m\n";
+            switch(parsed.Operation)
+            {
+                case SpellOperation.Heat:return summary+"指定した総熱量："+Units(parsed.Power,"J");
+                case SpellOperation.Cool:return summary+"最大除去熱量："+Units(parsed.Power,"J");
+                case SpellOperation.Charge:return summary+"最大充填量："+Units(parsed.Power,"MU");
+                case SpellOperation.Build:return summary+"生成する素材："+JapaneseNames.Material(parsed.Material);
+                case SpellOperation.Excavate:return summary+"範囲内の物質を取り除きます。";
+                case SpellOperation.Transmute:return summary+"条件を満たす鉄を魔導合金へ変えます。";
+                default:return summary;
+            }
+        }
+
+        private float ParagraphHeight(string value,GUIStyle style,float width,float minimum)
+        {
+            _measureContent.text=value??string.Empty;
+            return Mathf.Max(minimum,style.CalcHeight(_measureContent,width));
         }
 
         private void Section(float y,string title)

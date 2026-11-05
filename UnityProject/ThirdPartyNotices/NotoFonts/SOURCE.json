@@ -1,0 +1,59 @@
+{
+  "component": "Noto Sans JP",
+  "upstream_repository": "https://github.com/notofonts/noto-cjk",
+  "upstream_tag": "Sans2.004",
+  "retrieved_date_utc": "2026-11-05",
+  "license": "SIL Open Font License 1.1",
+  "license_source_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/LICENSE",
+  "license_sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+  "file_renaming": "Only the external file basenames were renamed to UIJapanese-Regular.otf and UIJapanese-Bold.otf. Font bytes, internal names and tables are unchanged. No subsetting, conversion or instancing was performed by ManaWeave. The Japanese subset is provided by the upstream project.",
+  "fonts": [
+    {
+      "local_path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf",
+      "upstream_filename": "NotoSansJP-Bold.otf",
+      "upstream_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/SubsetOTF/JP/NotoSansJP-Bold.otf",
+      "sha256": "1b0edfb500b73a4fa8a4fcaae1bbbd403994e08e73e3e0da37e70d3853f42c5f",
+      "size_bytes": 4656448,
+      "family": "Noto Sans JP",
+      "style": "Bold",
+      "postscript_name": "NotoSansJP-Bold",
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "copyright": "© 2014-2021 Adobe (http://www.adobe.com/).",
+      "unicode_cmap_codepoints": 16732,
+      "is_variable_font": false,
+      "font_format": "OpenType CFF (static, single face)",
+      "file_content_modified": false
+    },
+    {
+      "local_path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf",
+      "upstream_filename": "NotoSansJP-Regular.otf",
+      "upstream_url": "https://raw.githubusercontent.com/notofonts/noto-cjk/Sans2.004/Sans/SubsetOTF/JP/NotoSansJP-Regular.otf",
+      "sha256": "dff723ba59d57d136764a04b9b2d03205544f7cd785a711442d6d2d085ac5073",
+      "size_bytes": 4533028,
+      "family": "Noto Sans JP",
+      "style": "Regular",
+      "postscript_name": "NotoSansJP-Regular",
+      "version": "Version 2.004;hotconv 1.0.118;makeotfexe 2.5.65603",
+      "copyright": "© 2014-2021 Adobe (http://www.adobe.com/).",
+      "unicode_cmap_codepoints": 16732,
+      "is_variable_font": false,
+      "font_format": "OpenType CFF (static, single face)",
+      "file_content_modified": false
+    }
+  ],
+  "validation": {
+    "checked_at_utc": "2026-11-05T09:31:17.170679+00:00",
+    "revision": "2026-11-05-mana-resistance",
+    "tool": "fontTools.ttLib.TTFont",
+    "coverage_scope": "All non-whitespace C# source characters under Assets/ManaWeave and WSP v2 input vocabulary",
+    "unique_source_characters": 589,
+    "unique_lexicon_characters": 270,
+    "unique_combined_characters": 638,
+    "missing_source_and_lexicon_characters": {
+      "Bold": [],
+      "Regular": []
+    },
+    "unity_runtime_tested": false,
+    "limitation": "File character coverage, not native Unity rendering or every possible user-entered Unicode character."
+  }
+}

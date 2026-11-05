@@ -9,7 +9,7 @@ namespace ManaWeave.Runtime
         private static void Launch()
         {
             if (Object.FindFirstObjectByType<ManaWorldController>() != null) return;
-            var root = new GameObject("ManaWeave / World");
+            var root = new GameObject("ManaWeave / 世界");
             root.AddComponent<ManaWorldController>();
         }
     }

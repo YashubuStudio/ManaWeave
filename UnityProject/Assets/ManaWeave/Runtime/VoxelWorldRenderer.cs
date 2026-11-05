@@ -62,16 +62,16 @@ namespace ManaWeave.Runtime
             _chunks = new Chunk[_nx * _ny * _nz];
             Shader surfaceShader = Resources.Load<Shader>("ManaWeave/Voxel");
             if (surfaceShader == null) surfaceShader = Shader.Find("ManaWeave/Voxel");
-            if (surfaceShader == null) throw new InvalidOperationException("ManaWeave/Voxel shader resource is missing.");
-            _surface = new Material(surfaceShader) { name = "ManaWeave generated surface" };
+            if (surfaceShader == null) throw new InvalidOperationException("地形描画用のシェーダー（ManaWeave/Voxel）が見つかりません。");
+            _surface = new Material(surfaceShader) { name = "ManaWeaveの地形表面" };
             Shader auraShader = Resources.Load<Shader>("ManaWeave/Aura");
-            if (auraShader == null) throw new InvalidOperationException("ManaWeave/Aura shader resource is missing.");
-            _aura = new Material(auraShader) { name = "ManaWeave field visualization" };
+            if (auraShader == null) throw new InvalidOperationException("魔力描画用のシェーダー（ManaWeave/Aura）が見つかりません。");
+            _aura = new Material(auraShader) { name = "ManaWeaveの魔力表示" };
             for (int z = 0; z < _nz; z++)
             for (int y = 0; y < _ny; y++)
             for (int x = 0; x < _nx; x++)
             {
-                var obj = new GameObject("Chunk " + x + ":" + y + ":" + z);
+                var obj = new GameObject("地形区画 " + x + ":" + y + ":" + z);
                 obj.transform.SetParent(transform, false);
                 var mesh = new Mesh { name = obj.name, indexFormat = IndexFormat.UInt32 };
                 mesh.MarkDynamic();
@@ -84,14 +84,14 @@ namespace ManaWeave.Runtime
                 _chunks[ChunkIndex(x, y, z)] = chunk;
                 Rebuild(chunk);
             }
-            var auraObject = new GameObject("Ambient field / observed events");
+            var auraObject = new GameObject("空間魔力と観測した現象");
             auraObject.transform.SetParent(transform, false);
-            _auraMesh = new Mesh { name = "ManaWeave event markers", indexFormat = IndexFormat.UInt32 };
+            _auraMesh = new Mesh { name = "ManaWeaveの現象表示", indexFormat = IndexFormat.UInt32 };
             _auraMesh.MarkDynamic();
             auraObject.AddComponent<MeshFilter>().sharedMesh = _auraMesh;
             auraObject.AddComponent<MeshRenderer>().sharedMaterial = _aura;
             Overview = new Texture2D(world.Width, world.Depth, TextureFormat.RGBA32, false);
-            Overview.name = "ManaWeave live survey map";
+            Overview.name = "ManaWeaveの観測地図";
             Overview.filterMode = FilterMode.Point;
             Overview.wrapMode = TextureWrapMode.Clamp;
             world.Dirty.Clear();
@@ -348,7 +348,7 @@ namespace ManaWeave.Runtime
                 }
             }
             if (_auraMesh != null) Destroy(_auraMesh);
-            Transform oldAura = transform.Find("Ambient field / observed events");
+            Transform oldAura = transform.Find("空間魔力と観測した現象");
             if (oldAura != null) Destroy(oldAura.gameObject);
             if (_surface != null) Destroy(_surface);
             if (_aura != null) Destroy(_aura);

@@ -18,10 +18,9 @@ namespace ManaWeave.Core
         public int LastExperimentCenterZ { get; private set; }
 
         readonly double[] _heatDelta, _manaDelta;
-        readonly float[] _temperature, _deviation;
-        readonly bool[] _visited, _moved;
-        readonly int[] _queue, _visualSignature;
-        readonly List<int> _component = new List<int>(256);
+        readonly float[] _temperature;
+        readonly bool[] _moved;
+        readonly int[] _visualSignature;
         const float BurnEnergyPerKg = 13000000f;
 
         public WorldSimulator(WorldState world, SimulationConfig config = null)
@@ -30,15 +29,15 @@ namespace ManaWeave.Core
             World = world; Config = config ?? new SimulationConfig(); Config.Validate();
             Stats = new SimulationStats(); int n = world.Cells.Length;
             _heatDelta = new double[n]; _manaDelta = new double[n];
-            _temperature = new float[n]; _deviation = new float[n];
-            _visited = new bool[n]; _moved = new bool[n]; _queue = new int[n]; _visualSignature = new int[n];
+            _temperature = new float[n];
+            _moved = new bool[n]; _visualSignature = new int[n];
             for (int i = 0; i < n; i++) _visualSignature[i] = VisualSignature(i);
         }
 
         public void Step(float dt)
         {
             if (!MaterialCatalog.Finite(dt) || dt <= 0f || dt > 1f)
-                throw new ArgumentOutOfRangeException("dt", "A tick must be in (0, 1] seconds.");
+                throw new ArgumentOutOfRangeException("dt", "1回の計算時間は、0秒より大きく1秒以下にしてください。");
             Config.Validate();
             // Substeps bound all fluxes; continuous-time sources are multiplied by the actual substep.
             int count = Math.Max(1, (int)Math.Ceiling(dt / .05f));
@@ -76,36 +75,61 @@ namespace ManaWeave.Core
 
         void CalculateOrdinaryFluxes(float dt)
         {
-            Array.Clear(_heatDelta, 0, _heatDelta.Length); Array.Clear(_manaDelta, 0, _manaDelta.Length);
-            for (int i = 0; i < World.Cells.Length; i++) _temperature[i] = World.Temperature(i);
+            // Resolve conservative mana diffusion before reserving any mana for thermal resistance.
+            // A separate reservation pass prevents six incident faces from spending the same field resource.
+            Array.Clear(_manaDelta, 0, _manaDelta.Length);
             int width = World.Width, height = World.Height, layer = width * height;
+            if (Config.ManaDiffusion > 0f)
+            {
+                for (int z = 0; z < World.Depth; z++)
+                for (int y = 0; y < height; y++)
+                for (int x = 0; x < width; x++)
+                {
+                    int i = x + width * (y + height * z);
+                    if (x + 1 < width) ManaFluxPair(i, i + 1, dt);
+                    if (y + 1 < height) ManaFluxPair(i, i + width, dt);
+                    if (z + 1 < World.Depth) ManaFluxPair(i, i + layer, dt);
+                }
+                for (int i = 0; i < World.Cells.Length; i++)
+                {
+                    Cell c = World.Cells[i];
+                    c.AmbientMana = (float)Math.Max(0.0, c.AmbientMana + _manaDelta[i]);
+                    World.Cells[i] = c;
+                }
+            }
+            if (Config.ThermalDiffusion == 0f) return;
+            Array.Clear(_heatDelta, 0, _heatDelta.Length);
+            for (int i = 0; i < World.Cells.Length; i++)
+            {
+                _temperature[i] = World.Temperature(i);
+                _manaDelta[i] = World.Cells[i].AmbientMana * Math.Min(1.0, 8.0 * dt); // remaining per-cell resistance budget
+            }
             for (int z = 0; z < World.Depth; z++)
             for (int y = 0; y < height; y++)
             for (int x = 0; x < width; x++)
             {
                 int i = x + width * (y + height * z);
-                if (x + 1 < width) FluxPair(i, i + 1, dt);
-                if (y + 1 < height) FluxPair(i, i + width, dt);
-                if (z + 1 < World.Depth) FluxPair(i, i + layer, dt);
+                if (x + 1 < width) ThermalFluxPair(i, i + 1, dt);
+                if (y + 1 < height) ThermalFluxPair(i, i + width, dt);
+                if (z + 1 < World.Depth) ThermalFluxPair(i, i + layer, dt);
             }
             for (int i = 0; i < World.Cells.Length; i++)
             {
                 Cell c = World.Cells[i];
-                c.Energy = (float)Math.Max(0.0, c.Energy + _heatDelta[i]);
-                c.AmbientMana = (float)Math.Max(0.0, c.AmbientMana + _manaDelta[i]);
+                c.Energy = Math.Max(0.0, c.Energy + _heatDelta[i]);
                 World.Cells[i] = c;
             }
         }
 
-        void FluxPair(int a, int b, float dt)
+        void ManaFluxPair(int a, int b, float dt)
+        {
+            double q = (World.Cells[b].AmbientMana - (double)World.Cells[a].AmbientMana) * Math.Min(.10, Config.ManaDiffusion * dt);
+            _manaDelta[a] += q; _manaDelta[b] -= q;
+        }
+
+        void ThermalFluxPair(int a, int b, float dt)
         {
             Cell ca = World.Cells[a], cb = World.Cells[b];
-            if (Config.ManaDiffusion > 0f)
-            {
-                double q = (cb.AmbientMana - (double)ca.AmbientMana) * Math.Min(.10, Config.ManaDiffusion * dt);
-                _manaDelta[a] += q; _manaDelta[b] -= q;
-            }
-            if (Config.ThermalDiffusion == 0f) return;
             MaterialDefinition da = MaterialCatalog.Get(ca.Material), db = MaterialCatalog.Get(cb.Material);
             double capa = Math.Max(.000001, da.HeatCapacity * ca.Mass), capb = Math.Max(.000001, db.HeatCapacity * cb.Mass);
             double harmonic = 2.0 * da.Conductivity * db.Conductivity / (da.Conductivity + db.Conductivity);
@@ -113,76 +137,124 @@ namespace ManaWeave.Core
             double qheat = (_temperature[b] - (double)_temperature[a]) / (1.0 / capa + 1.0 / capb) * fraction;
             // Six bounded edge transfers can never remove more than the available energy.
             qheat = Math.Max(-ca.Energy / 6.0, Math.Min(cb.Energy / 6.0, qheat));
+            if (qheat != 0.0 && Config.SpatialResistance > 0f)
+            {
+                // Only an explicitly addressed region has reduced field resistance. A transported temperature
+                // disturbance never grants its own authorization to the next cell.
+                double accessA = DirectedThermalRemaining(a) > 0f ? Config.DirectedResistanceMultiplier : 1.0;
+                double accessB = DirectedThermalRemaining(b) > 0f ? Config.DirectedResistanceMultiplier : 1.0;
+                double opacity = .5 * (accessA * ca.AmbientMana / (ca.AmbientMana + 5.0) +
+                    accessB * cb.AmbientMana / (cb.AmbientMana + 5.0));
+                double attenuation = 1.0 - Math.Exp(-Config.SpatialResistance * opacity);
+                double requested = Math.Abs(qheat) * attenuation;
+                double availableA = Math.Max(0.0, Math.Min(ca.AmbientMana, _manaDelta[a]));
+                double availableB = Math.Max(0.0, Math.Min(cb.AmbientMana, _manaDelta[b]));
+                double available = availableA + availableB;
+                double blocked = Math.Min(requested, available * Config.JoulesPerMana);
+                if (blocked > 0.0 && available > 0.0)
+                {
+                    double cost = blocked / Config.JoulesPerMana;
+                    // Commit representable debits immediately and reduce the shared per-cell budgets.
+                    // Later faces see the remainder, so no field resource can be spent twice.
+                    double spentA = RemoveAtMost(ref ca.AmbientMana, cost * availableA / available);
+                    double spentB = RemoveAtMost(ref cb.AmbientMana, cost * availableB / available);
+                    _manaDelta[a] = Math.Max(0.0, _manaDelta[a] - spentA);
+                    _manaDelta[b] = Math.Max(0.0, _manaDelta[b] - spentB);
+                    World.Cells[a] = ca; World.Cells[b] = cb;
+                    double spent = spentA + spentB;
+                    blocked = Math.Min(blocked, spent * Config.JoulesPerMana);
+                    qheat -= Math.Sign(qheat) * blocked;
+                    Stats.ManifestedMana += spent; Stats.DirectManifestedMana += spent;
+                    Stats.SuppressedTransportJoules += blocked;
+                }
+            }
             _heatDelta[a] += qheat; _heatDelta[b] -= qheat;
+        }
+
+        /// <summary>Seconds left in an explicitly addressed thermal region; heat propagation never extends it.</summary>
+        public float DirectedThermalRemaining(int index)
+        {
+            if (index < 0 || index >= World.Cells.Length) return 0f;
+            return (float)Math.Max(0.0, World.Cells[index].ThermalCommandUntil - World.SimulatedSeconds);
         }
 
         void ApplyNaturalInteraction(float dt)
         {
             Stats.ActivePhenomena = 0;
             if (Config.NaturalCoupling == 0f) return;
-            Array.Clear(_visited, 0, _visited.Length);
             for (int i = 0; i < World.Cells.Length; i++)
             {
-                Cell c = World.Cells[i]; float temperature = MaterialCatalog.Temperature(c);
-                _deviation[i] = Math.Abs(temperature - MaterialCatalog.RoomTemperature) >= Config.DisturbanceThreshold
-                    ? c.Energy - MaterialCatalog.RoomEnergy(c) : 0f;
-            }
-            // Components have equal disturbance polarity. A large connected event is not mistaken for small isolated cells.
-            for (int start = 0; start < World.Cells.Length; start++)
-            {
-                if (_visited[start] || Math.Abs(_deviation[start]) < .01f) continue;
-                _component.Clear(); int head = 0, tail = 0; _queue[tail++] = start; _visited[start] = true;
-                bool positive = _deviation[start] > 0f; double scale = 0.0;
-                while (head < tail)
-                {
-                    int i = _queue[head++]; _component.Add(i); scale += Math.Abs(_deviation[i]);
-                    int x, y, z; World.Coordinates(i, out x, out y, out z);
-                    if (x > 0) Enqueue(i - 1, positive, ref tail);
-                    if (x + 1 < World.Width) Enqueue(i + 1, positive, ref tail);
-                    if (y > 0) Enqueue(i - World.Width, positive, ref tail);
-                    if (y + 1 < World.Height) Enqueue(i + World.Width, positive, ref tail);
-                    int stride = World.Width * World.Height;
-                    if (z > 0) Enqueue(i - stride, positive, ref tail);
-                    if (z + 1 < World.Depth) Enqueue(i + stride, positive, ref tail);
-                }
-                if (scale < .01) continue;
+                Cell c = World.Cells[i];
+                float temperature = MaterialCatalog.Temperature(c);
+                if (Math.Abs(temperature - MaterialCatalog.RoomTemperature) < Config.DisturbanceThreshold) continue;
+                double reference = MaterialCatalog.RoomEnergy(c), deviation = c.Energy - reference;
+                if (Math.Abs(deviation) < .01) continue;
                 Stats.ActivePhenomena++;
-                double response = Math.Tanh(Config.CoherenceSlope * Math.Log(scale / Config.CriticalEnergy));
-                double rate = Math.Min(.25, Config.NaturalCoupling * dt);
-                for (int j = 0; j < _component.Count; j++)
-                {
-                    int i = _component[j]; Cell c = World.Cells[i];
-                    float storedAccess = Config.EnableStoredInteraction ? c.StoredMana * Math.Min(1f, .7f * dt) : 0f;
-                    float ambientAccess = c.AmbientMana * Math.Min(1f, 8f * dt);
-                    double density = c.AmbientMana + (Config.EnableStoredInteraction ? c.StoredMana * .20 : 0.0);
-                    double requested = _deviation[i] * response * rate * density / (density + 5.0);
-                    if (requested < 0) requested = Math.Max(-c.Energy, requested);
-                    double availableEffect = (ambientAccess + storedAccess) * (double)Config.JoulesPerMana;
-                    double effect = Math.Sign(requested) * Math.Min(Math.Abs(requested), availableEffect);
-                    if (Math.Abs(effect) < .00001) continue;
-                    float cost = (float)(Math.Abs(effect) / Config.JoulesPerMana);
-                    float fromAmbient = Math.Min(ambientAccess, cost);
-                    float fromStored = Math.Min(storedAccess, Math.Max(0f, cost - fromAmbient));
-                    // Use exactly the resource amount committed, avoiding negative pools from rounding.
-                    double actual = Math.Sign(effect) * (fromAmbient + (double)fromStored) * Config.JoulesPerMana;
-                    float previousEnergy = c.Energy;
-                    c.AmbientMana = Math.Max(0f, c.AmbientMana - fromAmbient);
-                    c.StoredMana = Math.Max(0f, c.StoredMana - fromStored);
-                    c.Energy = (float)Math.Max(0.0, c.Energy + actual); World.Cells[i] = c;
-                    double committed = c.Energy - (double)previousEnergy;
-                    Stats.ManifestedMana += fromAmbient + (double)fromStored;
-                    Stats.DirectManifestedMana += fromAmbient; Stats.StoredManifestedMana += fromStored;
-                    Stats.NaturalEnergyJoules += committed;
-                    if (response < 0) Stats.StabilizedJoules += Math.Abs(committed);
-                    else Stats.AmplifiedJoules += Math.Abs(committed);
-                }
+                double density = c.AmbientMana + (Config.EnableStoredInteraction ? .20 * c.StoredMana : 0.0);
+                if (density <= 0.0) continue;
+                bool directed = DirectedThermalRemaining(i) > 0f;
+                double medium = MaterialCatalog.IsGas(c.Material) ? Config.GasResistanceMultiplier : 1.0;
+                double rate = Config.NaturalCoupling * medium * density / (density + 5.0);
+                if (directed) rate *= Config.DirectedResistanceMultiplier;
+                // Exact exponential relaxation: every size and both temperature polarities approach the reference.
+                // The factor is in [0,1]; neither large events nor a large timestep can change its sign or overshoot.
+                double requested = Math.Abs(deviation) * (1.0 - Math.Exp(-rate * dt));
+                float ambientAccess = c.AmbientMana * Math.Min(1f, 8f * dt);
+                float storedAccess = Config.EnableStoredInteraction ? c.StoredMana * Math.Min(1f, .7f * dt) : 0f;
+                double work = Math.Min(requested, (ambientAccess + (double)storedAccess) * Config.JoulesPerMana);
+                if (work < .00001) continue;
+                double proposed = EnergyToward(c.Energy, reference, work);
+                if (proposed == c.Energy) continue;
+                double cost = Math.Abs(proposed - (double)c.Energy) / Config.JoulesPerMana;
+                float previousAmbient = c.AmbientMana, previousStored = c.StoredMana;
+                double previousEnergy = c.Energy;
+                double spentA = RemoveAtMost(ref c.AmbientMana, Math.Min(ambientAccess, cost));
+                double spentS = RemoveAtMost(ref c.StoredMana, Math.Min(storedAccess, Math.Max(0.0, cost - spentA)));
+                c.Energy = EnergyToward(previousEnergy, reference, (spentA + spentS) * Config.JoulesPerMana);
+                if (c.Energy == previousEnergy) continue; // sub-ULP work is neither applied nor charged
+                World.Cells[i] = c;
+                double committed = c.Energy - (double)previousEnergy;
+                double spentAmbient = previousAmbient - (double)c.AmbientMana;
+                double spentStored = previousStored - (double)c.StoredMana;
+                Stats.ManifestedMana += spentAmbient + spentStored;
+                Stats.DirectManifestedMana += spentAmbient; Stats.StoredManifestedMana += spentStored;
+                Stats.NaturalEnergyJoules += committed;
+                Stats.StabilizedJoules += Math.Abs(committed);
+                if (directed) Stats.DirectedStabilizedJoules += Math.Abs(committed);
+                // AmplifiedJoules is retained as a legacy statistics field; it is never incremented.
             }
         }
 
-        void Enqueue(int index, bool positive, ref int tail)
+        // Mana remains single precision; heat state is double precision. Neither can exceed its finite budget.
+        // Values in these two helpers are finite and nonnegative; one neighbouring float is sufficient.
+        static float NextToward(float value, float target)
         {
-            if (_visited[index] || Math.Abs(_deviation[index]) < .01f || (_deviation[index] > 0f) != positive) return;
-            _visited[index] = true; _queue[tail++] = index;
+            if (value == target) return value;
+            int bits = BitConverter.SingleToInt32Bits(value);
+            return BitConverter.Int32BitsToSingle(bits + (target > value ? 1 : -1));
+        }
+
+        static double RemoveAtMost(ref float pool, double maximum)
+        {
+            maximum = Math.Max(0.0, Math.Min(pool, maximum));
+            float old = pool, next = (float)Math.Max(0.0, pool - maximum);
+            if (old - (double)next > maximum) next = NextToward(next, old);
+            pool = Math.Max(0f, Math.Min(old, next));
+            return old - (double)pool;
+        }
+
+        static double EnergyToward(double energy, double reference, double maximum)
+        {
+            double difference = reference - energy;
+            double work = Math.Min(Math.Abs(difference), Math.Max(0.0, maximum));
+            double result = energy + Math.Sign(difference) * work;
+            if (Math.Abs(result - energy) > work)
+            {
+                long bits = BitConverter.DoubleToInt64Bits(result);
+                result = BitConverter.Int64BitsToDouble(bits + (energy > result ? 1 : -1));
+            }
+            return Math.Max(0.0, difference > 0 ? Math.Min(reference, Math.Max(energy, result)) :
+                Math.Max(reference, Math.Min(energy, result)));
         }
 
         void AbsorbMana(float dt)
@@ -227,12 +299,12 @@ namespace ManaWeave.Core
                 if (c.Material != MaterialId.Wood || c.Fuel <= 0f || MaterialCatalog.Temperature(c) < 140f) continue;
                 float rate = .004f * Math.Min(4f, Math.Max(.2f, (MaterialCatalog.Temperature(c) - 120f) / 180f));
                 float used = Math.Min(c.Fuel, rate * dt);
-                float before = c.Energy; c.Energy += used * BurnEnergyPerKg; c.Fuel -= used;
+                double before = c.Energy; c.Energy += used * (double)BurnEnergyPerKg; c.Fuel -= used;
                 Stats.CombustionJoules += c.Energy - before;
                 if (c.Fuel <= .000001f)
                 {
                     c.Material = MaterialId.Ash; c.Fuel = 0f; ReleaseOverflow(ref c); World.MarkDirty(i);
-                    Stats.LastEvent = "Wood fuel exhausted; solid residue became ash.";
+                    Stats.LastEvent = "木材の燃料を使い切り、燃え残りが灰になりました。";
                 }
                 World.Cells[i] = c;
             }
@@ -243,7 +315,7 @@ namespace ManaWeave.Core
             for (int i = 0; i < World.Cells.Length; i++)
             {
                 Cell c = World.Cells[i]; if (!MaterialCatalog.IsWaterFamily(c.Material) || c.Mass <= 0f) continue;
-                MaterialId previous = c.Material; float h = c.Energy / c.Mass;
+                MaterialId previous = c.Material; double h = c.Energy / c.Mass;
                 if (c.Material == MaterialId.Ice && h >= MaterialCatalog.WaterAtZero) c.Material = MaterialId.Water;
                 if (c.Material == MaterialId.Water && h >= MaterialCatalog.SteamAtBoiling) c.Material = MaterialId.Steam;
                 if (c.Material == MaterialId.Steam && h <= MaterialCatalog.WaterAtBoiling) c.Material = MaterialId.Water;
@@ -251,7 +323,7 @@ namespace ManaWeave.Core
                 if (previous != c.Material)
                 {
                     ReleaseOverflow(ref c); World.Cells[i] = c; World.MarkDirty(i);
-                    Stats.LastEvent = previous + " -> " + c.Material + " (enthalpy and mass retained).";
+                    Stats.LastEvent = JapaneseNames.Material(previous) + " → " + JapaneseNames.Material(c.Material) + "（熱エネルギーと質量を維持）。";
                 }
             }
         }
@@ -303,7 +375,9 @@ namespace ManaWeave.Core
         {
             Cell ca = World.Cells[a], cb = World.Cells[b];
             float spaceA = ca.AmbientMana, spaceB = cb.AmbientMana;
+            double commandA = ca.ThermalCommandUntil, commandB = cb.ThermalCommandUntil;
             cb.AmbientMana = spaceA; ca.AmbientMana = spaceB;
+            cb.ThermalCommandUntil = commandA; ca.ThermalCommandUntil = commandB;
             World.Cells[a] = cb; World.Cells[b] = ca; _moved[a] = true; _moved[b] = true;
             World.MarkDirty(a); World.MarkDirty(b);
         }
@@ -323,12 +397,12 @@ namespace ManaWeave.Core
 
         public SpellResult Cast(SpellCommand command)
         {
-            if (command == null) return SpellResult.Fail("No spell supplied.");
-            if (!Enum.IsDefined(typeof(SpellOperation), command.Operation)) return SpellResult.Fail("Unknown operation.");
-            if (!World.InBounds(command.X, command.Y, command.Z)) return SpellResult.Fail("Target is outside the simulated world.");
-            if (command.Radius < 1 || command.Radius > 5) return SpellResult.Fail("Radius must be 1..5 voxels.");
-            if (!MaterialCatalog.Finite(command.Power) || command.Power < 0f) return SpellResult.Fail("Power must be a finite nonnegative number.");
-            if (!MaterialCatalog.IsValid(command.Material)) return SpellResult.Fail("Unknown material.");
+            if (command == null) return SpellResult.Fail("術式が指定されていません。");
+            if (!Enum.IsDefined(typeof(SpellOperation), command.Operation)) return SpellResult.Fail("対応していない術式です。");
+            if (!World.InBounds(command.X, command.Y, command.Z)) return SpellResult.Fail("対象が世界の範囲外です。島の中を狙ってください。");
+            if (command.Radius < 1 || command.Radius > 5) return SpellResult.Fail("効果の半径は1～5セルで指定してください。");
+            if (!MaterialCatalog.Finite(command.Power) || command.Power < 0f) return SpellResult.Fail("術式の出力量には、0以上の有限な値を指定してください。");
+            if (!MaterialCatalog.IsValid(command.Material)) return SpellResult.Fail("対応していない物質です。");
             Config.Validate();
             List<int> cells = Sphere(command);
             switch (command.Operation)
@@ -339,39 +413,42 @@ namespace ManaWeave.Core
                 case SpellOperation.Transmute: return CastTransmute(cells);
                 case SpellOperation.Excavate: return CastMatter(command, cells, false);
                 case SpellOperation.Build: return CastMatter(command, cells, true);
-                default: return SpellResult.Fail("Unsupported operation.");
+                default: return SpellResult.Fail("対応していない術式です。");
             }
         }
 
         SpellResult CastThermal(SpellCommand command, List<int> cells, bool cooling)
         {
-            if (command.Power <= 0f || command.Power > 8000000f) return SpellResult.Fail("Thermal energy must be in (0, 8,000,000] J.");
+            if (command.Power <= 0f || command.Power > 8000000f) return SpellResult.Fail("熱量は0 Jより大きく、8,000,000 J以下で指定してください。");
             double weight = 0;
             for (int j = 0; j < cells.Count; j++)
             {
                 Cell c = World.Cells[cells[j]];
                 weight += cooling ? c.Energy : c.Mass * (double)MaterialCatalog.Get(c.Material).HeatCapacity;
             }
-            if (weight <= .000001) return SpellResult.Fail("Target contains no usable thermal state.");
+            if (weight <= .000001) return SpellResult.Fail("対象範囲に、熱を操作できる物質がありません。");
             double total = cooling ? Math.Min(command.Power, weight) : command.Power;
             float cost = (float)(total / Config.JoulesPerMana + 2f + cells.Count * .08f);
-            if (!CanPay(cost)) return SpellResult.Fail("Insufficient body mana: requires " + F(cost) + " MU.");
+            if (!CanPay(cost)) return SpellResult.Fail("体内魔力が不足しています。必要量は " + F(cost) + " MUです。");
             Pay(cost); double actual = 0;
             for (int j = 0; j < cells.Count; j++)
             {
                 int i = cells[j]; Cell c = World.Cells[i];
                 double portion = cooling ? c.Energy : c.Mass * (double)MaterialCatalog.Get(c.Material).HeatCapacity;
-                float old = c.Energy;
-                c.Energy = (float)Math.Max(0.0, c.Energy + (cooling ? -1.0 : 1.0) * total * portion / weight);
-                actual += c.Energy - (double)old; World.Cells[i] = c; World.MarkDirty(i);
+                double old = c.Energy;
+                c.Energy = cooling && total >= weight ? 0.0 :
+                    Math.Max(0.0, c.Energy + (cooling ? -1.0 : 1.0) * total * portion / weight);
+                actual += c.Energy - (double)old;
+                c.ThermalCommandUntil = World.SimulatedSeconds + Config.DirectedThermalSeconds;
+                World.Cells[i] = c; World.MarkDirty(i);
             }
             Stats.SpellJoules += actual;
-            return Success((cooling ? "Removed " : "Added ") + F((float)Math.Abs(actual)) + " J across " + cells.Count + " cells.", cost);
+            return Success(cells.Count + "セル全体で " + F((float)Math.Abs(actual)) + (cooling ? " Jの熱を取り除きました。" : " Jの熱を加えました。"), cost);
         }
 
         SpellResult CastCharge(SpellCommand command, List<int> cells)
         {
-            if (command.Power <= 0f || command.Power > 10000f) return SpellResult.Fail("Charge must be in (0, 10,000] MU.");
+            if (command.Power <= 0f || command.Power > 10000f) return SpellResult.Fail("充填量は0 MUより大きく、10,000 MU以下で指定してください。");
             double capacity = 0;
             for (int j = cells.Count - 1; j >= 0; j--)
             {
@@ -380,9 +457,9 @@ namespace ManaWeave.Core
                 float free = Math.Max(0f, MaterialCatalog.StorageCapacity(c) - c.StoredMana);
                 if (free <= .000001f) cells.RemoveAt(j); else capacity += free;
             }
-            if (capacity <= .000001) return SpellResult.Fail("No material with free mana storage is in range.");
+            if (capacity <= .000001) return SpellResult.Fail("対象範囲に、魔力の保有容量に空きがある物質がありません。");
             float amount = (float)Math.Min(command.Power, capacity), overhead = 2f, cost = amount + overhead;
-            if (!CanPay(cost)) return SpellResult.Fail("Insufficient body mana: requires " + F(cost) + " MU.");
+            if (!CanPay(cost)) return SpellResult.Fail("体内魔力が不足しています。必要量は " + F(cost) + " MUです。");
             World.CasterMana -= cost; Stats.ManifestedMana += overhead;
             double moved = 0;
             for (int j = 0; j < cells.Count; j++)
@@ -393,48 +470,48 @@ namespace ManaWeave.Core
                 c.StoredMana += q; moved += q; World.Cells[i] = c; World.MarkDirty(i);
             }
             Stats.TransferredMana += moved;
-            return Success("Transferred " + F((float)moved) + " MU into matter; 2 MU used for control.", cost);
+            return Success("物質へ " + F((float)moved) + " MUを移しました。制御に2 MUを消費しました。", cost);
         }
 
         SpellResult CastTransmute(List<int> cells)
         {
             for (int j = cells.Count - 1; j >= 0; j--)
                 if (World.Cells[cells[j]].Material != MaterialId.Iron) cells.RemoveAt(j);
-            if (cells.Count == 0) return SpellResult.Fail("Transmute requires iron in the target volume.");
+            if (cells.Count == 0) return SpellResult.Fail("錬成には、対象範囲内に鉄が必要です。");
             for (int j = 0; j < cells.Count; j++)
             {
                 Cell c = World.Cells[cells[j]];
                 if (MaterialCatalog.Temperature(c) < 250f || c.StoredMana < 6f)
-                    return SpellResult.Fail("Each iron cell needs at least 250 C and 6 stored MU. Heat and charge it first.");
+                    return SpellResult.Fail("範囲内の鉄は、各セルに250 °C以上の温度と6 MU以上の保有魔力が必要です。先に加熱・充填してください。");
             }
             float cost = 10f * cells.Count;
-            if (!CanPay(cost)) return SpellResult.Fail("Insufficient body mana for alchemical binding.");
+            if (!CanPay(cost)) return SpellResult.Fail("錬成に必要な体内魔力が不足しています。");
             Pay(cost);
             for (int j = 0; j < cells.Count; j++)
             {
                 int i = cells[j]; Cell c = World.Cells[i];
                 c.StoredMana -= 6f; c.Material = MaterialId.Alloy;
-                float old = c.Energy; c.Energy += 6f * Config.JoulesPerMana;
+                double old = c.Energy; c.Energy += 6.0 * Config.JoulesPerMana;
                 Stats.ReactionJoules += c.Energy - old;
                 Stats.ManifestedMana += 6f; Stats.StoredManifestedMana += 6f;
                 World.Cells[i] = c; World.MarkDirty(i);
             }
-            return Success("Bound " + cells.Count + " iron cells into arcane alloy; mass retained, 6 stored MU used per cell.", cost);
+            return Success("鉄 " + cells.Count + "セルを魔導合金へ錬成しました。質量を保ち、各セルの保有魔力を6 MU消費しました。", cost);
         }
 
         SpellResult CastMatter(SpellCommand command, List<int> cells, bool build)
         {
             if (build && (command.Material == MaterialId.Air || command.Material == MaterialId.Steam))
-                return SpellResult.Fail("Select a tangible building material.");
+                return SpellResult.Fail("建築用の素材を選んでください。空気と蒸気は配置できません。");
             for (int j = cells.Count - 1; j >= 0; j--)
             {
                 MaterialId id = World.Cells[cells[j]].Material;
                 bool empty = id == MaterialId.Air || id == MaterialId.Steam;
                 if (build ? !empty : empty) cells.RemoveAt(j);
             }
-            if (cells.Count == 0) return SpellResult.Fail(build ? "No empty space in the building volume." : "No matter to excavate.");
+            if (cells.Count == 0) return SpellResult.Fail(build ? "建築する範囲に空きがありません。" : "対象範囲に掘削できる物質がありません。");
             float cost = 2f + cells.Count * (build ? 5f : 3f);
-            if (!CanPay(cost)) return SpellResult.Fail("Insufficient body mana for terrain editing.");
+            if (!CanPay(cost)) return SpellResult.Fail("地形を変更するための体内魔力が不足しています。");
             Pay(cost);
             for (int j = 0; j < cells.Count; j++)
             {
@@ -444,8 +521,8 @@ namespace ManaWeave.Core
                 Stats.SandboxMassKg += after.Mass - (double)before.Mass;
                 Stats.SandboxEnergyJoules += after.Energy - (double)before.Energy;
             }
-            return Success((build ? "Placed " + command.Material + " in " : "Excavated ") + cells.Count +
-                " cells (creative material reservoir recorded).", cost);
+            return Success(build ? JapaneseNames.Material(command.Material) + "を " + cells.Count + "セルに配置しました（創作モードの素材収支へ記録）。" :
+                cells.Count + "セルを掘削しました（創作モードの素材収支へ記録）。", cost);
         }
 
         bool CanPay(float cost) { return MaterialCatalog.Finite(cost) && cost >= 0f && World.CasterMana + .000001f >= cost; }
@@ -470,14 +547,14 @@ namespace ManaWeave.Core
             if (id == 0)
             {
                 InjectHeat(World.Index(x, y, z), 50000f);
-                Stats.LastEvent = "Small event: 50 kJ disturbance, below the 160 kJ default critical scale; ambient mana damps it.";
+                Stats.LastEvent = "小規模実験：50 kJの熱変化です。命令されていない空間魔力が、基準温度からの変化に抵抗します。";
             }
             else if (id == 1)
             {
                 for (int dx = -2; dx <= 2; dx++)
                 for (int dz = -2; dz <= 2; dz++)
                     if (World.InBounds(x + dx, y, z + dz)) InjectHeat(World.Index(x + dx, y, z + dz), 120000f);
-                Stats.LastEvent = "Large event: connected 3 MJ wood bed; ambient resonance amplifies it while mana remains available.";
+                Stats.LastEvent = "大規模実験：石材25セルへ合計3 MJの熱を与えました。規模が大きくても増幅せず、熱変化と周囲への伝播に抵抗します。";
             }
             else if (id == 2)
             {
@@ -486,7 +563,7 @@ namespace ManaWeave.Core
                 InjectHeat(i, Math.Max(0f, target - c.Energy)); c = World.Cells[i];
                 float injected = Math.Max(0f, 12f - c.StoredMana); c.StoredMana += injected;
                 Stats.ExperimentMana += injected; World.Cells[i] = c; World.MarkDirty(i);
-                Stats.LastEvent = "Alchemy fixture: iron at 320 C, 12 stored MU. Aim at it and cast transmute to bind arcane alloy.";
+                Stats.LastEvent = "錬成準備：鉄を320 °C、保有魔力12 MUにしました。鉄を狙って錬成を発動すると魔導合金になります。";
             }
             else
             {
@@ -494,13 +571,13 @@ namespace ManaWeave.Core
                 // No stored mana is needed. Releasing any residual stock retains the total mana inventory.
                 c.AmbientMana += c.StoredMana; c.StoredMana = 0f; World.Cells[i] = c;
                 InjectHeat(i, 60000f);
-                Stats.LastEvent = "Direct-field fixture: 60 kJ in an air cell with zero stored mana. Ambient mana acts before absorption.";
+                Stats.LastEvent = "直接抵抗実験：保有魔力0の空気セルへ60 kJの熱を与えました。物質への吸収を経ず、空間魔力が熱変化に抵抗します。";
             }
         }
 
-        void InjectHeat(int i, float joules)
+        void InjectHeat(int i, double joules)
         {
-            Cell c = World.Cells[i]; float before = c.Energy; c.Energy += joules; World.Cells[i] = c;
+            Cell c = World.Cells[i]; double before = c.Energy; c.Energy += joules; World.Cells[i] = c;
             Stats.SandboxEnergyJoules += c.Energy - before; World.MarkDirty(i);
         }
 

@@ -1,0 +1,33 @@
+{
+  "revision": "2026-11-05-mana-resistance",
+  "baselines": [
+    {
+      "file_name": "ManaWeave_Unity63_before_fontfix.zip",
+      "sha256": "b87c62d7011391a07e4c67692b0ae1c7d11ad369ff9fff9d4bd330068d4ef9dc",
+      "base_asset_files": 67,
+      "result_asset_files": 85,
+      "overlay_byte_identical_to_full_project": true
+    },
+    {
+      "file_name": "ManaWeave_before_JapaneseChants.zip",
+      "sha256": "dde5ede0a5f3f35d4ca93a597d2ba2988c20871897495b6c81842544996fdc2a",
+      "base_asset_files": 83,
+      "result_asset_files": 85,
+      "overlay_byte_identical_to_full_project": true
+    },
+    {
+      "file_name": "ManaWeave_before_resistance.zip",
+      "sha256": "1cffac6407630f787cf848209de90e2f48a3787eb939a0ed9da7967c9ecc9bed",
+      "base_asset_files": 85,
+      "result_asset_files": 85,
+      "overlay_byte_identical_to_full_project": true
+    }
+  ],
+  "changed_asset_files_from_original": 33,
+  "included_asset_files_with_metadata": 55,
+  "final_asset_files": 85,
+  "existing_metadata_and_guids_preserved": true,
+  "removals_required": false,
+  "native_unity_import_tested": false,
+  "notes": "CRC and each payload hash are checked again after ZIP creation."
+}

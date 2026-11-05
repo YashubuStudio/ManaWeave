@@ -23,36 +23,36 @@ namespace ManaWeave.Magic
 
         public RuneLanguageModel(byte[] bytes)
         {
-            if (bytes == null || bytes.Length < 36) throw new InvalidDataException("Missing RuneLM weights.");
+            if (bytes == null || bytes.Length < 36) throw new InvalidDataException("短文モデルの重みが見つかりません。");
             using (var stream = new MemoryStream(bytes, false))
             using (var reader = new BinaryReader(stream, Encoding.UTF8))
             {
                 if (Encoding.ASCII.GetString(reader.ReadBytes(8)) != "MWLM0001")
-                    throw new InvalidDataException("Not a ManaWeave RuneLM file.");
+                    throw new InvalidDataException("ManaWeaveの短文モデル形式ではありません。");
                 int version = reader.ReadInt32();
-                if (version != 1) throw new InvalidDataException("Unsupported RuneLM version.");
+                if (version != 1) throw new InvalidDataException("短文モデルの形式バージョンに対応していません。");
                 Dimension = reader.ReadInt32(); Heads = reader.ReadInt32(); Layers = reader.ReadInt32();
                 ContextLength = reader.ReadInt32(); int count = reader.ReadInt32(); ParameterCount = reader.ReadInt32();
                 if (Dimension < 8 || Dimension > 2048 || Heads < 1 || Dimension % Heads != 0 ||
                     Layers < 1 || Layers > 32 || ContextLength < 16 || ContextLength > 2048 ||
                     count < 16 || count > 65536)
-                    throw new InvalidDataException("RuneLM configuration is out of bounds.");
+                    throw new InvalidDataException("短文モデルの構成が対応範囲を超えています。");
                 long expected = (long)count * Dimension + (long)ContextLength * Dimension +
                     Layers * (12L * Dimension * Dimension + 4L * Dimension) + 2L * Dimension;
                 if (ParameterCount != expected || expected > 200000000L || bytes.LongLength < 36L + expected * 4L)
-                    throw new InvalidDataException("RuneLM parameter count is invalid.");
+                    throw new InvalidDataException("短文モデルのパラメータ数が正しくありません。");
                 Vocabulary = new string[count]; tokenIds = new Dictionary<string, int>(count, StringComparer.Ordinal);
                 for (int i = 0; i < count; i++)
                 {
                     int n = reader.ReadInt32();
                     if (n < 1 || n > 64 || stream.Length - stream.Position < n)
-                        throw new InvalidDataException("Invalid vocabulary token.");
+                        throw new InvalidDataException("短文モデルの語彙データが正しくありません。");
                     string token = new UTF8Encoding(false, true).GetString(reader.ReadBytes(n));
-                    if (tokenIds.ContainsKey(token)) throw new InvalidDataException("Duplicate vocabulary token.");
+                    if (tokenIds.ContainsKey(token)) throw new InvalidDataException("短文モデルの語彙が重複しています。");
                     Vocabulary[i] = token; tokenIds.Add(token, i);
                 }
                 if (stream.Length - stream.Position != expected * 4L)
-                    throw new InvalidDataException("RuneLM tensor byte count mismatch.");
+                    throw new InvalidDataException("短文モデルの重みデータ量が一致しません。");
                 embedding = Read(reader, count * Dimension);
                 position = Read(reader, ContextLength * Dimension);
                 layers = new Layer[Layers];
@@ -70,7 +70,7 @@ namespace ManaWeave.Magic
                     "@charge", "@transmute", "@reject", "@r1", "@r2", "@r3", "@p0", "@p20", "@p50", "@p80",
                     "@p50000", "@p120000", "@p300000", "@stone", "@wood", "@iron", "@crystal" };
                 foreach (string token in required)
-                    if (!tokenIds.ContainsKey(token)) throw new InvalidDataException("Missing required token: " + token);
+                    if (!tokenIds.ContainsKey(token)) throw new InvalidDataException("短文モデルに必要な語彙がありません: " + token);
             }
         }
 
@@ -81,7 +81,7 @@ namespace ManaWeave.Magic
             {
                 float value = reader.ReadSingle();
                 if (Single.IsNaN(value) || Single.IsInfinity(value))
-                    throw new InvalidDataException("Non-finite model weight.");
+                    throw new InvalidDataException("短文モデルに有限値でない重みがあります。");
                 values[i] = value;
             }
             return values;
@@ -90,21 +90,21 @@ namespace ManaWeave.Magic
         public int TokenId(string token)
         {
             int id;
-            if (!tokenIds.TryGetValue(token, out id)) throw new ArgumentException("Unknown model token: " + token);
+            if (!tokenIds.TryGetValue(token, out id)) throw new ArgumentException("短文モデルに未登録の語彙です: " + token);
             return id;
         }
 
         public int[] EncodePrompt(string normalizedText)
         {
             if (normalizedText == null) throw new ArgumentNullException("normalizedText");
-            if (normalizedText.Length + 7 > ContextLength) throw new ArgumentException("Chant is too long for this model.");
+            if (normalizedText.Length + 7 > ContextLength) throw new ArgumentException("短文モデルで扱える長さを超えています。詠唱解析へ切り替えてください。");
             var result = new int[normalizedText.Length + 2];
             result[0] = TokenId("<bos>");
             for (int i = 0; i < normalizedText.Length; i++)
             {
                 int id;
                 if (!tokenIds.TryGetValue(normalizedText[i].ToString(), out id))
-                    throw new ArgumentException("This prototype has no vocabulary for: " + normalizedText[i]);
+                    throw new ArgumentException("短文モデルに未登録の文字です。詠唱解析か別の表現を使ってください: " + normalizedText[i]);
                 result[i + 1] = id;
             }
             result[result.Length - 1] = TokenId("<sep>");
@@ -115,7 +115,7 @@ namespace ManaWeave.Magic
         public float[] PredictNext(int[] tokens)
         {
             if (tokens == null || tokens.Length == 0 || tokens.Length > ContextLength)
-                throw new ArgumentException("Invalid token sequence.");
+                throw new ArgumentException("短文モデルへの入力列が正しくありません。");
             var session = new Session(this);
             float[] logits = null;
             for (int i = 0; i < tokens.Length; i++) logits = session.Push(tokens[i], i == tokens.Length - 1);
@@ -125,7 +125,7 @@ namespace ManaWeave.Magic
         public string[] Generate(int[] prompt, out float confidence)
         {
             if (prompt == null || prompt.Length < 1 || prompt.Length + 5 > ContextLength)
-                throw new ArgumentException("Invalid generation context.");
+                throw new ArgumentException("短文モデルの生成条件が正しくありません。");
             var session = new Session(this); float[] logits = null;
             for (int i = 0; i < prompt.Length; i++) logits = session.Push(prompt[i], i == prompt.Length - 1);
             var history = new List<string>(5); confidence = 1f;
@@ -193,7 +193,7 @@ namespace ManaWeave.Magic
             {
                 int d = model.Dimension, p = positionIndex;
                 if (token < 0 || token >= model.Vocabulary.Length || p >= model.ContextLength)
-                    throw new ArgumentException("Token or context out of bounds.");
+                    throw new ArgumentException("短文モデルの語彙番号・文脈長が範囲外です。");
                 for (int i = 0; i < d; i++) x[i] = model.embedding[token * d + i] + model.position[p * d + i];
                 for (int l = 0; l < model.Layers; l++)
                 {
