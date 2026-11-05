@@ -1,0 +1,5 @@
+<linker>
+  <assembly fullname="ManaWeave.Runtime" preserve="all" />
+  <assembly fullname="ManaWeave.Magic" preserve="all" />
+  <assembly fullname="ManaWeave.Core" preserve="all" />
+</linker>

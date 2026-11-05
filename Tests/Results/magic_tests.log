@@ -1,0 +1,69 @@
+PASS: learned weights are real and below 0.1B
+PASS: direct weights are numeric network
+PASS: direct intent: 目の前を小さく熱して
+PASS: learned intent: 目の前を小さく熱して
+PASS: canonical DSL round trip 0
+PASS: direct intent: 広範囲に冷やして
+PASS: learned intent: 広範囲に冷やして
+PASS: canonical DSL round trip 1
+PASS: direct intent: 対象を掘削して
+PASS: learned intent: 対象を掘削して
+PASS: canonical DSL round trip 2
+PASS: direct intent: 石で建てて
+PASS: learned intent: 石で建てて
+PASS: canonical DSL round trip 3
+PASS: direct intent: 魔力を充填して
+PASS: learned intent: 魔力を充填して
+PASS: canonical DSL round trip 4
+PASS: direct intent: 錬成して
+PASS: learned intent: 錬成して
+PASS: canonical DSL round trip 5
+PASS: rejection: 熱して冷やして
+PASS: rejection: 熱して、ただし容器は壊すな
+PASS: rejection: 加熱しない
+PASS: rejection: heat r=99
+PASS: rejection: heat power=NaN
+PASS: rejection: heat power=Infinity
+PASS: rejection: heat r=2 r=3
+PASS: rejection: cool power=-5
+PASS: rejection: build material=banana
+PASS: rejection: build power=500
+PASS: rejection: charge power=999999
+PASS: rejection: cool unknown=1
+PASS: rejection: heat r=1 cool r=1
+PASS: rejection: 世界の時間を止めて
+PASS: rejection: please do not heat the target
+PASS: rejection: 小さく大きく熱して
+PASS: rejection: heat power=50; excavate
+PASS: rejection: 水だけを熱して
+PASS: explicit DSL total energy
+PASS: missing model still accepts DSL
+PASS: missing model rejects natural input
+PASS: malformed direct model rejected
+PASS: parity fixture matches learned checkpoint
+PASS: Transformer parity 目の前を小さく熱して
+PASS: Transformer parity 広範囲に冷やして
+PASS: Transformer parity 対象を掘削して
+PASS: Transformer parity 石で建てて
+PASS: Transformer parity 魔力を充填して
+PASS: Transformer parity 錬成して
+PASS: Transformer parity please heat the target with low power
+Transformer max absolute logit error: 3.81469727E-06
+PASS: WSP generated token parity 目の前を小さく熱して
+PASS: WSP numerical parity 目の前を小さく熱して
+PASS: WSP generated token parity 広範囲に冷やして
+PASS: WSP numerical parity 広範囲に冷やして
+PASS: WSP generated token parity 石で建てて
+PASS: WSP numerical parity 石で建てて
+PASS: WSP generated token parity 魔力を充填して
+PASS: WSP numerical parity 魔力を充填して
+PASS: WSP generated token parity 錬成して
+PASS: WSP numerical parity 錬成して
+PASS: WSP generated token parity 熱して冷やして
+PASS: WSP numerical parity 熱して冷やして
+PASS: WSP generated token parity 未知の命令
+PASS: WSP numerical parity 未知の命令
+PASS: neural IR executes through world laws
+PASS: world law rejects unfunded neural spell atomically
+Direct decoder mean time (100 commands, this host): 0.110 ms
+MAGIC TESTS: 66 passed, 0 failed.

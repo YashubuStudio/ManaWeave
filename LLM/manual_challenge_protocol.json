@@ -1,0 +1,12 @@
+{
+  "constructed_after_model_freeze": true,
+  "model_sha256": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931",
+  "count": 48,
+  "positive": 24,
+  "negative": 24,
+  "excluded_preexisting_prompts": [
+    "please warm this location gently now"
+  ],
+  "changes_after_observing_results": false,
+  "description": "Manually authored challenge including out-of-grammar positive requests and unsupported/negative commands. Novel strings versus train/dev; small curated diagnostic, not broad natural-language benchmark."
+}

@@ -1,0 +1,15 @@
+UnityProject/Library/
+UnityProject/Temp/
+UnityProject/Obj/
+UnityProject/Logs/
+UnityProject/UserSettings/
+UnityProject/Builds/
+Builds/
+.vs/
+**/bin/
+**/obj/
+**/__pycache__/
+.venv/
+LLM/checkpoints/*.pt
+*.sln
+*.csproj.user

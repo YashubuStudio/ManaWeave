@@ -1,0 +1,10 @@
+{
+  "method": "direct numeric construction; no training/optimization",
+  "parameters": 6140,
+  "file_bytes": 27932,
+  "examples": 1168,
+  "exact_matches": 1168,
+  "accuracy": 1.0,
+  "evaluation_scope": "Author-defined bounded lexicon and held-out combinations; not general Japanese understanding.",
+  "failures": []
+}

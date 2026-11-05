@@ -1,0 +1,896 @@
+{
+  "train_sample": {
+    "count": 256,
+    "exact": 256,
+    "exact_match": 1.0,
+    "valid_count": 255,
+    "valid_exact_match": 1.0,
+    "accepted_valid_count": 255,
+    "coverage": 1.0,
+    "accepted_exact_match": 1.0,
+    "reject_count": 1,
+    "reject_false_accept_count": 0,
+    "failures": []
+  },
+  "heldout": {
+    "count": 1158,
+    "exact": 901,
+    "exact_match": 0.7780656303972366,
+    "valid_count": 1152,
+    "valid_exact_match": 0.7795138888888888,
+    "accepted_valid_count": 1101,
+    "coverage": 0.9557291666666666,
+    "accepted_exact_match": 0.7983651226158038,
+    "reject_count": 6,
+    "reject_false_accept_count": 2,
+    "failures": [
+      {
+        "text": "dig the target, gently",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.834912896156311,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "dig the target, strongly",
+        "expected": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "confidence": 0.538370668888092,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "dig this area, gently",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@reject",
+          "<eos>"
+        ],
+        "confidence": 0.6736149787902832,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "dig this area, with high power",
+        "expected": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "confidence": 0.7555809020996094,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "dig this area, with low power",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "confidence": 0.543473482131958,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "dig this area, with normal power",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "confidence": 0.9611238241195679,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "good morning",
+        "expected": [
+          "@reject",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.44738084077835083,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "please gently alchemize the target now",
+        "expected": [
+          "@transmute",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9999123811721802,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently alchemize this area now",
+        "expected": [
+          "@transmute",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9997835755348206,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build crystal at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "confidence": 0.9991666078567505,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build crystal at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "confidence": 0.998360812664032,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build iron at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "confidence": 0.9998987913131714,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build iron at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "confidence": 0.998596727848053,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build stone at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9891340136528015,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build stone at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9986018538475037,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build wood at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "confidence": 0.9948254823684692,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently build wood at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "actual": [
+          "@build",
+          "@r2",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "confidence": 0.9960821270942688,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently charge mana into the target now",
+        "expected": [
+          "@charge",
+          "@r1",
+          "@p20",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@charge",
+          "@r2",
+          "@p80",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9513298869132996,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently charge mana into this area now",
+        "expected": [
+          "@charge",
+          "@r1",
+          "@p20",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@charge",
+          "@r2",
+          "@p80",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.8702538013458252,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently chill the target now",
+        "expected": [
+          "@cool",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.6571592688560486,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "please gently chill this area now",
+        "expected": [
+          "@cool",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@charge",
+          "@r2",
+          "@p80",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.8607531785964966,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently cool the target now",
+        "expected": [
+          "@cool",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9801249504089355,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently cool this area now",
+        "expected": [
+          "@cool",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9982403516769409,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently dig the target now",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9065221548080444,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently dig this area now",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9661707878112793,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently excavate the target now",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9996740818023682,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently excavate this area now",
+        "expected": [
+          "@excavate",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9995081424713135,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently heat the target now",
+        "expected": [
+          "@heat",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.46861594915390015,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "please gently heat this area now",
+        "expected": [
+          "@heat",
+          "@r1",
+          "@p50000",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@charge",
+          "@r2",
+          "@p80",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.8277027010917664,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place crystal at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.7242391109466553,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place crystal at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@crystal",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.8643881678581238,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place iron at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9991287589073181,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place iron at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@iron",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9997807145118713,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place stone at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9583228230476379,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place stone at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9843959808349609,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently place wood at the target now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "actual": [
+          "@excavate",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.5676271915435791,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "please gently place wood at this area now",
+        "expected": [
+          "@build",
+          "@r1",
+          "@p0",
+          "@wood",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.5177859663963318,
+        "exact": false,
+        "accepted": false
+      },
+      {
+        "text": "please gently store mana in the target now",
+        "expected": [
+          "@charge",
+          "@r1",
+          "@p20",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9995736479759216,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently store mana in this area now",
+        "expected": [
+          "@charge",
+          "@r1",
+          "@p20",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9997404217720032,
+        "exact": false,
+        "accepted": true
+      },
+      {
+        "text": "please gently transmute the target now",
+        "expected": [
+          "@transmute",
+          "@r1",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "actual": [
+          "@transmute",
+          "@r2",
+          "@p0",
+          "@stone",
+          "<eos>"
+        ],
+        "confidence": 0.9996082186698914,
+        "exact": false,
+        "accepted": true
+      }
+    ]
+  },
+  "examples": [
+    {
+      "text": "目の前を小さく熱して",
+      "tokens": [
+        "@heat",
+        "@r1",
+        "@p50000",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.9998774528503418
+    },
+    {
+      "text": "広範囲に冷やして",
+      "tokens": [
+        "@cool",
+        "@r3",
+        "@p300000",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.9999202489852905
+    },
+    {
+      "text": "対象を掘削して",
+      "tokens": [
+        "@excavate",
+        "@r1",
+        "@p0",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.9999692440032959
+    },
+    {
+      "text": "石で建てて",
+      "tokens": [
+        "@build",
+        "@r1",
+        "@p0",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.9999901056289673
+    },
+    {
+      "text": "魔力を充填して",
+      "tokens": [
+        "@charge",
+        "@r1",
+        "@p50",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.999893307685852
+    },
+    {
+      "text": "錬成して",
+      "tokens": [
+        "@transmute",
+        "@r1",
+        "@p0",
+        "@stone",
+        "<eos>"
+      ],
+      "confidence": 0.9999487400054932
+    }
+  ],
+  "threshold": 0.72,
+  "seconds": 1.9709768295288086,
+  "parameters": 247776,
+  "measurement": "Actual autoregressive decoding, constrained output grammar, unseen surface-template split. Does not measure unrestricted natural language.",
+  "no_validation_tuning_claim": "This holdout is development evaluation, not a blind independent production acceptance set."
+}

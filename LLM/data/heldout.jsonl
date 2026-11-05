@@ -1,0 +1,1158 @@
+{"text": "alchemize the target, gently", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, in a large area", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, in a medium area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, in a small area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, strongly", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, with high power", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, with low power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize the target, with normal power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, gently", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, in a large area", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, in a medium area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, in a small area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, strongly", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, with high power", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, with low power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "alchemize this area, with normal power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build crystal at the target, gently", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, strongly", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, with high power", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, with low power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, gently", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, strongly", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, with high power", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, with low power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build crystal at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "build iron at the target, gently", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, strongly", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, with high power", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, with low power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, gently", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, strongly", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, with high power", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, with low power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build iron at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "build stone at the target, gently", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, strongly", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, with high power", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, with low power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, gently", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, strongly", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, with high power", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, with low power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build stone at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "build wood at the target, gently", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, strongly", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, with high power", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, with low power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, gently", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, strongly", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, with high power", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, with low power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "build wood at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "charge mana into the target, gently", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into the target, in a large area", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into the target, in a medium area", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "charge mana into the target, in a small area", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into the target, strongly", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into the target, with high power", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into the target, with low power", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into the target, with normal power", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "charge mana into this area, gently", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into this area, in a large area", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into this area, in a medium area", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "charge mana into this area, in a small area", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into this area, strongly", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into this area, with high power", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "charge mana into this area, with low power", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "charge mana into this area, with normal power", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "chill the target, gently", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill the target, in a large area", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill the target, in a medium area", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "chill the target, in a small area", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill the target, strongly", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill the target, with high power", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill the target, with low power", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill the target, with normal power", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "chill this area, gently", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill this area, in a large area", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill this area, in a medium area", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "chill this area, in a small area", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill this area, strongly", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill this area, with high power", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "chill this area, with low power", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "chill this area, with normal power", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "cool the target, gently", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool the target, in a large area", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool the target, in a medium area", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "cool the target, in a small area", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool the target, strongly", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool the target, with high power", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool the target, with low power", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool the target, with normal power", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "cool this area, gently", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool this area, in a large area", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool this area, in a medium area", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "cool this area, in a small area", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool this area, strongly", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool this area, with high power", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "cool this area, with low power", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "cool this area, with normal power", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "dig the target, gently", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, in a large area", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, in a medium area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, in a small area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, strongly", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, with high power", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, with low power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig the target, with normal power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, gently", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, in a large area", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, in a medium area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, in a small area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, strongly", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, with high power", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, with low power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "dig this area, with normal power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, gently", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, in a large area", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, in a medium area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, in a small area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, strongly", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, with high power", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, with low power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate the target, with normal power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, gently", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, in a large area", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, in a medium area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, in a small area", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, strongly", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, with high power", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, with low power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "excavate this area, with normal power", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "good morning", "answer": ["@reject", "<eos>"]}
+{"text": "heat the target, gently", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat the target, in a large area", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat the target, in a medium area", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "heat the target, in a small area", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat the target, strongly", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat the target, with high power", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat the target, with low power", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat the target, with normal power", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "heat this area, gently", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat this area, in a large area", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat this area, in a medium area", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "heat this area, in a small area", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat this area, strongly", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat this area, with high power", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "heat this area, with low power", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "heat this area, with normal power", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "place crystal at the target, gently", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, strongly", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, with high power", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, with low power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, gently", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, strongly", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, with high power", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, with low power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place crystal at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "place iron at the target, gently", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, strongly", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, with high power", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, with low power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, gently", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, strongly", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, with high power", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, with low power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place iron at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "place stone at the target, gently", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, strongly", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, with high power", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, with low power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, gently", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, strongly", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, with high power", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, with low power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place stone at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "place wood at the target, gently", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, in a large area", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, in a medium area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, in a small area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, strongly", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, with high power", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, with low power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at the target, with normal power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, gently", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, in a large area", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, in a medium area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, in a small area", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, strongly", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, with high power", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, with low power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "place wood at this area, with normal power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please gently alchemize the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently alchemize this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently build crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please gently build crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please gently build iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please gently build iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please gently build stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently build stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently build wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please gently build wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please gently charge mana into the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please gently charge mana into this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please gently chill the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently chill this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently cool the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently cool this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently dig the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently dig this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently excavate the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently excavate this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently heat the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently heat this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently place crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please gently place crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please gently place iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please gently place iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please gently place stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently place stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently place wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please gently place wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please gently store mana in the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please gently store mana in this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please gently transmute the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently transmute this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please gently warm the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please gently warm this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a large area alchemize the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area alchemize this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area build crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a large area build crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a large area build iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please in a large area build iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please in a large area build stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area build stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area build wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please in a large area build wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please in a large area charge mana into the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please in a large area charge mana into this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please in a large area chill the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area chill this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area cool the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area cool this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area dig the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area dig this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area excavate the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area excavate this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area heat the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area heat this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area place crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a large area place crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a large area place iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please in a large area place iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please in a large area place stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area place stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area place wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please in a large area place wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please in a large area store mana in the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please in a large area store mana in this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please in a large area transmute the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area transmute this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please in a large area warm the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a large area warm this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please in a medium area alchemize the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area alchemize this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area build crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a medium area build crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a medium area build iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a medium area build iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a medium area build stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area build stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area build wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a medium area build wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a medium area charge mana into the target now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please in a medium area charge mana into this area now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please in a medium area chill the target now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area chill this area now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area cool the target now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area cool this area now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area dig the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area dig this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area excavate the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area excavate this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area heat the target now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area heat this area now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area place crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a medium area place crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a medium area place iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a medium area place iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a medium area place stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area place stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area place wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a medium area place wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a medium area store mana in the target now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please in a medium area store mana in this area now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please in a medium area transmute the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area transmute this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a medium area warm the target now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a medium area warm this area now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please in a small area alchemize the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area alchemize this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area build crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a small area build crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a small area build iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a small area build iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a small area build stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area build stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area build wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a small area build wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a small area charge mana into the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please in a small area charge mana into this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please in a small area chill the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area chill this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area cool the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area cool this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area dig the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area dig this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area excavate the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area excavate this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area heat the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area heat this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area place crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a small area place crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please in a small area place iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a small area place iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please in a small area place stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area place stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area place wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a small area place wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please in a small area store mana in the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please in a small area store mana in this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please in a small area transmute the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area transmute this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please in a small area warm the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please in a small area warm this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please strongly alchemize the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly alchemize this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly build crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please strongly build crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please strongly build iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please strongly build iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please strongly build stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly build stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly build wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please strongly build wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please strongly charge mana into the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please strongly charge mana into this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please strongly chill the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly chill this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly cool the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly cool this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly dig the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly dig this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly excavate the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly excavate this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly heat the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly heat this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly place crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please strongly place crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please strongly place iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please strongly place iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please strongly place stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly place stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly place wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please strongly place wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please strongly store mana in the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please strongly store mana in this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please strongly transmute the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly transmute this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please strongly warm the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please strongly warm this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please teleport me now", "answer": ["@reject", "<eos>"]}
+{"text": "please with high power alchemize the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power alchemize this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power build crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please with high power build crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please with high power build iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please with high power build iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please with high power build stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power build stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power build wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please with high power build wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please with high power charge mana into the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please with high power charge mana into this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please with high power chill the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power chill this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power cool the target now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power cool this area now", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power dig the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power dig this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power excavate the target now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power excavate this area now", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power heat the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power heat this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power place crystal at the target now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please with high power place crystal at this area now", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "please with high power place iron at the target now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please with high power place iron at this area now", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "please with high power place stone at the target now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power place stone at this area now", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power place wood at the target now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please with high power place wood at this area now", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "please with high power store mana in the target now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please with high power store mana in this area now", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "please with high power transmute the target now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power transmute this area now", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "please with high power warm the target now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with high power warm this area now", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "please with low power alchemize the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power alchemize this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power build crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with low power build crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with low power build iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with low power build iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with low power build stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power build stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power build wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with low power build wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with low power charge mana into the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please with low power charge mana into this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please with low power chill the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power chill this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power cool the target now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power cool this area now", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power dig the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power dig this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power excavate the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power excavate this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power heat the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power heat this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power place crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with low power place crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with low power place iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with low power place iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with low power place stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power place stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power place wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with low power place wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with low power store mana in the target now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please with low power store mana in this area now", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "please with low power transmute the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power transmute this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with low power warm the target now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with low power warm this area now", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "please with normal power alchemize the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power alchemize this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power build crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with normal power build crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with normal power build iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with normal power build iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with normal power build stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power build stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power build wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with normal power build wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with normal power charge mana into the target now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please with normal power charge mana into this area now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please with normal power chill the target now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power chill this area now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power cool the target now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power cool this area now", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power dig the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power dig this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power excavate the target now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power excavate this area now", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power heat the target now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power heat this area now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power place crystal at the target now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with normal power place crystal at this area now", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "please with normal power place iron at the target now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with normal power place iron at this area now", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "please with normal power place stone at the target now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power place stone at this area now", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power place wood at the target now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with normal power place wood at this area now", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "please with normal power store mana in the target now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please with normal power store mana in this area now", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "please with normal power transmute the target now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power transmute this area now", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "please with normal power warm the target now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "please with normal power warm this area now", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "show me the future", "answer": ["@reject", "<eos>"]}
+{"text": "store mana in the target, gently", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in the target, in a large area", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in the target, in a medium area", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "store mana in the target, in a small area", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in the target, strongly", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in the target, with high power", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in the target, with low power", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in the target, with normal power", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "store mana in this area, gently", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in this area, in a large area", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in this area, in a medium area", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "store mana in this area, in a small area", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in this area, strongly", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in this area, with high power", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "store mana in this area, with low power", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "store mana in this area, with normal power", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "transmute the target, gently", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, in a large area", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, in a medium area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, in a small area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, strongly", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, with high power", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, with low power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute the target, with normal power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, gently", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, in a large area", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, in a medium area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, in a small area", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, strongly", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, with high power", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, with low power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "transmute this area, with normal power", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "warm the target, gently", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm the target, in a large area", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm the target, in a medium area", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "warm the target, in a small area", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm the target, strongly", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm the target, with high power", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm the target, with low power", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm the target, with normal power", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "warm this area, gently", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm this area, in a large area", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm this area, in a medium area", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "warm this area, in a small area", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm this area, strongly", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm this area, with high power", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "warm this area, with low power", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "warm this area, with normal power", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を大きく木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を大きく熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を大きく鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を大きく鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を大きく錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大きく魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を大規模に冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を大規模に木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を大規模に熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を大規模に鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を大規模に鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を大規模に錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を大規模に魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を小さく冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を小さく木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を小さく熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を小さく鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を小さく鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を小さく錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小さく魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を小規模に冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を小規模に木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を小規模に熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を小規模に鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を小規模に鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を小規模に錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を小規模に魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を広範囲に冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を広範囲に木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を広範囲に熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を広範囲に鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を広範囲に鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を広範囲に錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、対象を広範囲に魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を標準規模で冷やして", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で冷却して", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で加熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を標準規模で木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を標準規模で熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を標準規模で鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を標準規模で鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を標準規模で錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で魔力を充填して", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で魔力を蓄えて", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、対象を標準規模で魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、対象を狭い範囲で魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで冷やして", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで冷却して", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで加熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで魔力を充填して", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで魔力を蓄えて", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、対象を通常の強さで魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を大きく冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を大きく木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を大きく熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を大きく鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を大きく鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を大きく錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大きく魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を大規模に冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を大規模に木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を大規模に熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を大規模に鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を大規模に鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を大規模に錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を大規模に魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を小さく冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を小さく木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を小さく熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を小さく鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を小さく鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を小さく錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小さく魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を小規模に冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を小規模に木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を小規模に熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を小規模に鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を小規模に鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を小規模に錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を小規模に魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に冷やして", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に冷却して", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に加熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に掘って", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に掘削して", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に木で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に木材で建てて", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に熱して", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に石で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に石材で建てて", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に鉄で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に鉄材で建てて", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に錬成して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に錬金術で変えて", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に魔力を充填して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に魔力を蓄えて", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を広範囲に魔導結晶で建てて", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で冷やして", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で冷却して", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で加熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で魔力を充填して", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で魔力を蓄えて", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を標準規模で魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で冷却して", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で加熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で熱して", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で魔力を充填して", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で魔力を蓄えて", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を狭い範囲で魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで冷やして", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで冷却して", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで加熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで木材で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで石で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで石材で建てて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで鉄で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで鉄材で建てて", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで錬金術で変えて", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで魔力を充填して", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで魔力を蓄えて", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "お願いします、目の前を通常の強さで魔導結晶で建てて", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "この場所へ瞬間移動して", "answer": ["@reject", "<eos>"]}
+{"text": "こんばんは", "answer": ["@reject", "<eos>"]}
+{"text": "世界の時間を止めて", "answer": ["@reject", "<eos>"]}
+{"text": "対象を冷やして、大きく", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、大規模に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、小さく", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、小規模に", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、広範囲に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、標準規模で", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、狭い範囲で", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷やして、通常の強さで", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、大きく", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、大規模に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、小さく", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、小規模に", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、広範囲に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、標準規模で", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、狭い範囲で", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を冷却して、通常の強さで", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、大きく", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、大規模に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、小さく", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、小規模に", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、広範囲に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、標準規模で", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、狭い範囲で", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を加熱して、通常の強さで", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を掘って、大きく", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、大規模に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、小さく", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、小規模に", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、広範囲に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、標準規模で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、狭い範囲で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘って、通常の強さで", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、大きく", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、大規模に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、小さく", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、小規模に", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、広範囲に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、標準規模で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、狭い範囲で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を掘削して、通常の強さで", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を木で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を木材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "対象を熱して、大きく", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を熱して、大規模に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を熱して、小さく", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を熱して、小規模に", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を熱して、広範囲に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "対象を熱して、標準規模で", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を熱して、狭い範囲で", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "対象を熱して、通常の強さで", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を石材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を結晶で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を結晶で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を鉄で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を鉄材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "対象を錬成して、大きく", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、大規模に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、小さく", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、小規模に", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、広範囲に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、標準規模で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、狭い範囲で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬成して、通常の強さで", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、大きく", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、大規模に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、小さく", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、小規模に", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、広範囲に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、標準規模で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、狭い範囲で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を錬金術で変えて、通常の強さで", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、大きく", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、大規模に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、小さく", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、小規模に", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、広範囲に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、標準規模で", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、狭い範囲で", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を充填して、通常の強さで", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、大きく", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、大規模に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、小さく", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、小規模に", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、広範囲に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、標準規模で", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、狭い範囲で", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "対象を魔力を蓄えて、通常の強さで", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "対象を魔導結晶で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を冷やして、大きく", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、大規模に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、小さく", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、小規模に", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、広範囲に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、標準規模で", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、狭い範囲で", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷やして、通常の強さで", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、大きく", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、大規模に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、小さく", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、小規模に", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、広範囲に", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、標準規模で", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、狭い範囲で", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を冷却して、通常の強さで", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、大きく", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、大規模に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、小さく", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、小規模に", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、広範囲に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、標準規模で", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、狭い範囲で", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を加熱して、通常の強さで", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を掘って、大きく", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、大規模に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、小さく", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、小規模に", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、広範囲に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、標準規模で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、狭い範囲で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘って、通常の強さで", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、大きく", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、大規模に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、小さく", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、小規模に", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、広範囲に", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、標準規模で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、狭い範囲で", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を掘削して、通常の強さで", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を木で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を木材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"]}
+{"text": "目の前を熱して、大きく", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、大規模に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、小さく", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、小規模に", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、広範囲に", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、標準規模で", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、狭い範囲で", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"]}
+{"text": "目の前を熱して、通常の強さで", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を石材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を結晶で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を結晶で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を鉄で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を鉄材で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"]}
+{"text": "目の前を錬成して、大きく", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、大規模に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、小さく", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、小規模に", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、広範囲に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、標準規模で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、狭い範囲で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬成して、通常の強さで", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、大きく", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、大規模に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、小さく", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、小規模に", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、広範囲に", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、標準規模で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、狭い範囲で", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を錬金術で変えて、通常の強さで", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、大きく", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、大規模に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、小さく", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、小規模に", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、広範囲に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、標準規模で", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、狭い範囲で", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を充填して、通常の強さで", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、大きく", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、大規模に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、小さく", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、小規模に", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、広範囲に", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、標準規模で", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、狭い範囲で", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"]}
+{"text": "目の前を魔力を蓄えて、通常の強さで", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、大きく", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、大規模に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、小さく", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、小規模に", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、広範囲に", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、標準規模で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、狭い範囲で", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}
+{"text": "目の前を魔導結晶で建てて、通常の強さで", "answer": ["@build", "@r1", "@p0", "@crystal", "<eos>"]}

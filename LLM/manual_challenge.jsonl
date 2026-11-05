@@ -1,0 +1,48 @@
+{"text": "お願い、対象を小さく温めて", "answer": ["@heat", "@r1", "@p50000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "対象を、通常の強さで加熱して", "answer": ["@heat", "@r2", "@p120000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "大規模に目の前を熱してください", "answer": ["@heat", "@r3", "@p300000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "この物体を小さく冷やして", "answer": ["@cool", "@r1", "@p50000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "お願い、対象を冷却して", "answer": ["@cool", "@r2", "@p120000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "広範囲にそこを冷却してください", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "ここを掘って", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "狙った場所を、掘削して", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "大きく目の前を削ってください", "answer": ["@excavate", "@r2", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "ここに石材を置いて", "answer": ["@build", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "対象を、木で建てて", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "通常の強さでそこを鉄材で構築してください", "answer": ["@build", "@r1", "@p0", "@iron", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "大きく、そこへ魔導結晶を作って", "answer": ["@build", "@r2", "@p0", "@crystal", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "そこへ小さく魔力を注いで", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "お願い、対象を魔力で満たして", "answer": ["@charge", "@r1", "@p50", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "広範囲に、そこへ魔力を補給して", "answer": ["@charge", "@r2", "@p80", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "対象を、錬成して", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "狙った場所を合金にして、通常の強さで", "answer": ["@transmute", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "大規模に、ここで錬金変換して", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "please cool the aimed spot, with high power", "answer": ["@cool", "@r3", "@p300000", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "gently, please carve out this location", "answer": ["@excavate", "@r1", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "please build wood at the aimed spot, with normal power", "answer": ["@build", "@r1", "@p0", "@wood", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "please infuse mana into this location, with low power", "answer": ["@charge", "@r1", "@p20", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "please perform alchemy on the aimed spot, in a large area", "answer": ["@transmute", "@r2", "@p0", "@stone", "<eos>"], "kind": "post_freeze_positive_challenge"}
+{"text": "木で建てるな", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "冷やさないで", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "石以外を熱して", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "水を熱して", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "空気だけを冷やして", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "加熱した後で冷却して", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "大きく熱して小さく冷やして", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "100度まで熱して", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "世界の法則を変えて", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "過去へ戻して", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "魔法の仕組みを教えて", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "朝ごはんを作って", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "cool everything except water", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "avoid heating this target", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "do not build wood here", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "heat and then excavate the target", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "heat water only", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "create a living creature", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "what temperature is this", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "please reverse time", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "heat r=2 unknown=1", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "charge r=1 power=-100", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "build r=0 material=stone", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}
+{"text": "heat r=1\ncool r=1", "answer": ["@reject", "<eos>"], "kind": "post_freeze_negative_challenge"}

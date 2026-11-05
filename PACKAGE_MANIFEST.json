@@ -1,0 +1,655 @@
+{
+  "name": "ManaWeave",
+  "edition": "Original research sandbox prototype",
+  "target_unity": "6000.3.26f1 / Unity 6.3 LTS",
+  "unity_editor_run_verified": false,
+  "unity_player_binary_included": false,
+  "pretrained_third_party_model_included": false,
+  "files": [
+    {
+      "path": ".gitignore",
+      "bytes": 219,
+      "sha256": "a2c91ccafcd73b8faa5d11bceebeb35507f232b6582ef82d779789a02753bd14"
+    },
+    {
+      "path": "Documentation/ARCHITECTURE.md",
+      "bytes": 4846,
+      "sha256": "96829aea5ae799528706a7637174cf543f541a5182a4b7f18fa0352db54ee3dd"
+    },
+    {
+      "path": "Documentation/ORIGIN_AND_DEPENDENCIES.md",
+      "bytes": 1977,
+      "sha256": "b1ed185e5f26c24941ff1d15a60f578f34d4c7842f2f278420134eac17764038"
+    },
+    {
+      "path": "Documentation/VERIFICATION.md",
+      "bytes": 5527,
+      "sha256": "311b263ec4dcc80758cd28c19bd94d06dd18d45972e28528d6ca39f060e69847"
+    },
+    {
+      "path": "Documentation/WEIGHT_SPACE.md",
+      "bytes": 4683,
+      "sha256": "562f233c7b43da60881575c9f458587f0c9ce77f7fff7eca53684f3346a25eb7"
+    },
+    {
+      "path": "Documentation/WORLD_LAWS.md",
+      "bytes": 13539,
+      "sha256": "cec23e6c34201dc4cd3af5b17fcd98a22cd2fedaac83d712e077282c3c13ad74"
+    },
+    {
+      "path": "LLM/MODEL_CARD.md",
+      "bytes": 5224,
+      "sha256": "119877e5fb2c9bfc7b903cb48558b98d76bf207d9d8959a05165b6d02b4af334"
+    },
+    {
+      "path": "LLM/README_JA.md",
+      "bytes": 7857,
+      "sha256": "e8d01bb8e1d414dec1fe11111cbfb98ca10c3fa8af78ede7d9fb7f840b20ee60"
+    },
+    {
+      "path": "LLM/acceptance_predictions.jsonl",
+      "bytes": 806155,
+      "sha256": "0fe8ee23daf8cefda11faf9625b16c5a73a62415b45f87e90df11d4a8a9b4a26"
+    },
+    {
+      "path": "LLM/acceptance_report.json",
+      "bytes": 5855,
+      "sha256": "fce56167a11647241128c4e43416e1388ece95da5b734cd99747398dc963873f"
+    },
+    {
+      "path": "LLM/binary_format.md",
+      "bytes": 1481,
+      "sha256": "58ac6e73ca3b1735fbe6279637fc55100ef388931f355bba9002c0f59315e989"
+    },
+    {
+      "path": "LLM/checkpoints/runelm_pilot.pt",
+      "bytes": 1001810,
+      "sha256": "cb16085a0173e33e33a783b13093878a764878c55e3a0c668009244cc7e9c5c2"
+    },
+    {
+      "path": "LLM/data/heldout.jsonl",
+      "bytes": 133741,
+      "sha256": "7011bdaa250a0a320551ccb9c9520361cca2e76cca63de04d5e8c4bf0bd09d54"
+    },
+    {
+      "path": "LLM/data/train.jsonl",
+      "bytes": 2608780,
+      "sha256": "871c36a174eb1366e03da216e211d368ee56133334872a8be1361dadd0d65588"
+    },
+    {
+      "path": "LLM/data/vocab.json",
+      "bytes": 1556,
+      "sha256": "c0d04556cdd86e89fcd81df5ae11a0521c911862d501fabedbdfd01c3d8b8dcc"
+    },
+    {
+      "path": "LLM/data.py",
+      "bytes": 7998,
+      "sha256": "46db534130cecd8c787445b387069fa27a2f0e5545fb9a78122223dec2492e60"
+    },
+    {
+      "path": "LLM/evaluate.py",
+      "bytes": 4587,
+      "sha256": "d7075a4990086a475f209aab3fdfadc642dd6cfeda9a7f6ab3a4ad8808dc4ca1"
+    },
+    {
+      "path": "LLM/evaluation_predictions.jsonl",
+      "bytes": 279671,
+      "sha256": "ae0952e13d86521a6c9034f3fa66071ff455178fa1b41d824d0c97c6bfbe79e0"
+    },
+    {
+      "path": "LLM/evaluation_report.json",
+      "bytes": 20002,
+      "sha256": "a168e85f07e248c51d7bec3b8a8c359ff0ae24db567f2ebfceef69c177e11d89"
+    },
+    {
+      "path": "LLM/experiments/initial_evaluation_report.json",
+      "bytes": 18833,
+      "sha256": "695049a3cb60003716b6ee680715aafb0e0e3d66ea7c574fba689b39c9e3c73b"
+    },
+    {
+      "path": "LLM/experiments/initial_training_report.json",
+      "bytes": 3149,
+      "sha256": "b183c605a9f951637d49496b0653bb46b61cfaf7a88f114e147520a325161620"
+    },
+    {
+      "path": "LLM/export_model.py",
+      "bytes": 2688,
+      "sha256": "a5ca41de6d5f04408087a5baf813b19901e1b1b51892b694ddbe668f6cf2350e"
+    },
+    {
+      "path": "LLM/manual_challenge.jsonl",
+      "bytes": 6328,
+      "sha256": "4f8acac295c8dd2dfd7d96788416ae7e132142585d685af2ff9ab2f4261485c2"
+    },
+    {
+      "path": "LLM/manual_challenge_protocol.json",
+      "bytes": 531,
+      "sha256": "267ca618f12b2105c54ea11811fe45a79075794e2c0544aa00cd9bbc2feab83f"
+    },
+    {
+      "path": "LLM/model.py",
+      "bytes": 3011,
+      "sha256": "96803d9d08db689fcd2b3c04222a72cffaaaa614414f505df4a5bf2c4ff096eb"
+    },
+    {
+      "path": "LLM/model_manifest.json",
+      "bytes": 435,
+      "sha256": "3c0c9bfc55acb9da07faa5103bea6c8de0811ff3501e5b6a8e0c0a12f3340a35"
+    },
+    {
+      "path": "LLM/parity_fixture.json",
+      "bytes": 36097,
+      "sha256": "2d82dc0ff9c8c7787457f076e0bf61996e99250f52eda5186a1de0e58c94f7fd"
+    },
+    {
+      "path": "LLM/requirements.txt",
+      "bytes": 215,
+      "sha256": "001102f3394732e0e9bd31dae83e9ea53b8e47498c53ea49c914614638ed298e"
+    },
+    {
+      "path": "LLM/research_0_1b_config.json",
+      "bytes": 186,
+      "sha256": "7df9c92e004ff810e7a791d3d591e83a1c900206810dd890cf2f0331df5f6214"
+    },
+    {
+      "path": "LLM/train.py",
+      "bytes": 5026,
+      "sha256": "573daa59503133cbc29850c3121fb5b169801def7d37bd121c210a9f59c6f0f7"
+    },
+    {
+      "path": "LLM/training_report.json",
+      "bytes": 3728,
+      "sha256": "49bcae66330ad9ff96e3a16f7a7d312a6b6e395efd8314a66d3b03b64b89561b"
+    },
+    {
+      "path": "LLM/weightspace/compile_weights.py",
+      "bytes": 9671,
+      "sha256": "f0deb91a06f53eeeaf18fd795beb8e39288d877c3543e3ffd572f7c5cc99ba23"
+    },
+    {
+      "path": "LLM/weightspace/evaluation.json",
+      "bytes": 317,
+      "sha256": "e98420e5800e1a3861116883370ed91483bfff56a02e1cfca8af068616dc40ee"
+    },
+    {
+      "path": "LLM/weightspace/parity_fixture.json",
+      "bytes": 12084,
+      "sha256": "32222c0c8b36d657b4691153f74c7b94b8c65962aff60f8a8f205d2ca276183a"
+    },
+    {
+      "path": "README_JA.md",
+      "bytes": 11425,
+      "sha256": "b8661d681dc9ca9cdb4e0b728d6723bfcc9de351c6a74e0b569877d3c80c0858"
+    },
+    {
+      "path": "Tests/CoreHarness.cs",
+      "bytes": 24470,
+      "sha256": "195d314a0ee3659b573310b3e87e74345b04ff808e381061006190123c5ba3a6"
+    },
+    {
+      "path": "Tests/CoreHarness.csproj",
+      "bytes": 537,
+      "sha256": "053c3d098a53d4df7a1a3e1a03c349394ea3795665dbddbac2baee498cca8ba4"
+    },
+    {
+      "path": "Tests/Directory.Build.props",
+      "bytes": 202,
+      "sha256": "882fdad1bdbe9ae368659e080424794b0f4720bde80ee9ef67e3055dff8cef9a"
+    },
+    {
+      "path": "Tests/LearnedAcceptance.cs",
+      "bytes": 6553,
+      "sha256": "8260169aada3d3b9a037c6984328a55bd52d49a161f791f748c612e9e6826f85"
+    },
+    {
+      "path": "Tests/LearnedAcceptance.csproj",
+      "bytes": 616,
+      "sha256": "c5802f94973de9351d21b20ae978dae3e4aedbe26da75c5141724c565ac39d0c"
+    },
+    {
+      "path": "Tests/MagicHarness.cs",
+      "bytes": 8080,
+      "sha256": "25e8a0228dfe151a2ca2ebc696513c9735a89d12678f57620f3c65655d328830"
+    },
+    {
+      "path": "Tests/MagicHarness.csproj",
+      "bytes": 611,
+      "sha256": "0c01523ff5a842f494ef8245a62262316d5aa5da6a0873f562c96a18a3bf6427"
+    },
+    {
+      "path": "Tests/NuGet.Config",
+      "bytes": 117,
+      "sha256": "964302159308872b9729e1828a1ba897f30634f7bd751cde11ea8e6fed8cfb97"
+    },
+    {
+      "path": "Tests/PortableCheck.csproj",
+      "bytes": 581,
+      "sha256": "349b9fb9b02a94071767d51dec7f0b5f049a8d81daf26ef9601e01a288894de0"
+    },
+    {
+      "path": "Tests/README.md",
+      "bytes": 956,
+      "sha256": "a5f5aa2efc7865f27556780a188a187491bdf57c662e2169a6780f2ac46b3633"
+    },
+    {
+      "path": "Tests/Results/core_tests.log",
+      "bytes": 1589,
+      "sha256": "cb3bc09834c2b2cff0f57b6e7af9fec11cd66357663a3702d05927bc9bffc781"
+    },
+    {
+      "path": "Tests/Results/magic_tests.log",
+      "bytes": 2979,
+      "sha256": "22d5ffc0be9ecd5155af135c7be3944bf29d25d804cadb6b59ed0a74bc014788"
+    },
+    {
+      "path": "Tests/Results/portable_compile.log",
+      "bytes": 274,
+      "sha256": "d1404a1245f65f2609ad4f60ec135513c2070fecb1fada6d46b3327382f186ce"
+    },
+    {
+      "path": "Tests/Results/runtime_math.log",
+      "bytes": 405,
+      "sha256": "8f8ed1545add35df597c1626d059b72bfbb687a80fc47b3e20b3dda1af10ec97"
+    },
+    {
+      "path": "Tests/Results/summary.json",
+      "bytes": 595,
+      "sha256": "e26e596075d4da36ddc5efca929583b97d6dab6300dbcc89c24d9877db8fdd94"
+    },
+    {
+      "path": "Tools/build-unity.ps1",
+      "bytes": 844,
+      "sha256": "381de45f8da643842933021cd395ca7dfcf37e7977edee84f7aaa523dad249b6"
+    },
+    {
+      "path": "Tools/build-unity.sh",
+      "bytes": 712,
+      "sha256": "a1e510c858c1d001912c89d9f9e614dc221b137350a5cc36b50c5761132cbe52"
+    },
+    {
+      "path": "Tools/package_project.py",
+      "bytes": 3957,
+      "sha256": "9703f8c84a2d99d1a588980cea763920b727bd4447b52d6b67f70b9cc41275ff"
+    },
+    {
+      "path": "Tools/test-headless.ps1",
+      "bytes": 536,
+      "sha256": "964e9971f7d353b8fa5d69edb9d67eed6b59e8f07819a192dda7e9f42181d2c7"
+    },
+    {
+      "path": "Tools/test-headless.sh",
+      "bytes": 399,
+      "sha256": "2e5049240296f366843a2856a1c005f907209053b4ef2a53cea22ee9b6a8cc53"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/ManaWeave.Core.asmdef",
+      "bytes": 124,
+      "sha256": "55f1601e0b8394bc90a603687059eb569c67129dad30912e240a3c63a4928920"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/ManaWeave.Core.asmdef.meta",
+      "bytes": 163,
+      "sha256": "1f6facad9fc1c3de979b763a09a29d0a1548a3c2ed3748c26e02ecb2e160b7c6"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/Materials.cs",
+      "bytes": 5122,
+      "sha256": "ba2251249028cdfe466b44dc4ef4c864d4dee5aea96c380b504ac2ea08fec146"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/Materials.cs.meta",
+      "bytes": 236,
+      "sha256": "99b10af2c811f28185568c403fe1be9ef1527d6e0022c35a2d50e2b1862d6b7d"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/SimulationConfig.cs",
+      "bytes": 2165,
+      "sha256": "2c19453e258a771a145619abee9bb93905b9fb6a43379f375aa1ba82550266b6"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/SimulationConfig.cs.meta",
+      "bytes": 236,
+      "sha256": "2d340c52391310677d4697d86afa85a567728b785e8e67e96b1f23846cba1c92"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/Spells.cs",
+      "bytes": 613,
+      "sha256": "b360953a29b4888af5458c2d1f408f656f033fecb25490e209d1283011ab73f9"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/Spells.cs.meta",
+      "bytes": 236,
+      "sha256": "a82ee5466731475daff262b54f7a57baf4a78e933ce230e303023eefb6cd2875"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldGenerator.cs",
+      "bytes": 6028,
+      "sha256": "b0e7dd0c03c04d1f5b8e6fe66a46615b175fdd8faa3b2384e70a1497bde1f9d4"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldGenerator.cs.meta",
+      "bytes": 236,
+      "sha256": "6d45d6df83aa85708e140f0bb560a13dd3677bd2328446bff2dc89c2af3b57d5"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldPersistence.cs",
+      "bytes": 7670,
+      "sha256": "952e138d3b65c90cde9420eb117669baf04aac1b046a44ee4a80ba73a9828563"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldPersistence.cs.meta",
+      "bytes": 236,
+      "sha256": "d9d9234e7b166c9b05dade41a977ccff3d550ee76ba907b24ff8b283019af29a"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldSimulator.cs",
+      "bytes": 28834,
+      "sha256": "2b805eedfb3ea95879eea3ff723053022ec9d1bbeef7cc857338091a0d944abd"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldSimulator.cs.meta",
+      "bytes": 236,
+      "sha256": "1cb61f51dd60405cfcd0c0b4bdc297c9bb10dc1493609a979c570b9874af3a0b"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldState.cs",
+      "bytes": 4479,
+      "sha256": "47965ab421ff60570d368c75ff585ab8c6f2a7db9183e802a2161fc17057ccbc"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core/WorldState.cs.meta",
+      "bytes": 236,
+      "sha256": "d53c1522e830083dec483be1af71c7738745dd07eb27219b3793d477ea3b14b1"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Core.meta",
+      "bytes": 169,
+      "sha256": "c5d9e5387326182ce4b59e300a5763e0b024a68c6eebf8b5c6be4391d49c1999"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Editor/ManaWeave.Editor.asmdef",
+      "bytes": 208,
+      "sha256": "72f5aad813dbacd22b66ebcb1ac960d964d7ef73325d6e8b85126208e55ecb93"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Editor/ManaWeave.Editor.asmdef.meta",
+      "bytes": 163,
+      "sha256": "9d4d597fdcb2571e9775d16df903440a2ad0f096f5fc9df546e69ff219c9151c"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Editor/ProjectTools.cs",
+      "bytes": 5352,
+      "sha256": "99ca4eaf754cc57669aaf1d3238e9c0737212ca477fd9861c051bc7d67f37c38"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Editor/ProjectTools.cs.meta",
+      "bytes": 236,
+      "sha256": "a0d8cac7336592000975b2cd5d125421934545d24776d57e674630ac793829f6"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Editor.meta",
+      "bytes": 169,
+      "sha256": "bb2aa1aa306dac8e464a22d4bf107bf9c265c754204fa6df118369bdc9d0e029"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/MagicParser.cs",
+      "bytes": 16212,
+      "sha256": "5d4552834ad521f00dbdcdfeea00d78687e964be59870600aa6666e7ad67cd1e"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/MagicParser.cs.meta",
+      "bytes": 236,
+      "sha256": "15ea8fd1a18bb936ec2a2f69f315887d1045a592d5233755f252a095b1b211ba"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/ManaWeave.Magic.asmdef",
+      "bytes": 162,
+      "sha256": "9ce49ce2e7373b76e4ebacfd2782507424a5c81ffe0d21beeb8f559d6fa6bc07"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/ManaWeave.Magic.asmdef.meta",
+      "bytes": 163,
+      "sha256": "a4b9bdb00d28cfcf52c9a0cc5466193d11ea85b9873fd0412503346c102d5a1e"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/RuneLanguageModel.cs",
+      "bytes": 14052,
+      "sha256": "31e3b61ac2315f0988a0cee90313dee8921b24a6cff1bfc266a9f0c10e338b94"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/RuneLanguageModel.cs.meta",
+      "bytes": 236,
+      "sha256": "e90c8b36c864f9fddfeafad3daa5e5893a48a9f09a00d08de85a5a67d5073881"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/WeightSpaceMagic.cs",
+      "bytes": 8561,
+      "sha256": "63191f3660ad65b8b6f30c5e8adb8a384368b28c5712433f4a2214d0c73eafa2"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic/WeightSpaceMagic.cs.meta",
+      "bytes": 236,
+      "sha256": "155fee41fe0617bf5fdf33836e7aeb7f9260f5c5123f76b004b2556eba6c6ad9"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Magic.meta",
+      "bytes": 169,
+      "sha256": "e6b945d5f79e11c23306c7254dcbef6f9242229bee0de43898ed58b9701c847e"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaHud.cs",
+      "bytes": 24042,
+      "sha256": "a00ff33302975d4ba192480b8587e2ef115803307b8be8afe29198cfa5723351"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaHud.cs.meta",
+      "bytes": 236,
+      "sha256": "9141ae4c0e7972dae335080b3162c5c6da289d7fec6bde12c5a7ab17dc46bf1f"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaWeave.Runtime.asmdef",
+      "bytes": 155,
+      "sha256": "ce3b30a4847ff29deca1361e966776f5b94db2c508b520a52911e133e998ed97"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaWeave.Runtime.asmdef.meta",
+      "bytes": 163,
+      "sha256": "6e96e56c3c50423ab4737da3d8b10f80583cddc0cdb63ca2e9e7dbaefb73f88b"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaWorldController.cs",
+      "bytes": 32765,
+      "sha256": "6bd7d523be9ac28d9c9c1e91323cdb6f9fa4757a9a20e18dc83e85e60732681d"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/ManaWorldController.cs.meta",
+      "bytes": 236,
+      "sha256": "0c3dc414352b54a5d95a85c7b7abc7428786a1fd8d904d9f2d56c21550a4e2e0"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/RuntimeBootstrap.cs",
+      "bytes": 550,
+      "sha256": "b01af6b52adf34a06eb400370570c03f7bc63e885c802b5a75ff4da14a26d702"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/RuntimeBootstrap.cs.meta",
+      "bytes": 236,
+      "sha256": "0600a6399700b721fef368ebe4778cab3a50ab469adeb841d612687eab678c9b"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/SurveyCamera.cs",
+      "bytes": 3090,
+      "sha256": "118df3c73654bc41ae592cf4110ef4b9fec18c173e1df973c2f5f7ee04973dc6"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/SurveyCamera.cs.meta",
+      "bytes": 236,
+      "sha256": "7049f9478f249d735c12dba95bc737a3575e7060dd614562644cd66315d1c73c"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/VoxelRay.cs",
+      "bytes": 4042,
+      "sha256": "2562a2443b64285e773a85f6344dfc7c36cfba7cd6a6a1f68dfe94b3dc87633b"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/VoxelRay.cs.meta",
+      "bytes": 236,
+      "sha256": "f2ef1c50f989339a47f0ce6136a537b44e9695a2bc07f5ce33062a8f2e860b41"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs",
+      "bytes": 17296,
+      "sha256": "f70ee8a14e129391619e40b4e800665238db07f30680abce1409cf79cd3e52f3"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs.meta",
+      "bytes": 236,
+      "sha256": "9cfb004ce0baac0234461d0e018b5adea865e446a97b9247ce932ad91961e932"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Runtime.meta",
+      "bytes": 169,
+      "sha256": "0179ef17304b72bda82e8b4ab6ee5d5b7a801b53f0d68968b5bfa67cb6a85afb"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Aura.shader",
+      "bytes": 768,
+      "sha256": "a14caaf89c16c8a0aba8b4d4f52d5917572b090de6159c2b244085aa38c9b46f"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Aura.shader.meta",
+      "bytes": 201,
+      "sha256": "f5b327f2ac2ca231e35f7a893ed4fd04abb60c4650a4e7e6b78a829bcfc883f5"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Sky.shader",
+      "bytes": 1301,
+      "sha256": "2e182e0b0bc6df9743b59b32dbd1832eb9fa63130e3ddcd6931ed776b2342ea1"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Sky.shader.meta",
+      "bytes": 201,
+      "sha256": "fcfd2727551800e5acae400eb73441916ad6aff0d864cde3747eccb6498b336c"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Voxel.shader",
+      "bytes": 1730,
+      "sha256": "9cb46f8d1cbe90a8fe018580e4eae8682cce3fb10909989ab26d85eced3fd54c"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave/Voxel.shader.meta",
+      "bytes": 201,
+      "sha256": "24eb7ace899589517afe3b601e558c60d6d4a2a29f53069871e784b9b2419c96"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources/ManaWeave.meta",
+      "bytes": 169,
+      "sha256": "0cdea7ecfb5cb20ef89797167764dd681cf2f443dadbfcdf2248a5d4d6b26252"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders/Resources.meta",
+      "bytes": 169,
+      "sha256": "2a2b911443d779276e31f4824c3ffb63902c6db80873b979cfff11d4e323cd34"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/Shaders.meta",
+      "bytes": 169,
+      "sha256": "4daf052a1eaff34f219a1315297644ee9f096648c5d73a07284cd56e67dceb55"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/link.xml",
+      "bytes": 191,
+      "sha256": "fde482e06efe35380c32a58fe0f5fce2e88dc9abe3b6882f51c94f168933188f"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave/link.xml.meta",
+      "bytes": 155,
+      "sha256": "7244c019c76a006fd3c0d048e860ca8b08d671dd931463bdf74711f21fa025fe"
+    },
+    {
+      "path": "UnityProject/Assets/ManaWeave.meta",
+      "bytes": 169,
+      "sha256": "548038791e408beb228d8fc94c1b1bd6c37a9515d931ce4e29c43af8d11e4f64"
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/magic_model.bytes",
+      "bytes": 992352,
+      "sha256": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931"
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/magic_model.bytes.meta",
+      "bytes": 155,
+      "sha256": "b5fab41fa57cf0064cc6200b168599afd0a74caa9a0f9251e607031a01582b5a"
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/wsp_model.bytes",
+      "bytes": 27932,
+      "sha256": "9a6968b09f1b2fa0eb92f4da8102d70faa3aa3b602bd97e53cb58bd61af592bd"
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/wsp_model.bytes.meta",
+      "bytes": 155,
+      "sha256": "c8f119f9161068363c306234ee6dc21452044d75492ac05a6ae597de1dee6da7"
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave.meta",
+      "bytes": 169,
+      "sha256": "42659e672ff18d4fd9e08dbb1b5f450ec4bdc9b547a43949c312a94178dc82dd"
+    },
+    {
+      "path": "UnityProject/Assets/Resources.meta",
+      "bytes": 169,
+      "sha256": "808f6b68892bef53155e0aecfdac74ad3520a871bca82e18cbf12aaec9d1d1c2"
+    },
+    {
+      "path": "UnityProject/Assets/Scenes/Sandbox.unity",
+      "bytes": 2091,
+      "sha256": "0878df1cc5ac769235a3e26b29c1963e52288adfe26636dbcb98132705e4ea72"
+    },
+    {
+      "path": "UnityProject/Assets/Scenes/Sandbox.unity.meta",
+      "bytes": 152,
+      "sha256": "266681703aa63cd3f24bba32baba902ddd7d790d673f44ba0974a0e3b24c2aa7"
+    },
+    {
+      "path": "UnityProject/Assets/Scenes.meta",
+      "bytes": 169,
+      "sha256": "fa74cc2169ac6ae87ceb73e479ca153dfed7e277eb3407f0e7a6f18cf942532d"
+    },
+    {
+      "path": "UnityProject/Packages/manifest.json",
+      "bytes": 332,
+      "sha256": "56ce6bc2a69910bb6027f3d653b8abcead5b05bc7692de1ea12b0de721fe61c2"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/EditorBuildSettings.asset",
+      "bytes": 253,
+      "sha256": "820804f2e4e11e8847da2792420a4b0355663b9886c1f3df74d441cd1072c75b"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/EditorSettings.asset",
+      "bytes": 210,
+      "sha256": "d4d3fffbfec57956dc0e6a2431d8755857b1c42c7e7efd5279361c2c85d890fd"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/InputManager.asset",
+      "bytes": 1634,
+      "sha256": "9dc2949310892a5ef243e868b14626b8e3f654e00493f1adced235974f9ac07d"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/ProjectSettings.asset",
+      "bytes": 570,
+      "sha256": "449f7e131db37071213dcd4b34aecc58257b83a1f7e169a3721db54b185f4f90"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/ProjectVersion.txt",
+      "bytes": 29,
+      "sha256": "6d4698a055aba20775764511b19b380e4bbb9a26560fec1110802be15c549add"
+    },
+    {
+      "path": "UnityProject/ProjectSettings/TimeManager.asset",
+      "bytes": 195,
+      "sha256": "6f8d39169e67c0a239a1565fe421d48db97ad5bb9b5c91e4b1f2bc5bf282bf27"
+    }
+  ]
+}

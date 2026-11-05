@@ -1,0 +1,24 @@
+{
+  "date": "2026-11-05",
+  "timezone": "Asia/Tokyo",
+  "core": {
+    "passed": 23,
+    "failed": 0
+  },
+  "magic": {
+    "passed": 66,
+    "failed": 0
+  },
+  "runtime_math": {
+    "passed": 7,
+    "failed": 0
+  },
+  "portable_target": "netstandard2.1",
+  "language_version": "C#7.3",
+  "unity_editor_available": false,
+  "unity_player_build_attempted": false,
+  "transformer_logit_max_absolute_error": 3.81469727e-06,
+  "direct_weight_network_parameters": 6140,
+  "learned_transformer_parameters": 247776,
+  "model_validation": "See LLM/acceptance_report.json for scope and rejection rates."
+}

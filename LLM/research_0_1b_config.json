@@ -1,0 +1,10 @@
+{
+  "profile": "research_0_1b",
+  "trained_checkpoint_included": false,
+  "vocab_size": 171,
+  "dim": 896,
+  "heads": 14,
+  "layers": 10,
+  "block_size": 256,
+  "parameters": 96758144
+}

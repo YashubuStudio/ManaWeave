@@ -1,0 +1,119 @@
+{
+  "model_sha256": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931",
+  "wsp_sha256": "9a6968b09f1b2fa0eb92f4da8102d70faa3aa3b602bd97e53cb58bd61af592bd",
+  "protocol": "Frozen-model actual C# parsing. Development templates were observed previously. Manual challenge written after final weight freeze; no subsequent weight/threshold/guard tuning. Small curated diagnostics, not production NLP accuracy.",
+  "heldout": {
+    "dataset_sha256": "7011bdaa250a0a320551ccb9c9520361cca2e76cca63de04d5e8c4bf0bd09d54",
+    "learned_guarded": {
+      "count": 1158,
+      "positive_count": 1152,
+      "negative_count": 6,
+      "accepted_count": 902,
+      "correct_accepted_count": 902,
+      "positive_coverage": 0.7829861111111112,
+      "accepted_exact_accuracy": 1,
+      "rejected_negative_count": 6,
+      "wrong_accepted_count": 0,
+      "elapsed_seconds": 11.0292711,
+      "source_counts": {
+        "RuneLM / trained Transformer": 1158
+      },
+      "rejection_reasons": {
+        "The learned area or strength disagrees with the supported instruction. Use explicit DSL.": 115,
+        "Interpretation is uncertain. Rephrase or use the explicit DSL.": 36,
+        "The learned interpretation disagrees with the supported action vocabulary. Use explicit DSL.": 62,
+        "Named-material target filters are not supported. This prototype always targets the crosshair.": 30,
+        "The learned build material disagrees with the command. Specify one material explicitly.": 9,
+        "The learned model rejected this command. Use a supported single action or explicit DSL.": 4
+      },
+      "wrong_accepts": []
+    },
+    "wsp_guarded": {
+      "count": 1158,
+      "positive_count": 1152,
+      "negative_count": 6,
+      "accepted_count": 1152,
+      "correct_accepted_count": 1152,
+      "positive_coverage": 1,
+      "accepted_exact_accuracy": 1,
+      "rejected_negative_count": 6,
+      "wrong_accepted_count": 0,
+      "elapsed_seconds": 0.1695166,
+      "source_counts": {
+        "WSP / directly constructed weights": 1158
+      },
+      "rejection_reasons": {
+        "\u3053\u306E\u8868\u73FE\u306F\u5BFE\u5FDC\u7BC4\u56F2\u5916\u3067\u3059\u3002\u5358\u4E00\u306E\u64CD\u4F5C\u3068\u7BC4\u56F2\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u6761\u4EF6\u30FB\u5426\u5B9A\u30FB\u8907\u6570\u64CD\u4F5C\u306B\u306FDSL\u3092\u500B\u5225\u306B\u4F7F\u3044\u307E\u3059\u3002": 6
+      },
+      "wrong_accepts": []
+    }
+  },
+  "manual_challenge": {
+    "dataset_sha256": "4f8acac295c8dd2dfd7d96788416ae7e132142585d685af2ff9ab2f4261485c2",
+    "learned_guarded": {
+      "count": 48,
+      "positive_count": 24,
+      "negative_count": 24,
+      "accepted_count": 22,
+      "correct_accepted_count": 22,
+      "positive_coverage": 0.9166666666666666,
+      "accepted_exact_accuracy": 1,
+      "rejected_negative_count": 24,
+      "wrong_accepted_count": 0,
+      "elapsed_seconds": 0.2200846,
+      "source_counts": {
+        "RuneLM / trained Transformer": 35,
+        "Input validation": 10,
+        "Explicit DSL": 3
+      },
+      "rejection_reasons": {
+        "This prototype has no vocabulary for: \u7269": 1,
+        "This prototype has no vocabulary for: \u6E80": 1,
+        "This prototype has no vocabulary for: \u308B": 1,
+        "Negation, conditions, exceptions and compound spells are not represented by this prototype IR.": 6,
+        "This prototype has no vocabulary for: \u6C34": 1,
+        "More than one operation detected. Analyze and equip each spell separately.": 2,
+        "Numeric quantities, questions, or compound commands require the explicit DSL.": 1,
+        "This prototype has no vocabulary for: \u6CD5": 2,
+        "This prototype has no vocabulary for: \u904E": 1,
+        "This prototype has no vocabulary for: \u671D": 1,
+        "The learned interpretation disagrees with the supported action vocabulary. Use explicit DSL.": 3,
+        "The learned model rejected this command. Use a supported single action or explicit DSL.": 1,
+        "Interpretation is uncertain. Rephrase or use the explicit DSL.": 1,
+        "Unknown DSL field: unknown": 1,
+        "Power out of bounds: 0 \u003C energy \u003C= 2,000,000 J; charge \u003C= 500 MU.": 1,
+        "Radius must be an integer from 1 to 5.": 1,
+        "One instruction per submission; multiline commands are unsupported.": 1
+      },
+      "wrong_accepts": []
+    },
+    "wsp_guarded": {
+      "count": 48,
+      "positive_count": 24,
+      "negative_count": 24,
+      "accepted_count": 16,
+      "correct_accepted_count": 16,
+      "positive_coverage": 0.6666666666666666,
+      "accepted_exact_accuracy": 1,
+      "rejected_negative_count": 24,
+      "wrong_accepted_count": 0,
+      "elapsed_seconds": 0.0070346,
+      "source_counts": {
+        "WSP / directly constructed weights": 35,
+        "Input validation": 10,
+        "Explicit DSL": 3
+      },
+      "rejection_reasons": {
+        "\u3053\u306E\u8868\u73FE\u306F\u5BFE\u5FDC\u7BC4\u56F2\u5916\u3067\u3059\u3002\u5358\u4E00\u306E\u64CD\u4F5C\u3068\u7BC4\u56F2\u3092\u6307\u5B9A\u3057\u3066\u304F\u3060\u3055\u3044\u3002\u6761\u4EF6\u30FB\u5426\u5B9A\u30FB\u8907\u6570\u64CD\u4F5C\u306B\u306FDSL\u3092\u500B\u5225\u306B\u4F7F\u3044\u307E\u3059\u3002": 19,
+        "Negation, conditions, exceptions and compound spells are not represented by this prototype IR.": 6,
+        "More than one operation detected. Analyze and equip each spell separately.": 2,
+        "Numeric quantities, questions, or compound commands require the explicit DSL.": 1,
+        "Unknown DSL field: unknown": 1,
+        "Power out of bounds: 0 \u003C energy \u003C= 2,000,000 J; charge \u003C= 500 MU.": 1,
+        "Radius must be an integer from 1 to 5.": 1,
+        "One instruction per submission; multiline commands are unsupported.": 1
+      },
+      "wrong_accepts": []
+    }
+  }
+}

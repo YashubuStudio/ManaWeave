@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!129 &1
+PlayerSettings:
+  m_ObjectHideFlags: 0
+  serializedVersion: 28
+  productGUID: 7859618d041f4c2aaa41a92d3ee2ce5e
+  companyName: YashubuStudio
+  productName: ManaWeave
+  defaultScreenWidth: 1440
+  defaultScreenHeight: 900
+  defaultIsNativeResolution: 0
+  runInBackground: 1
+  resizableWindow: 1
+  fullscreenMode: 3
+  usePlayerLog: 1
+  bundleVersion: 0.1.0
+  activeInputHandler: 0
+  scriptingRuntimeVersion: 1
+  gcIncremental: 1
+  allowUnsafeCode: 0
+  applicationIdentifier:
+    Standalone: com.yashubustudio.manaweave

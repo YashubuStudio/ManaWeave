@@ -1,0 +1,14 @@
+{
+  "name": "ManaWeave RuneLM Pilot",
+  "parameters": 247776,
+  "trained": true,
+  "profile": "pilot",
+  "steps": 2000,
+  "seed": 731,
+  "vocabulary": 171,
+  "context_tokens": 96,
+  "architecture": "original pre-norm causal decoder Transformer, tied embedding, learned positions, ReLU MLP",
+  "numeric_format": "float32 little endian",
+  "sha256": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931",
+  "bytes": 992352
+}

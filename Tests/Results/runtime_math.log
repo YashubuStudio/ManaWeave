@@ -1,0 +1,9 @@
+Supplemental scratch Unity API stubs; not a Unity Editor/Player validation.
+PASS Ray resolves material and adjacent cell
+PASS Ray distance correct
+PASS Outside-origin ray clips into bounds
+PASS Parallel ray outside slab rejected
+PASS Maximum reach enforced
+PASS Negative direction target and build face
+PASS Steam remains untargeted surface
+7 runtime math checks passed. Unity-specific behavior untested.

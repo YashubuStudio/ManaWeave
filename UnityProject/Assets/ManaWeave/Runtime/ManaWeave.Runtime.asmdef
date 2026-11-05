@@ -1,0 +1,6 @@
+{
+  "name": "ManaWeave.Runtime",
+  "rootNamespace": "ManaWeave.Runtime",
+  "references": ["ManaWeave.Core", "ManaWeave.Magic"],
+  "autoReferenced": true
+}

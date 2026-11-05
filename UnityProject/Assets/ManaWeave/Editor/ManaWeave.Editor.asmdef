@@ -1,0 +1,7 @@
+{
+  "name": "ManaWeave.Editor",
+  "rootNamespace": "ManaWeave.Editor",
+  "references": ["ManaWeave.Core", "ManaWeave.Magic", "ManaWeave.Runtime"],
+  "includePlatforms": ["Editor"],
+  "autoReferenced": true
+}
