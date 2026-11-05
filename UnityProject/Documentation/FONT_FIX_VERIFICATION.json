@@ -1,0 +1,55 @@
+{
+  "revision": "2026-11-05-bundled-hud-fonts",
+  "checked_at_utc": "2026-11-05T07:34:29.868270+00:00",
+  "unity_editor_executed": false,
+  "unity_native_font_rendering_verified": false,
+  "font_validation_tool": "fontTools.ttLib.TTFont",
+  "coverage_scope": "All non-whitespace codepoints in C# sources under Assets/ManaWeave at audit time; not arbitrary user input",
+  "unique_source_characters": 233,
+  "fonts": [
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf",
+      "sha256": "1b0edfb500b73a4fa8a4fcaae1bbbd403994e08e73e3e0da37e70d3853f42c5f",
+      "bytes": 4656448,
+      "family": "Noto Sans JP",
+      "style": "Bold",
+      "unicode_cmap_codepoints": 16732,
+      "missing_source_characters": [],
+      "dynamic_include_data_metadata_verified": true
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf",
+      "sha256": "dff723ba59d57d136764a04b9b2d03205544f7cd785a711442d6d2d085ac5073",
+      "bytes": 4533028,
+      "family": "Noto Sans JP",
+      "style": "Regular",
+      "unicode_cmap_codepoints": 16732,
+      "missing_source_characters": [],
+      "dynamic_include_data_metadata_verified": true
+    }
+  ],
+  "license_sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2",
+  "player_license_copies_identical": true,
+  "unique_asset_meta_guids": 49,
+  "runtime_compilation": {
+    "status": "passed",
+    "warnings": 0,
+    "errors": 0,
+    "target": "net8.0 / C# 7.3 / simplified Unity API stubs",
+    "scope": [
+      "Runtime",
+      "Core",
+      "Magic"
+    ],
+    "hud_source_sha256": "494c2d9f5517e0cd56fd57f92f04647563af8207a531e007946a90392709546b",
+    "editor_scripts_compiled": false,
+    "unity_api_binary_compatibility_verified": false
+  },
+  "protected_original_files_unchanged": 35,
+  "protected_scope": "Core, Magic, Sandbox scene, Unity settings/packages and both model weights",
+  "limitations_ja": [
+    "Unity Editorのインポート・Play・Playerビルドは未実施。",
+    "APIスタブでのコンパイルは実Unity APIアセンブリやフォント描画の検証ではない。",
+    "実表示、Gizmos表示の解消、FPS改善量はユーザー環境での確認が必要。"
+  ]
+}

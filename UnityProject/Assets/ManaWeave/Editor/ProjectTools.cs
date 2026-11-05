@@ -24,6 +24,7 @@ namespace ManaWeave.Editor
         [MenuItem("Tools/ManaWeave/Verify Core and Model")]
         public static void Verify()
         {
+            HudFontTools.VerifyFontAssets();
             var world = WorldGenerator.Generate(24, 16, 24, 731);
             var sim = new WorldSimulator(world);
             for (int i = 0; i < 20; i++) sim.Step(0.1f);

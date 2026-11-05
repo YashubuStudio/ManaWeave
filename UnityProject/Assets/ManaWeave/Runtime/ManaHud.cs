@@ -5,16 +5,18 @@ using UnityEngine;
 
 namespace ManaWeave.Runtime
 {
-    /// <summary>Asset-free research HUD; all readouts come from the live law engine.</summary>
+    /// <summary>Research HUD with bundled fonts; all readouts come from the live law engine.</summary>
     public sealed class ManaHud : MonoBehaviour
     {
         private ManaWorldController _world;
-        private Font _font;
-        private GUIStyle _label,_small,_title,_heading,_button,_input;
+        private Font _font,_boldFont;
+        private GUIStyle _label,_small,_title,_heading,_button,_input,_guide,_centerSmall,_rightSmall;
         private Vector2 _workScroll;
         private string _chant="目の前を小さく熱して";
-        private bool _stylesReady;
+        private bool _stylesReady,_fontsLoaded;
         private bool _lastWorkbench;
+        private const string RegularFontResource="ManaWeave/Fonts/UIJapanese-Regular";
+        private const string BoldFontResource="ManaWeave/Fonts/UIJapanese-Bold";
         private static readonly Color Ink=new Color(0.88f,0.94f,0.98f);
         private static readonly Color Muted=new Color(0.49f,0.63f,0.73f);
         private static readonly Color Teal=new Color(0.30f,0.89f,0.79f);
@@ -28,17 +30,39 @@ namespace ManaWeave.Runtime
         private void PrepareStyles()
         {
             if(_stylesReady)return;
-            try { _font=Font.CreateDynamicFontFromOSFont(new[]{"Noto Sans CJK JP","Noto Sans JP","Yu Gothic","Meiryo","Hiragino Kaku Gothic ProN","Arial"},18); }
-            catch(Exception) { _font=null; }
-            if(_font==null)_font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
-            _label=new GUIStyle(GUI.skin.label) {font=_font,fontSize=14,wordWrap=true,richText=false};
+            if(!_fontsLoaded)
+            {
+                // Load source-font assets once. A non-null OS Font object does not
+                // prove that its family exists; font-face failures can occur later
+                // in GUI.Label on every IMGUI event. Do not probe OS font names.
+                _fontsLoaded=true;
+                _font=Resources.Load<Font>(RegularFontResource);
+                _boldFont=Resources.Load<Font>(BoldFontResource);
+                bool missingRegular=_font==null,missingBold=_boldFont==null;
+                if(missingRegular)_font=Resources.GetBuiltinResource<Font>("LegacyRuntime.ttf");
+                if(_font==null)_font=GUI.skin.font;
+                if(_boldFont==null)_boldFont=_font;
+                if(missingRegular||missingBold)
+                    Debug.LogWarning("ManaWeave HUD: bundled UIJapanese font asset(s) are missing. "+
+                        (missingRegular?"Using a built-in fallback; Japanese glyphs may be unavailable. ":"Using the regular face for headings. ")+
+                        "Restore Assets/Resources/ManaWeave/Fonts and restart Play Mode.");
+            }
+            // If even the built-in fallback is absent, skip labels instead of
+            // repeatedly attempting to resolve a missing font while repainting.
+            if(_font==null)return;
+            _label=new GUIStyle(GUI.skin.label) {font=_font,fontSize=14,fontStyle=FontStyle.Normal,wordWrap=true,richText=false};
             _label.normal.textColor=Ink;
-            _small=new GUIStyle(_label){fontSize=11};_small.normal.textColor=Muted;
-            _title=new GUIStyle(_label){fontSize=28,fontStyle=FontStyle.Bold};
-            _heading=new GUIStyle(_label){fontSize=12,fontStyle=FontStyle.Bold};
-            _button=new GUIStyle(_label){alignment=TextAnchor.MiddleCenter,fontSize=12,wordWrap=false};
-            _input=new GUIStyle(GUI.skin.textArea){font=_font,fontSize=17,wordWrap=true,padding=new RectOffset(12,12,10,10)};
+            _small=new GUIStyle(_label){font=_font,fontSize=11,fontStyle=FontStyle.Normal};_small.normal.textColor=Muted;
+            // Each weight is its own bundled asset. Normal prevents an OS family
+            // or an unavailable Bold face being requested for the selected asset.
+            _title=new GUIStyle(_label){font=_boldFont,fontSize=28,fontStyle=FontStyle.Normal};
+            _heading=new GUIStyle(_label){font=_boldFont,fontSize=12,fontStyle=FontStyle.Normal};
+            _button=new GUIStyle(_label){font=_font,fontStyle=FontStyle.Normal,alignment=TextAnchor.MiddleCenter,fontSize=12,wordWrap=false};
+            _input=new GUIStyle(GUI.skin.textArea){font=_font,fontSize=17,fontStyle=FontStyle.Normal,wordWrap=true,richText=false,padding=new RectOffset(12,12,10,10)};
             _input.normal.textColor=Ink;_input.focused.textColor=Ink;
+            _guide=new GUIStyle(_label){font=_font,fontSize=12,fontStyle=FontStyle.Normal};
+            _centerSmall=new GUIStyle(_small){font=_font,fontStyle=FontStyle.Normal,alignment=TextAnchor.MiddleCenter};
+            _rightSmall=new GUIStyle(_small){font=_font,fontStyle=FontStyle.Normal,alignment=TextAnchor.UpperRight};
             _stylesReady=true;
         }
 
@@ -46,6 +70,7 @@ namespace ManaWeave.Runtime
         {
             if(_world==null||_world.World==null||_world.Terrain==null)return;
             PrepareStyles();
+            if(!_stylesReady)return;
             if(_lastWorkbench!=_world.WorkbenchOpen)
             {
                 GUIUtility.keyboardControl=0;
@@ -53,21 +78,33 @@ namespace ManaWeave.Runtime
                 _lastWorkbench=_world.WorkbenchOpen;
             }
             float scale=Mathf.Clamp(Screen.width/1440f,0.5f,1.5f);
-            Matrix4x4 previous=GUI.matrix;
-            GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
-            float width=Screen.width/scale,height=Screen.height/scale;
-            DrawHeader(width);
-            DrawRightPanels(width,height);
-            if(_world.WorkbenchOpen)DrawWorkbench(height);
-            else
+            Matrix4x4 previousMatrix=GUI.matrix;
+            Color previousColor=GUI.color;
+            bool previousEnabled=GUI.enabled;
+            try
             {
-                if(_world.HelpOpen||!_world.Surveyor.Captured)DrawGuide();
-                DrawObjectives(_world.HelpOpen||!_world.Surveyor.Captured?364:104);
-                DrawCrosshair(width,height);
+                GUI.matrix=Matrix4x4.TRS(Vector3.zero,Quaternion.identity,new Vector3(scale,scale,1));
+                float width=Screen.width/scale,height=Screen.height/scale;
+                DrawHeader(width);
+                DrawRightPanels(width,height);
+                if(_world.WorkbenchOpen)DrawWorkbench(height);
+                else
+                {
+                    if(_world.HelpOpen||!_world.Surveyor.Captured)DrawGuide();
+                    DrawObjectives(_world.HelpOpen||!_world.Surveyor.Captured?364:104);
+                    DrawCrosshair(width,height);
+                }
+                DrawHotbar(width,height);
+                DrawToast(width,height);
             }
-            DrawHotbar(width,height);
-            DrawToast(width,height);
-            GUI.matrix=previous;
+            finally
+            {
+                // OnGUI shares this state with other IMGUI/Editor drawing. Do
+                // not leave it modified if a control or a world action throws.
+                GUI.matrix=previousMatrix;
+                GUI.color=previousColor;
+                GUI.enabled=previousEnabled;
+            }
         }
 
         private void DrawHeader(float width)
@@ -145,7 +182,7 @@ namespace ManaWeave.Runtime
             RectPanel(new Rect(24,104,350,246),Teal);
             Text(new Rect(42,118,315,20),"SURVEYOR MODE",_heading,Teal);
             Text(new Rect(42,149,305,147),
-                "W A S D       Fly / survey\nMouse           Look around\nSpace / Ctrl   Ascend / descend\nShift              Fly faster\n1 — 6             Equip a spell\nLeft click       Cast at the crosshair\nWheel            Change effect radius\nTab / right click   Spell workbench\nEsc                Release or capture cursor",new GUIStyle(_label){fontSize=12},Ink);
+                "W A S D       Fly / survey\nMouse           Look around\nSpace / Ctrl   Ascend / descend\nShift              Fly faster\n1 — 6             Equip a spell\nLeft click       Cast at the crosshair\nWheel            Change effect radius\nTab / right click   Spell workbench\nEsc                Release or capture cursor",_guide,Ink);
             string label=_world.Surveyor.Captured?"CLOSE GUIDE  [F1]":"ENTER WORLD";
             if(Button(new Rect(42,306,314,29),label,true,Teal))
             {
@@ -175,8 +212,7 @@ namespace ManaWeave.Runtime
             Fill(new Rect(x,y-10,1,6),color);Fill(new Rect(x,y+4,1,6),color);
             if(_world.Surveyor.Captured&&_world.Equipped!=null)
             {
-                var label=new GUIStyle(_small){alignment=TextAnchor.MiddleCenter};
-                Text(new Rect(x-180,y+21,360,24),_world.Equipped.Name+"  ·  R"+_world.Equipped.Radius+"  ·  CLICK TO CAST",label,ManaWorldController.SpellColor(_world.Equipped.Operation));
+                Text(new Rect(x-180,y+21,360,24),_world.Equipped.Name+"  ·  R"+_world.Equipped.Radius+"  ·  CLICK TO CAST",_centerSmall,ManaWorldController.SpellColor(_world.Equipped.Operation));
             }
         }
 
@@ -235,6 +271,17 @@ namespace ManaWeave.Runtime
             if(Button(new Rect(476,115,94,27),"CLOSE",false,Teal))_world.SetWorkbench(false);
             Rect view=new Rect(38,152,538,panelHeight-60);
             _workScroll=GUI.BeginScrollView(view,_workScroll,new Rect(0,0,516,1160));
+            bool previousEnabled=GUI.enabled;
+            try { DrawWorkbenchContents(); }
+            finally
+            {
+                GUI.enabled=previousEnabled;
+                GUI.EndScrollView();
+            }
+        }
+
+        private void DrawWorkbenchContents()
+        {
             Text(new Rect(2,0,508,22),"解析 → 命令を確認 → 装備 → 狙って発動",_small,Muted);
             GUI.enabled=!_world.ParseBusy;
             GUI.enabled=GUI.enabled&&_world.DirectWeightsAvailable;
@@ -316,7 +363,6 @@ namespace ManaWeave.Runtime
                 Text(new Rect(2,910+i*45,504,40),"T"+entry.Tick+"  "+entry.Text,_small,i==0?Ink:Muted);
             }
             if(shown==0)Text(new Rect(2,910,504,42),"Observe a target with E, cast a spell, or run a fixture to record a result.",_small,Muted);
-            GUI.EndScrollView();
         }
 
         private void Section(float y,string title)
@@ -335,8 +381,7 @@ namespace ManaWeave.Runtime
         private void KeyValue(float x,float y,float width,string key,string value,Color color)
         {
             Text(new Rect(x,y,width*0.62f,21),key,_small,Muted);
-            var right=new GUIStyle(_small){alignment=TextAnchor.UpperRight};
-            Text(new Rect(x+width*0.51f,y,width*0.49f,21),value,right,color);
+            Text(new Rect(x+width*0.51f,y,width*0.49f,21),value,_rightSmall,color);
         }
 
         private static string Units(double number,string suffix)
@@ -350,7 +395,9 @@ namespace ManaWeave.Runtime
 
         private static void Fill(Rect rect,Color color)
         {
-            Color old=GUI.color;GUI.color=color;GUI.DrawTexture(rect,Texture2D.whiteTexture);GUI.color=old;
+            Color old=GUI.color;
+            try { GUI.color=color;GUI.DrawTexture(rect,Texture2D.whiteTexture); }
+            finally { GUI.color=old; }
         }
 
         private static void RectPanel(Rect rect,Color accent)
@@ -369,8 +416,9 @@ namespace ManaWeave.Runtime
 
         private void Text(Rect rect,string text,GUIStyle style,Color color)
         {
-            Color previous=style.normal.textColor;style.normal.textColor=color;
-            GUI.Label(rect,text??string.Empty,style);style.normal.textColor=previous;
+            Color previous=style.normal.textColor;
+            try { style.normal.textColor=color;GUI.Label(rect,text??string.Empty,style); }
+            finally { style.normal.textColor=previous; }
         }
 
         private bool Button(Rect rect,string text,bool active,Color color)

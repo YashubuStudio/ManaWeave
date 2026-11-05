@@ -1,0 +1,159 @@
+{
+  "project": "ManaWeave",
+  "revision": "2026-11-05-bundled-hud-fonts",
+  "format": "Assets overlay; merge into the existing Unity project root",
+  "base_full_archive_sha256": "b87c62d7011391a07e4c67692b0ae1c7d11ad369ff9fff9d4bd330068d4ef9dc",
+  "corresponding_full_archive_sha256": "dde5ede0a5f3f35d4ca93a597d2ba2988c20871897495b6c81842544996fdc2a",
+  "unity_editor_executed": false,
+  "files": [
+    {
+      "path": "Assets/ManaWeave.meta",
+      "bytes": 169,
+      "sha256": "548038791e408beb228d8fc94c1b1bd6c37a9515d931ce4e29c43af8d11e4f64",
+      "base_sha256": "548038791e408beb228d8fc94c1b1bd6c37a9515d931ce4e29c43af8d11e4f64"
+    },
+    {
+      "path": "Assets/ManaWeave/Editor.meta",
+      "bytes": 169,
+      "sha256": "bb2aa1aa306dac8e464a22d4bf107bf9c265c754204fa6df118369bdc9d0e029",
+      "base_sha256": "bb2aa1aa306dac8e464a22d4bf107bf9c265c754204fa6df118369bdc9d0e029"
+    },
+    {
+      "path": "Assets/ManaWeave/Editor/HudFontTools.cs",
+      "bytes": 3171,
+      "sha256": "f646c1e019b70214c197dbd9468e91f3f1519e90905579bf90da9a4190cdcb7d"
+    },
+    {
+      "path": "Assets/ManaWeave/Editor/HudFontTools.cs.meta",
+      "bytes": 236,
+      "sha256": "c3d2c883635d0429fdfd13da08d44e0b7a882c3890fd037f1aaf7318f63ebdcf"
+    },
+    {
+      "path": "Assets/ManaWeave/Editor/ProjectTools.cs",
+      "bytes": 5397,
+      "sha256": "6d8c4e56a7ba5befc63ea5293fc0515fc3f08589f5eb49aa29bafb70063be3ad",
+      "base_sha256": "99ca4eaf754cc57669aaf1d3238e9c0737212ca477fd9861c051bc7d67f37c38"
+    },
+    {
+      "path": "Assets/ManaWeave/Editor/ProjectTools.cs.meta",
+      "bytes": 236,
+      "sha256": "a0d8cac7336592000975b2cd5d125421934545d24776d57e674630ac793829f6",
+      "base_sha256": "a0d8cac7336592000975b2cd5d125421934545d24776d57e674630ac793829f6"
+    },
+    {
+      "path": "Assets/ManaWeave/Runtime.meta",
+      "bytes": 169,
+      "sha256": "0179ef17304b72bda82e8b4ab6ee5d5b7a801b53f0d68968b5bfa67cb6a85afb",
+      "base_sha256": "0179ef17304b72bda82e8b4ab6ee5d5b7a801b53f0d68968b5bfa67cb6a85afb"
+    },
+    {
+      "path": "Assets/ManaWeave/Runtime/ManaHud.cs",
+      "bytes": 26676,
+      "sha256": "494c2d9f5517e0cd56fd57f92f04647563af8207a531e007946a90392709546b",
+      "base_sha256": "a00ff33302975d4ba192480b8587e2ef115803307b8be8afe29198cfa5723351"
+    },
+    {
+      "path": "Assets/ManaWeave/Runtime/ManaHud.cs.meta",
+      "bytes": 236,
+      "sha256": "9141ae4c0e7972dae335080b3162c5c6da289d7fec6bde12c5a7ab17dc46bf1f",
+      "base_sha256": "9141ae4c0e7972dae335080b3162c5c6da289d7fec6bde12c5a7ab17dc46bf1f"
+    },
+    {
+      "path": "Assets/Resources.meta",
+      "bytes": 169,
+      "sha256": "808f6b68892bef53155e0aecfdac74ad3520a871bca82e18cbf12aaec9d1d1c2",
+      "base_sha256": "808f6b68892bef53155e0aecfdac74ad3520a871bca82e18cbf12aaec9d1d1c2"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave.meta",
+      "bytes": 169,
+      "sha256": "42659e672ff18d4fd9e08dbb1b5f450ec4bdc9b547a43949c312a94178dc82dd",
+      "base_sha256": "42659e672ff18d4fd9e08dbb1b5f450ec4bdc9b547a43949c312a94178dc82dd"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave/Fonts.meta",
+      "bytes": 169,
+      "sha256": "a6d0b60105ea8e3363f127880f3aced823b8fcd768427765a8a84f4e7ae9d3d1"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf",
+      "bytes": 4656448,
+      "sha256": "1b0edfb500b73a4fa8a4fcaae1bbbd403994e08e73e3e0da37e70d3853f42c5f"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf.meta",
+      "bytes": 498,
+      "sha256": "46df6bcb12f618a0b0ec52ba981d954725db8b3d80d0a70f5e31611262134da1"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf",
+      "bytes": 4533028,
+      "sha256": "dff723ba59d57d136764a04b9b2d03205544f7cd785a711442d6d2d085ac5073"
+    },
+    {
+      "path": "Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf.meta",
+      "bytes": 498,
+      "sha256": "8ae2266693350223e0643673e30be97be6fc1a5b27f301cadae91ff353837106"
+    },
+    {
+      "path": "Assets/StreamingAssets.meta",
+      "bytes": 169,
+      "sha256": "d38274365a13257d2b1bea4ba9b69bf05643aabd0d93fccdd6437c71300d1871"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices.meta",
+      "bytes": 169,
+      "sha256": "d553ae528cdbadc881f2a4537bd6c1c2fba446929d954dbe0837cab4643c5c27"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts.meta",
+      "bytes": 169,
+      "sha256": "956f2b27cbdb74bfb9534f52a63083c0058b47eff068955e972ae0efe775c901"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/NOTICE.txt",
+      "bytes": 1345,
+      "sha256": "7f6288be3fe5ef98940421d51f290485192dd171ef7a35c0e2384c0a2b5929a9"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/NOTICE.txt.meta",
+      "bytes": 155,
+      "sha256": "da664fdc6411b1c14088a738407d21e4ad3ef29b53136aed4061ccef01ac1203"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/OFL.txt",
+      "bytes": 4301,
+      "sha256": "6a73f9541c2de74158c0e7cf6b0a58ef774f5a780bf191f2d7ec9cc53efe2bf2"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/OFL.txt.meta",
+      "bytes": 155,
+      "sha256": "2875d41473f45078a9606d2b93a053f745883eba54c11e390f1dc7af81e078dc"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/SOURCE.json",
+      "bytes": 2946,
+      "sha256": "4a5bcb1e939b8e40d1cc8e5911436b86081fce3dc3764d51616918c9b5913f99"
+    },
+    {
+      "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/SOURCE.json.meta",
+      "bytes": 155,
+      "sha256": "6789d5149749b0b1dcdb88dc33debe4176e642ad6c554e8387c42904aca3d693"
+    },
+    {
+      "path": "Documentation/FONT_FIX_2026-11-05.md",
+      "bytes": 9572,
+      "sha256": "4b1a470b8c0fed32a2d61032ae6947f6e48da9c283676360dea6f3e159d363b7"
+    },
+    {
+      "path": "Documentation/FONT_FIX_VERIFICATION.json",
+      "bytes": 2243,
+      "sha256": "ee2a0ef9eb635bfb72afb5c77ad31ebae65a91e05cc6e36b2ca9cad1c90b174c"
+    },
+    {
+      "path": "README_PATCH_JA.md",
+      "bytes": 3217,
+      "sha256": "b95ad0b0f7d245a42b53d93e160b9113bd72e58999e1e2b70d8ea556e68e6484"
+    }
+  ]
+}
