@@ -42,18 +42,22 @@
     }
   ],
   "validation": {
-    "checked_at_utc": "2026-11-05T09:31:17.170679+00:00",
-    "revision": "2026-11-05-mana-resistance",
+    "checked_at_utc": "2026-11-05T12:56:16.561315+00:00",
+    "revision": "2026-11-05-incantation-mobility",
     "tool": "fontTools.ttLib.TTFont",
-    "coverage_scope": "All non-whitespace C# source characters under Assets/ManaWeave and WSP v2 input vocabulary",
-    "unique_source_characters": 589,
+    "coverage_scope": "Non-whitespace C# characters under Assets/ManaWeave and WSP v2 vocabulary, excluding one verified non-display regex endpoint",
+    "unique_source_characters": 769,
     "unique_lexicon_characters": 270,
-    "unique_combined_characters": 638,
-    "missing_source_and_lexicon_characters": {
+    "unique_combined_characters": 781,
+    "unique_checked_characters": 780,
+    "non_display_source_characters_excluded": {
+      "龯": "Only the CJK endpoint in FlexibleChantParser Regex.IsMatch; never emitted as UI text."
+    },
+    "missing_checked_characters": {
       "Bold": [],
       "Regular": []
     },
     "unity_runtime_tested": false,
-    "limitation": "File character coverage, not native Unity rendering or every possible user-entered Unicode character."
+    "limitation": "Static font file coverage; not native Unity rendering, FPS or every possible Unicode input."
   }
 }

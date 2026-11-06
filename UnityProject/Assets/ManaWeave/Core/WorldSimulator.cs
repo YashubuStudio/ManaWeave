@@ -8,7 +8,7 @@ namespace ManaWeave.Core
     /// Original coarse voxel world-law solver. No Unity API, neural network or nondeterministic random state.
     /// Only this class applies live world-changing spells. Each cast validates its full resource budget first.
     /// </summary>
-    public sealed class WorldSimulator
+    public sealed partial class WorldSimulator
     {
         public WorldState World { get; private set; }
         public SimulationConfig Config { get; private set; }
@@ -137,6 +137,14 @@ namespace ManaWeave.Core
             double qheat = (_temperature[b] - (double)_temperature[a]) / (1.0 / capa + 1.0 / capb) * fraction;
             // Six bounded edge transfers can never remove more than the available energy.
             qheat = Math.Max(-ca.Energy / 6.0, Math.Min(cb.Energy / 6.0, qheat));
+            if (qheat != 0.0 && (DirectedThermalRemaining(a) > 0f || DirectedThermalRemaining(b) > 0f))
+            {
+                // The cast prepays a finite-time change of conductance, not replacement heat.
+                // This local insulation preserves energy, and never grants authorization to neighbouring cells.
+                double transmitted = qheat * Config.DirectedThermalTransferMultiplier;
+                Stats.DirectedSuppressedTransportJoules += Math.Abs(qheat - transmitted);
+                qheat = transmitted;
+            }
             if (qheat != 0.0 && Config.SpatialResistance > 0f)
             {
                 // Only an explicitly addressed region has reduced field resistance. A transported temperature
@@ -380,157 +388,6 @@ namespace ManaWeave.Core
             cb.ThermalCommandUntil = commandA; ca.ThermalCommandUntil = commandB;
             World.Cells[a] = cb; World.Cells[b] = ca; _moved[a] = true; _moved[b] = true;
             World.MarkDirty(a); World.MarkDirty(b);
-        }
-
-        List<int> Sphere(SpellCommand command)
-        {
-            var list = new List<int>(128); int r = command.Radius;
-            for (int z = Math.Max(0, command.Z - r); z <= Math.Min(World.Depth - 1, command.Z + r); z++)
-            for (int y = Math.Max(0, command.Y - r); y <= Math.Min(World.Height - 1, command.Y + r); y++)
-            for (int x = Math.Max(0, command.X - r); x <= Math.Min(World.Width - 1, command.X + r); x++)
-            {
-                int dx = x - command.X, dy = y - command.Y, dz = z - command.Z;
-                if (dx * dx + dy * dy + dz * dz <= r * r) list.Add(World.Index(x, y, z));
-            }
-            return list;
-        }
-
-        public SpellResult Cast(SpellCommand command)
-        {
-            if (command == null) return SpellResult.Fail("術式が指定されていません。");
-            if (!Enum.IsDefined(typeof(SpellOperation), command.Operation)) return SpellResult.Fail("対応していない術式です。");
-            if (!World.InBounds(command.X, command.Y, command.Z)) return SpellResult.Fail("対象が世界の範囲外です。島の中を狙ってください。");
-            if (command.Radius < 1 || command.Radius > 5) return SpellResult.Fail("効果の半径は1～5セルで指定してください。");
-            if (!MaterialCatalog.Finite(command.Power) || command.Power < 0f) return SpellResult.Fail("術式の出力量には、0以上の有限な値を指定してください。");
-            if (!MaterialCatalog.IsValid(command.Material)) return SpellResult.Fail("対応していない物質です。");
-            Config.Validate();
-            List<int> cells = Sphere(command);
-            switch (command.Operation)
-            {
-                case SpellOperation.Heat: return CastThermal(command, cells, false);
-                case SpellOperation.Cool: return CastThermal(command, cells, true);
-                case SpellOperation.Charge: return CastCharge(command, cells);
-                case SpellOperation.Transmute: return CastTransmute(cells);
-                case SpellOperation.Excavate: return CastMatter(command, cells, false);
-                case SpellOperation.Build: return CastMatter(command, cells, true);
-                default: return SpellResult.Fail("対応していない術式です。");
-            }
-        }
-
-        SpellResult CastThermal(SpellCommand command, List<int> cells, bool cooling)
-        {
-            if (command.Power <= 0f || command.Power > 8000000f) return SpellResult.Fail("熱量は0 Jより大きく、8,000,000 J以下で指定してください。");
-            double weight = 0;
-            for (int j = 0; j < cells.Count; j++)
-            {
-                Cell c = World.Cells[cells[j]];
-                weight += cooling ? c.Energy : c.Mass * (double)MaterialCatalog.Get(c.Material).HeatCapacity;
-            }
-            if (weight <= .000001) return SpellResult.Fail("対象範囲に、熱を操作できる物質がありません。");
-            double total = cooling ? Math.Min(command.Power, weight) : command.Power;
-            float cost = (float)(total / Config.JoulesPerMana + 2f + cells.Count * .08f);
-            if (!CanPay(cost)) return SpellResult.Fail("体内魔力が不足しています。必要量は " + F(cost) + " MUです。");
-            Pay(cost); double actual = 0;
-            for (int j = 0; j < cells.Count; j++)
-            {
-                int i = cells[j]; Cell c = World.Cells[i];
-                double portion = cooling ? c.Energy : c.Mass * (double)MaterialCatalog.Get(c.Material).HeatCapacity;
-                double old = c.Energy;
-                c.Energy = cooling && total >= weight ? 0.0 :
-                    Math.Max(0.0, c.Energy + (cooling ? -1.0 : 1.0) * total * portion / weight);
-                actual += c.Energy - (double)old;
-                c.ThermalCommandUntil = World.SimulatedSeconds + Config.DirectedThermalSeconds;
-                World.Cells[i] = c; World.MarkDirty(i);
-            }
-            Stats.SpellJoules += actual;
-            return Success(cells.Count + "セル全体で " + F((float)Math.Abs(actual)) + (cooling ? " Jの熱を取り除きました。" : " Jの熱を加えました。"), cost);
-        }
-
-        SpellResult CastCharge(SpellCommand command, List<int> cells)
-        {
-            if (command.Power <= 0f || command.Power > 10000f) return SpellResult.Fail("充填量は0 MUより大きく、10,000 MU以下で指定してください。");
-            double capacity = 0;
-            for (int j = cells.Count - 1; j >= 0; j--)
-            {
-                Cell c = World.Cells[cells[j]];
-                if (c.Material == MaterialId.Air || c.Material == MaterialId.Steam) { cells.RemoveAt(j); continue; }
-                float free = Math.Max(0f, MaterialCatalog.StorageCapacity(c) - c.StoredMana);
-                if (free <= .000001f) cells.RemoveAt(j); else capacity += free;
-            }
-            if (capacity <= .000001) return SpellResult.Fail("対象範囲に、魔力の保有容量に空きがある物質がありません。");
-            float amount = (float)Math.Min(command.Power, capacity), overhead = 2f, cost = amount + overhead;
-            if (!CanPay(cost)) return SpellResult.Fail("体内魔力が不足しています。必要量は " + F(cost) + " MUです。");
-            World.CasterMana -= cost; Stats.ManifestedMana += overhead;
-            double moved = 0;
-            for (int j = 0; j < cells.Count; j++)
-            {
-                int i = cells[j]; Cell c = World.Cells[i];
-                float room = Math.Max(0f, MaterialCatalog.StorageCapacity(c) - c.StoredMana);
-                float q = (float)(amount * room / capacity);
-                c.StoredMana += q; moved += q; World.Cells[i] = c; World.MarkDirty(i);
-            }
-            Stats.TransferredMana += moved;
-            return Success("物質へ " + F((float)moved) + " MUを移しました。制御に2 MUを消費しました。", cost);
-        }
-
-        SpellResult CastTransmute(List<int> cells)
-        {
-            for (int j = cells.Count - 1; j >= 0; j--)
-                if (World.Cells[cells[j]].Material != MaterialId.Iron) cells.RemoveAt(j);
-            if (cells.Count == 0) return SpellResult.Fail("錬成には、対象範囲内に鉄が必要です。");
-            for (int j = 0; j < cells.Count; j++)
-            {
-                Cell c = World.Cells[cells[j]];
-                if (MaterialCatalog.Temperature(c) < 250f || c.StoredMana < 6f)
-                    return SpellResult.Fail("範囲内の鉄は、各セルに250 °C以上の温度と6 MU以上の保有魔力が必要です。先に加熱・充填してください。");
-            }
-            float cost = 10f * cells.Count;
-            if (!CanPay(cost)) return SpellResult.Fail("錬成に必要な体内魔力が不足しています。");
-            Pay(cost);
-            for (int j = 0; j < cells.Count; j++)
-            {
-                int i = cells[j]; Cell c = World.Cells[i];
-                c.StoredMana -= 6f; c.Material = MaterialId.Alloy;
-                double old = c.Energy; c.Energy += 6.0 * Config.JoulesPerMana;
-                Stats.ReactionJoules += c.Energy - old;
-                Stats.ManifestedMana += 6f; Stats.StoredManifestedMana += 6f;
-                World.Cells[i] = c; World.MarkDirty(i);
-            }
-            return Success("鉄 " + cells.Count + "セルを魔導合金へ錬成しました。質量を保ち、各セルの保有魔力を6 MU消費しました。", cost);
-        }
-
-        SpellResult CastMatter(SpellCommand command, List<int> cells, bool build)
-        {
-            if (build && (command.Material == MaterialId.Air || command.Material == MaterialId.Steam))
-                return SpellResult.Fail("建築用の素材を選んでください。空気と蒸気は配置できません。");
-            for (int j = cells.Count - 1; j >= 0; j--)
-            {
-                MaterialId id = World.Cells[cells[j]].Material;
-                bool empty = id == MaterialId.Air || id == MaterialId.Steam;
-                if (build ? !empty : empty) cells.RemoveAt(j);
-            }
-            if (cells.Count == 0) return SpellResult.Fail(build ? "建築する範囲に空きがありません。" : "対象範囲に掘削できる物質がありません。");
-            float cost = 2f + cells.Count * (build ? 5f : 3f);
-            if (!CanPay(cost)) return SpellResult.Fail("地形を変更するための体内魔力が不足しています。");
-            Pay(cost);
-            for (int j = 0; j < cells.Count; j++)
-            {
-                int i = cells[j]; Cell before = World.Cells[i]; int x, y, z; World.Coordinates(i, out x, out y, out z);
-                World.SetMaterial(x, y, z, build ? command.Material : MaterialId.Air);
-                Cell after = World.Cells[i];
-                Stats.SandboxMassKg += after.Mass - (double)before.Mass;
-                Stats.SandboxEnergyJoules += after.Energy - (double)before.Energy;
-            }
-            return Success(build ? JapaneseNames.Material(command.Material) + "を " + cells.Count + "セルに配置しました（創作モードの素材収支へ記録）。" :
-                cells.Count + "セルを掘削しました（創作モードの素材収支へ記録）。", cost);
-        }
-
-        bool CanPay(float cost) { return MaterialCatalog.Finite(cost) && cost >= 0f && World.CasterMana + .000001f >= cost; }
-        void Pay(float cost) { World.CasterMana = Math.Max(0f, World.CasterMana - cost); Stats.ManifestedMana += cost; }
-        SpellResult Success(string message, float cost)
-        {
-            Stats.LastEvent = message;
-            return new SpellResult { Success = true, Message = message, ManaCost = cost };
         }
 
         /// <summary>Reproducible laboratory fixtures; setup inputs are explicitly recorded as external sandbox sources.</summary>

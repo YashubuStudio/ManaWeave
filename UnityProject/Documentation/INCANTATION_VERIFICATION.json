@@ -1,0 +1,535 @@
+{
+  "revision": "2026-11-05-incantation-mobility",
+  "at_utc": "2026-11-05T12:56:16.593001+00:00",
+  "status": "passed within stated test scope",
+  "checks": {
+    "core": 45,
+    "magic": 91,
+    "legacy_positive_integration": 4820,
+    "expressive_chants": 290,
+    "independent_alchemy_mobility": 93,
+    "resistance": 60,
+    "runtime_with_stubs": 42
+  },
+  "failed_current_checks": 0,
+  "legacy_positive_input_count": 2397,
+  "new_positive_input_count": 58,
+  "new_negative_input_count": 105,
+  "legacy_rejection_spec_changes": {
+    "old_positive_inputs": 2397,
+    "rejected_old_positives": 0,
+    "old_positive_value_mismatches": 0,
+    "old_negative_inputs": 195,
+    "old_negatives_now_accepted": 20,
+    "old_negatives_still_rejected": 175,
+    "explanation": "The unmodified historical harness returns a failing exit code for20 formerly rejected inputs that are intentionally accepted by this revision. These differences are listed explicitly, not counted as unchanged regression passes.",
+    "intentional_changes": [
+      {
+        "id": "guard_negative-02390",
+        "input": "炎よ、対象を冷やせ。",
+        "success": true,
+        "canonical": "cool r=0 power=120000",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "guard_negative-02391",
+        "input": "凍てつく霜よ、対象を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "guard_negative-02392",
+        "input": "錬金の理よ、石を創り出せ。",
+        "success": true,
+        "canonical": "build r=0 material=stone",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "guard_negative-02393",
+        "input": "大地よ、対象を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "guard_negative-02397",
+        "input": "炎よ、石を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000 target=stone",
+        "error": "",
+        "change_category": "new_explicit_material_filter"
+      },
+      {
+        "id": "guard_negative-02398",
+        "input": "炎よ、対象を焼け、謎の呪文。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_negative-02399",
+        "input": "架空の精霊よ、対象を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02422",
+        "input": "未知の言葉で紅蓮の炎よ、我が前に集いて、小さく対象を焼け。",
+        "success": true,
+        "canonical": "heat r=1 power=50000",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02438",
+        "input": "未知の言葉で凍てつく霜よ、我が前に集いて、広範囲に対象を冷やせ。",
+        "success": true,
+        "canonical": "cool r=3 power=300000",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02454",
+        "input": "未知の言葉で大地よ、我が意に応じて、対象を穿て。",
+        "success": true,
+        "canonical": "excavate r=0",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02470",
+        "input": "未知の言葉で大地よ、我が意に応じて、石を創り出せ。",
+        "success": true,
+        "canonical": "build r=0 material=stone",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02486",
+        "input": "未知の言葉で巡る魔力よ、我が意に応じて、対象に満ちよ。",
+        "success": true,
+        "canonical": "charge r=0 power=50",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "guard_mutation-02502",
+        "input": "未知の言葉で錬金の理よ、我が意に応じて、対象を錬成せよ。",
+        "success": true,
+        "canonical": "transmute r=0",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "additional-negative-007",
+        "input": "地の精霊よ、そこにある木材のみを穿て。",
+        "success": true,
+        "canonical": "excavate r=0 target=wood",
+        "error": "",
+        "change_category": "new_explicit_material_filter"
+      },
+      {
+        "id": "additional-negative-008",
+        "input": "清き魔力よ、魔導結晶だけに魔力を注げ。",
+        "success": true,
+        "canonical": "charge r=0 power=50 target=crystal",
+        "error": "",
+        "change_category": "new_explicit_material_filter"
+      },
+      {
+        "id": "additional-negative-025",
+        "input": "紅蓮の炎よ、アストラノヴァ、対象を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "free_nonoperative_prose_or_spell_name"
+      },
+      {
+        "id": "additional-negative-033",
+        "input": "紅き炎よ、我が声に応え、対象を凍てつけ。",
+        "success": true,
+        "canonical": "cool r=0 power=120000",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "additional-negative-034",
+        "input": "深き大地よ、対象に満ちよ、我が契約に従い。",
+        "success": true,
+        "canonical": "charge r=0 power=50",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "additional-negative-035",
+        "input": "錬金の理よ、小さく石を創り出せ。",
+        "success": true,
+        "canonical": "build r=1 material=stone",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      },
+      {
+        "id": "additional-negative-036",
+        "input": "凍てつく霜よ、標準規模で、対象を焼け。",
+        "success": true,
+        "canonical": "heat r=0 power=120000",
+        "error": "",
+        "change_category": "invocation_name_no_longer_constrains_explicit_action"
+      }
+    ],
+    "categories": {
+      "invocation_name_no_longer_constrains_explicit_action": 8,
+      "new_explicit_material_filter": 3,
+      "free_nonoperative_prose_or_spell_name": 9
+    }
+  },
+  "portable_compile": {
+    "target": "netstandard2.1",
+    "language_version": "C#7.3",
+    "warnings_as_errors": true,
+    "exit_code": 0
+  },
+  "ordinary_alchemy": {
+    "id": "ordinary_alchemy",
+    "start_mana": 1800,
+    "external_mana_refills": 0,
+    "experiment_calls": 0,
+    "heat_text": "照準先の鉄を350℃まで加熱し、10秒間保護せよ。",
+    "heat_cost": 115.71338,
+    "heat_base_cost": 141.74875,
+    "heat_chant_factor": 0.8163265,
+    "immediate_iron_c": 350,
+    "after_five_seconds_c": 298.6518,
+    "before_transmute_c": 289.31104,
+    "stored_before_transmute": 12.645724,
+    "charge_cost": 11.63269,
+    "alchemy_cost": 10,
+    "alchemy_succeeded": true,
+    "remaining_caster_mana": 1710.6569
+  },
+  "same_effect_chant_cost": {
+    "id": "chant_economy",
+    "short_text": "照準先の鉄を350℃まで加熱し、10秒間保護せよ。",
+    "long_text": "紅蓮を統べる精霊よ、我が呼び声に応えよ。照準先の鉄を三百五十度まで熱し、十秒間その熱を守れ。",
+    "short_quote": {
+      "Success": true,
+      "Message": "1セル全体で 222750 Jの熱を加えました。 指定範囲の熱抵抗を 10 秒間弱めます。",
+      "ManaCost": 115.71338,
+      "BaseManaCost": 141.74875,
+      "ChantMultiplier": 0.8163265,
+      "EffectiveChantLength": 18,
+      "AffectedCells": 1,
+      "ThermalJoules": 222749.99588012695
+    },
+    "long_quote": {
+      "Success": true,
+      "Message": "1セル全体で 222750 Jの熱を加えました。 指定範囲の熱抵抗を 10 秒間弱めます。",
+      "ManaCost": 96.92224,
+      "BaseManaCost": 141.74875,
+      "ChantMultiplier": 0.6837607,
+      "EffectiveChantLength": 37,
+      "AffectedCells": 1,
+      "ThermalJoules": 222749.99588012695
+    },
+    "model_weights_retrained": false
+  },
+  "movement": {
+    "id": "movement",
+    "translation_cells": 3,
+    "result": {
+      "Success": true,
+      "Message": "物質 1セルを上へ 3 m移動しました。 体内魔力を 11.85 MU消費しました。",
+      "ManaCost": 11.853638,
+      "BaseManaCost": 11.853532,
+      "ChantMultiplier": 1,
+      "EffectiveChantLength": 0
+    },
+    "quote": {
+      "Success": true,
+      "Message": "物質 1セルを上へ 3 m移動しました。",
+      "ManaCost": 11.853638,
+      "BaseManaCost": 11.853532,
+      "ChantMultiplier": 1,
+      "EffectiveChantLength": 0,
+      "AffectedCells": 1,
+      "ThermalJoules": 0
+    },
+    "source_after": "Air",
+    "destination_after": "Iron",
+    "mass_error": 0,
+    "energy_error": 0
+  },
+  "old_default_alchemy_reproduction": {
+    "baseline": "actual resistance release",
+    "scenario": "Old default heat120kJ/r1, wait5 simulated seconds, charge80MU/r1, transmute; no experiments or external mana refills",
+    "initial_caster_mana": 1800,
+    "heat_success": true,
+    "heat_mana_cost": 77.56,
+    "iron_immediate_c": 35.16876,
+    "iron_after_five_seconds_c": 24.11116,
+    "charge_success": true,
+    "stored_mana_before_transmute": 37.5,
+    "alchemy_success": false,
+    "alchemy_message": "範囲内の鉄は、各セルに250 °C以上の温度と6 MU以上の保有魔力が必要です。先に加熱・充填してください。",
+    "unity_editor_executed": false
+  },
+  "comparison_note": "Old default120kJ/r1 is compared to the new point350C/10s recipe, not to an identical energy input. Controlled generated test world, not the user save.",
+  "models": [
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/wsp_model.bytes",
+      "sha256": "c8e4a93882896563c25d4b103f718838280eac11e9e29469fc3853ea0408197e",
+      "bytes": 65248,
+      "parameters": 14709,
+      "weights_changed": false
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/magic_model.bytes",
+      "sha256": "98dfde27d4ac3c6e19863036b8c3469f04e72932475c2385f127eb0d12974931",
+      "bytes": 992352,
+      "parameters": 247776,
+      "weights_changed": false
+    }
+  ],
+  "fonts": [
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Bold.otf",
+      "sha256": "1b0edfb500b73a4fa8a4fcaae1bbbd403994e08e73e3e0da37e70d3853f42c5f",
+      "bytes": 4656448,
+      "raw_missing_source_characters": [
+        "龯"
+      ],
+      "missing_checked_characters": []
+    },
+    {
+      "path": "UnityProject/Assets/Resources/ManaWeave/Fonts/UIJapanese-Regular.otf",
+      "sha256": "dff723ba59d57d136764a04b9b2d03205544f7cd785a711442d6d2d085ac5073",
+      "bytes": 4533028,
+      "raw_missing_source_characters": [
+        "龯"
+      ],
+      "missing_checked_characters": []
+    }
+  ],
+  "font_validation": {
+    "checked_at_utc": "2026-11-05T12:56:16.561315+00:00",
+    "revision": "2026-11-05-incantation-mobility",
+    "tool": "fontTools.ttLib.TTFont",
+    "coverage_scope": "Non-whitespace C# characters under Assets/ManaWeave and WSP v2 vocabulary, excluding one verified non-display regex endpoint",
+    "unique_source_characters": 769,
+    "unique_lexicon_characters": 270,
+    "unique_combined_characters": 781,
+    "unique_checked_characters": 780,
+    "non_display_source_characters_excluded": {
+      "龯": "Only the CJK endpoint in FlexibleChantParser Regex.IsMatch; never emitted as UI text."
+    },
+    "missing_checked_characters": {
+      "Bold": [],
+      "Regular": []
+    },
+    "unity_runtime_tested": false,
+    "limitation": "Static font file coverage; not native Unity rendering, FPS or every possible Unicode input."
+  },
+  "unity_meta_guid_count": 54,
+  "source_sha256": {
+    "Tests/AlchemyMobilityHarness.cs": "09a158a0d33f29b8e33f86913dca6a2d96c77112ecae517f8633d591d1ceaf7b",
+    "Tests/ChantHarness.cs": "b9e5e47def12e7be6ce4c2bfc25f35b5aca02f1d58f970cec7a4e9b547a7caca",
+    "Tests/CoreHarness.cs": "4836fda05198c9a90a1ebdcd962fd4dee14f97c591c80807d11d7b712114f346",
+    "Tests/ExpressiveChantHarness.cs": "5cb6b6940a449bc54ddbc710023156fcdab4b9f8ff3353194bd7f4480b2cff7d",
+    "Tests/LearnedAcceptance.cs": "ae35b8bc0a1ba484114628fd9a332a2b1e17cdacf3216f4842a52514d47a9d41",
+    "Tests/MagicHarness.cs": "89907b8c186856267adc4d36f5759611342cd776ad2e58a256303308445fbf8b",
+    "Tests/ResistanceHarness.cs": "fdd8ee02856efb531846172982c72b08152fe7889bb294a742fd7ac20449472a",
+    "Tests/RuntimeSpellHarness.cs": "27078ae8aea1b1092fc1c574b062398b49f0481bf2170bdfab5b8786c52071ca",
+    "Tests/Support/UnityApiStubs.cs": "0058edf50724ba30e0ebc40b164738def700320a3f38e4a2f323db5441ff1ac6",
+    "UnityProject/Assets/ManaWeave/Core/ChantEconomy.cs": "fda6d04ee19946b23add62bc8aafeb2096a1a63a0202a421369f50213126ce6c",
+    "UnityProject/Assets/ManaWeave/Core/JapaneseNames.cs": "15909487e22f14c80aaf346c6a4b5115603c24f63fb90531baa5b422b5f79b47",
+    "UnityProject/Assets/ManaWeave/Core/Materials.cs": "294bea1aa4ee3bc9b01851026a4f2aba1f14cd1d6c84280df346c2807d88a9ac",
+    "UnityProject/Assets/ManaWeave/Core/SimulationConfig.cs": "da5b1628634a43401eeaa15dbd905dba6e8ba0fee681afe145aae97e764c56e2",
+    "UnityProject/Assets/ManaWeave/Core/Spells.cs": "1cbaa3d941434110ce96dd9c672de62c0fdb969e5d4147403de1ec94bb26468e",
+    "UnityProject/Assets/ManaWeave/Core/WorldGenerator.cs": "618f8ecf2ef60c26b5bc76d13d206ceb5aa8ebc06ba26b193601937db33d7ca6",
+    "UnityProject/Assets/ManaWeave/Core/WorldPersistence.cs": "594d0f56f9d189553789fafe28c257c3a3adf10cc54c51b683b636d36be74add",
+    "UnityProject/Assets/ManaWeave/Core/WorldSimulator.Spells.cs": "60c6342a0a7c9050b91c11927602bce867b8905f13e7ea430b53fda4ed123f5d",
+    "UnityProject/Assets/ManaWeave/Core/WorldSimulator.cs": "54e668cc781ef12c65ed238ac60a228f2a1a8b33bcaa1558f24ad1460954b695",
+    "UnityProject/Assets/ManaWeave/Core/WorldState.cs": "385f087f8303b9c8ca6b36ffa2deac71bf41573a10609f52a2f25b5ba82bdd90",
+    "UnityProject/Assets/ManaWeave/Editor/HudFontTools.cs": "0288a685aff7419c481dad1887e9bd10a773c3735ff4c10c54ad7145959a9bfb",
+    "UnityProject/Assets/ManaWeave/Editor/ProjectTools.cs": "20ce38f2818f1914c58006bc8b518f01085bffb007fb1821a43508382cdd5238",
+    "UnityProject/Assets/ManaWeave/Magic/FlexibleChantParser.cs": "3bb422ff7a483e5250c4a19b41ee32995eaa79204a8b65ecb61f1269bc40b8f2",
+    "UnityProject/Assets/ManaWeave/Magic/MagicParser.cs": "08eec5e93ef85b547273b9bf977df447d4c758d0e22bd0c5ce0c493451989c7d",
+    "UnityProject/Assets/ManaWeave/Magic/RuneLanguageModel.cs": "c793e63e515ab3313973481c0fa6fb0fb58438e9106e10754988f282763d388d",
+    "UnityProject/Assets/ManaWeave/Magic/WeightSpaceMagic.cs": "232b9a97a0b0fd46c4e7c543a9bfeb5a3bb89cbbdc2c3f739f7287f120fd6a7a",
+    "UnityProject/Assets/ManaWeave/Runtime/ManaHud.cs": "46294ee2f3603c4bc2adb9ae5b1f0170edcdd0176f903229a0b641d9fff081b7",
+    "UnityProject/Assets/ManaWeave/Runtime/ManaWorldController.cs": "563e403a21c963e916320fb6def95175f68e168646d08094382d446818a6c806",
+    "UnityProject/Assets/ManaWeave/Runtime/RuntimeBootstrap.cs": "9738d39de9739cedd8c6756830ed3aafd38b11ebb96e7b0e643ee6833a89a5ff",
+    "UnityProject/Assets/ManaWeave/Runtime/SpellRecipe.cs": "9357bd73633059dafed6dbf1d74eaaae7178376884f98b131279f66b02f10236",
+    "UnityProject/Assets/ManaWeave/Runtime/SurveyCamera.cs": "118df3c73654bc41ae592cf4110ef4b9fec18c173e1df973c2f5f7ee04973dc6",
+    "UnityProject/Assets/ManaWeave/Runtime/VoxelRay.cs": "2562a2443b64285e773a85f6344dfc7c36cfba7cd6a6a1f68dfe94b3dc87633b",
+    "UnityProject/Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs": "60131c3021cf9bfec00eca67198ce75e7efc47517de87b1847d88ad19c7eb5b2"
+  },
+  "final_execution": {
+    "at_utc": "2026-11-05T12:54:03.617281+00:00",
+    "revision": "2026-11-05-incantation-mobility",
+    "source_sha256": {
+      "Tests/AlchemyMobilityHarness.cs": "09a158a0d33f29b8e33f86913dca6a2d96c77112ecae517f8633d591d1ceaf7b",
+      "Tests/ChantHarness.cs": "b9e5e47def12e7be6ce4c2bfc25f35b5aca02f1d58f970cec7a4e9b547a7caca",
+      "Tests/CoreHarness.cs": "4836fda05198c9a90a1ebdcd962fd4dee14f97c591c80807d11d7b712114f346",
+      "Tests/ExpressiveChantHarness.cs": "5cb6b6940a449bc54ddbc710023156fcdab4b9f8ff3353194bd7f4480b2cff7d",
+      "Tests/LearnedAcceptance.cs": "ae35b8bc0a1ba484114628fd9a332a2b1e17cdacf3216f4842a52514d47a9d41",
+      "Tests/MagicHarness.cs": "89907b8c186856267adc4d36f5759611342cd776ad2e58a256303308445fbf8b",
+      "Tests/ResistanceHarness.cs": "fdd8ee02856efb531846172982c72b08152fe7889bb294a742fd7ac20449472a",
+      "Tests/RuntimeSpellHarness.cs": "27078ae8aea1b1092fc1c574b062398b49f0481bf2170bdfab5b8786c52071ca",
+      "Tests/Support/UnityApiStubs.cs": "0058edf50724ba30e0ebc40b164738def700320a3f38e4a2f323db5441ff1ac6",
+      "UnityProject/Assets/ManaWeave/Core/ChantEconomy.cs": "fda6d04ee19946b23add62bc8aafeb2096a1a63a0202a421369f50213126ce6c",
+      "UnityProject/Assets/ManaWeave/Core/JapaneseNames.cs": "15909487e22f14c80aaf346c6a4b5115603c24f63fb90531baa5b422b5f79b47",
+      "UnityProject/Assets/ManaWeave/Core/Materials.cs": "294bea1aa4ee3bc9b01851026a4f2aba1f14cd1d6c84280df346c2807d88a9ac",
+      "UnityProject/Assets/ManaWeave/Core/SimulationConfig.cs": "da5b1628634a43401eeaa15dbd905dba6e8ba0fee681afe145aae97e764c56e2",
+      "UnityProject/Assets/ManaWeave/Core/Spells.cs": "1cbaa3d941434110ce96dd9c672de62c0fdb969e5d4147403de1ec94bb26468e",
+      "UnityProject/Assets/ManaWeave/Core/WorldGenerator.cs": "618f8ecf2ef60c26b5bc76d13d206ceb5aa8ebc06ba26b193601937db33d7ca6",
+      "UnityProject/Assets/ManaWeave/Core/WorldPersistence.cs": "594d0f56f9d189553789fafe28c257c3a3adf10cc54c51b683b636d36be74add",
+      "UnityProject/Assets/ManaWeave/Core/WorldSimulator.Spells.cs": "60c6342a0a7c9050b91c11927602bce867b8905f13e7ea430b53fda4ed123f5d",
+      "UnityProject/Assets/ManaWeave/Core/WorldSimulator.cs": "54e668cc781ef12c65ed238ac60a228f2a1a8b33bcaa1558f24ad1460954b695",
+      "UnityProject/Assets/ManaWeave/Core/WorldState.cs": "385f087f8303b9c8ca6b36ffa2deac71bf41573a10609f52a2f25b5ba82bdd90",
+      "UnityProject/Assets/ManaWeave/Editor/HudFontTools.cs": "0288a685aff7419c481dad1887e9bd10a773c3735ff4c10c54ad7145959a9bfb",
+      "UnityProject/Assets/ManaWeave/Editor/ProjectTools.cs": "20ce38f2818f1914c58006bc8b518f01085bffb007fb1821a43508382cdd5238",
+      "UnityProject/Assets/ManaWeave/Magic/FlexibleChantParser.cs": "3bb422ff7a483e5250c4a19b41ee32995eaa79204a8b65ecb61f1269bc40b8f2",
+      "UnityProject/Assets/ManaWeave/Magic/MagicParser.cs": "08eec5e93ef85b547273b9bf977df447d4c758d0e22bd0c5ce0c493451989c7d",
+      "UnityProject/Assets/ManaWeave/Magic/RuneLanguageModel.cs": "c793e63e515ab3313973481c0fa6fb0fb58438e9106e10754988f282763d388d",
+      "UnityProject/Assets/ManaWeave/Magic/WeightSpaceMagic.cs": "232b9a97a0b0fd46c4e7c543a9bfeb5a3bb89cbbdc2c3f739f7287f120fd6a7a",
+      "UnityProject/Assets/ManaWeave/Runtime/ManaHud.cs": "46294ee2f3603c4bc2adb9ae5b1f0170edcdd0176f903229a0b641d9fff081b7",
+      "UnityProject/Assets/ManaWeave/Runtime/ManaWorldController.cs": "563e403a21c963e916320fb6def95175f68e168646d08094382d446818a6c806",
+      "UnityProject/Assets/ManaWeave/Runtime/RuntimeBootstrap.cs": "9738d39de9739cedd8c6756830ed3aafd38b11ebb96e7b0e643ee6833a89a5ff",
+      "UnityProject/Assets/ManaWeave/Runtime/SpellRecipe.cs": "9357bd73633059dafed6dbf1d74eaaae7178376884f98b131279f66b02f10236",
+      "UnityProject/Assets/ManaWeave/Runtime/SurveyCamera.cs": "118df3c73654bc41ae592cf4110ef4b9fec18c173e1df973c2f5f7ee04973dc6",
+      "UnityProject/Assets/ManaWeave/Runtime/VoxelRay.cs": "2562a2443b64285e773a85f6344dfc7c36cfba7cd6a6a1f68dfe94b3dc87633b",
+      "UnityProject/Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs": "60131c3021cf9bfec00eca67198ce75e7efc47517de87b1847d88ad19c7eb5b2"
+    },
+    "sources_unchanged_during_execution": true,
+    "checks": [
+      {
+        "project": "CoreHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/CoreHarness/net8.0/CoreHarness.dll"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.8248573059972841,
+        "dll_sha256": "6dd1f92b6c04195fd8c4f8586aafcf5a2528aab3e6a1ecd079e9670f598b0ccc",
+        "dll_unchanged_during_execution": true,
+        "log": "core_final.log",
+        "last_line": "CORE_RESULT passed=45 failed=0"
+      },
+      {
+        "project": "MagicHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/MagicHarness/net8.0/MagicHarness.dll",
+          "/workspace/scratch/1ad598612ead/ManaWeave/UnityProject/Assets/Resources/ManaWeave/magic_model.bytes"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.31475815500016324,
+        "dll_sha256": "9758234d5080aed328d4e93bcf5a07a984b76146937a11d0a8828b5f45ffdee9",
+        "dll_unchanged_during_execution": true,
+        "log": "magic_final.log",
+        "last_line": "MAGIC TESTS: 91 passed, 0 failed."
+      },
+      {
+        "project": "ChantHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/ChantHarness/net8.0/ChantHarness.dll",
+          "/workspace/scratch/1ad598612ead/ManaWeave",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/Data/chant_legacy_positive_cases.json",
+          "/workspace/scratch/1ad598612ead/incantation_work/chant_legacy_positive.json"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1.0703583340000478,
+        "dll_sha256": "3413e8dd3846c9b9e568ab532a4c3bb210a6bac0658d03d9043edd61f3091ff0",
+        "dll_unchanged_during_execution": true,
+        "log": "chant_legacy_positive.log",
+        "last_line": "CHANT CHECKS: 4820 passed, 0 failed; 2397 positive / 0 negative cases."
+      },
+      {
+        "project": "ExpressiveChantHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/ExpressiveChantHarness/net8.0/ExpressiveChantHarness.dll",
+          "/workspace/scratch/1ad598612ead/ManaWeave",
+          "/workspace/scratch/1ad598612ead/incantation_work/expressive_chants.json"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.44777476099989144,
+        "dll_sha256": "283d3566f80ba0e3d05999ad2505a30ae882a8e1347b9d5def15c9b3416ab575",
+        "dll_unchanged_during_execution": true,
+        "log": "expressive_chants.log",
+        "last_line": "EXPRESSIVE CHANTS: 290 passed, 0 failed; 58 positive / 105 negative cases."
+      },
+      {
+        "project": "AlchemyMobilityHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/AlchemyMobilityHarness/net8.0/AlchemyMobilityHarness.dll",
+          "/workspace/scratch/1ad598612ead/ManaWeave",
+          "/workspace/scratch/1ad598612ead/incantation_work/alchemy_mobility.json"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.7208798600040609,
+        "dll_sha256": "cbea71c9b8a923814c0c0ab9bc313cd30d834faa51131ead179f5b3646d365b1",
+        "dll_unchanged_during_execution": true,
+        "log": "alchemy_mobility.log",
+        "last_line": "ALCHEMY_MOBILITY: 93 passed, 0 failed."
+      },
+      {
+        "project": "ResistanceHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/ResistanceHarness/net8.0/ResistanceHarness.dll",
+          "/workspace/scratch/1ad598612ead/incantation_work/resistance_final.json",
+          "incantation-mobility",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/Data/legacy_thermal_v1.world"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 1.4651675089990022,
+        "dll_sha256": "03fa0aa632073011daf1df88271f66d3dfc8876a59320bc148f711c43007d0a2",
+        "dll_unchanged_during_execution": true,
+        "log": "resistance_final.log",
+        "last_line": "RESISTANCE_RESULT label=incantation-mobility passed=60 failed=0 skipped=0"
+      },
+      {
+        "project": "RuntimeSpellHarness",
+        "command": [
+          "/workspace/scratch/1ad598612ead/.tools/dotnet/dotnet",
+          "/workspace/scratch/1ad598612ead/ManaWeave/Tests/bin/RuntimeSpellHarness/net8.0/RuntimeSpellHarness.dll"
+        ],
+        "exit_code": 0,
+        "elapsed_seconds": 0.14337934300419874,
+        "dll_sha256": "54d2e10f0dec8a115abd46ed50172f31cb47d15ceec173fe35f310f5006a9e46",
+        "dll_unchanged_during_execution": true,
+        "log": "runtime_final.log",
+        "last_line": "RUNTIME SPELL CHECKS: 42 passed; native Unity behavior untested."
+      }
+    ],
+    "unity_editor_executed": false
+  },
+  "persistence": {
+    "world_format": 2,
+    "view_schema": 3,
+    "older_view_keeps_old_recipe": true,
+    "select_new_preset_after_load": true
+  },
+  "native_unity_editor_executed": false,
+  "native_unity_import_tested": false,
+  "unity_player_build_tested": false,
+  "limitations": [
+    "Runtime compiled and logical checks executed using explicit test API stubs, not real Unity assemblies.",
+    "Native Editor menus, JSON serialization by Unity, input, IME, layout, rendering, Player builds and FPS were not executed.",
+    "Bounded parser cases do not establish arbitrary Japanese comprehension or implementation of unknown phenomena.",
+    "Protection weakens passive resistance and heat transport; it does not continuously reheat or hold an exact temperature.",
+    "Movement is discrete material-cell translation; no player teleport, rigid-body dynamics, velocity or potential-energy solver."
+  ]
+}

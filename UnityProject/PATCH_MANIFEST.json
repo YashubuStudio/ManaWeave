@@ -1,5 +1,5 @@
 {
-  "revision": "2026-11-05-mana-resistance",
+  "revision": "2026-11-05-incantation-mobility",
   "type": "Project Assets overlay patch; not a Unity Package Manager package",
   "files": [
     {
@@ -13,9 +13,19 @@
       "sha256": "c5d9e5387326182ce4b59e300a5763e0b024a68c6eebf8b5c6be4391d49c1999"
     },
     {
+      "path": "Assets/ManaWeave/Core/ChantEconomy.cs",
+      "bytes": 1772,
+      "sha256": "fda6d04ee19946b23add62bc8aafeb2096a1a63a0202a421369f50213126ce6c"
+    },
+    {
+      "path": "Assets/ManaWeave/Core/ChantEconomy.cs.meta",
+      "bytes": 236,
+      "sha256": "9c9f6344af2f6a0e74d6a1a9df31bb2e6caca55c48f5c2c5c9232daf67f73fc4"
+    },
+    {
       "path": "Assets/ManaWeave/Core/JapaneseNames.cs",
-      "bytes": 1552,
-      "sha256": "5d1f593cbc379636ce5123f70c351a4bd67632275722de1107211e92b0764e6c"
+      "bytes": 1617,
+      "sha256": "15909487e22f14c80aaf346c6a4b5115603c24f63fb90531baa5b422b5f79b47"
     },
     {
       "path": "Assets/ManaWeave/Core/JapaneseNames.cs.meta",
@@ -34,13 +44,23 @@
     },
     {
       "path": "Assets/ManaWeave/Core/SimulationConfig.cs",
-      "bytes": 3184,
-      "sha256": "a8b4fd6f5b75f42b6f049d6f5471bca64bbedd20778a0e3b5906097fc30c8812"
+      "bytes": 3556,
+      "sha256": "da5b1628634a43401eeaa15dbd905dba6e8ba0fee681afe145aae97e764c56e2"
     },
     {
       "path": "Assets/ManaWeave/Core/SimulationConfig.cs.meta",
       "bytes": 236,
       "sha256": "2d340c52391310677d4697d86afa85a567728b785e8e67e96b1f23846cba1c92"
+    },
+    {
+      "path": "Assets/ManaWeave/Core/Spells.cs",
+      "bytes": 1591,
+      "sha256": "1cbaa3d941434110ce96dd9c672de62c0fdb969e5d4147403de1ec94bb26468e"
+    },
+    {
+      "path": "Assets/ManaWeave/Core/Spells.cs.meta",
+      "bytes": 236,
+      "sha256": "a82ee5466731475daff262b54f7a57baf4a78e933ce230e303023eefb6cd2875"
     },
     {
       "path": "Assets/ManaWeave/Core/WorldGenerator.cs",
@@ -63,9 +83,19 @@
       "sha256": "d9d9234e7b166c9b05dade41a977ccff3d550ee76ba907b24ff8b283019af29a"
     },
     {
+      "path": "Assets/ManaWeave/Core/WorldSimulator.Spells.cs",
+      "bytes": 24218,
+      "sha256": "60c6342a0a7c9050b91c11927602bce867b8905f13e7ea430b53fda4ed123f5d"
+    },
+    {
+      "path": "Assets/ManaWeave/Core/WorldSimulator.Spells.cs.meta",
+      "bytes": 236,
+      "sha256": "dfe2dd94d07480b69d641ed01f6a064ed52a64d7157181b37f86fe58ec4a98f0"
+    },
+    {
       "path": "Assets/ManaWeave/Core/WorldSimulator.cs",
-      "bytes": 34331,
-      "sha256": "87206c7d1d283f4860065c1262e65e468a30999e65204d6682e6b3ab2a765907"
+      "bytes": 25042,
+      "sha256": "54e668cc781ef12c65ed238ac60a228f2a1a8b33bcaa1558f24ad1460954b695"
     },
     {
       "path": "Assets/ManaWeave/Core/WorldSimulator.cs.meta",
@@ -99,8 +129,8 @@
     },
     {
       "path": "Assets/ManaWeave/Editor/ProjectTools.cs",
-      "bytes": 7337,
-      "sha256": "e05d6081a31a42513c22b0eb7cf6c4d383d10c86d8be5b5fb55566847c87478a"
+      "bytes": 10392,
+      "sha256": "20ce38f2818f1914c58006bc8b518f01085bffb007fb1821a43508382cdd5238"
     },
     {
       "path": "Assets/ManaWeave/Editor/ProjectTools.cs.meta",
@@ -113,9 +143,19 @@
       "sha256": "e6b945d5f79e11c23306c7254dcbef6f9242229bee0de43898ed58b9701c847e"
     },
     {
+      "path": "Assets/ManaWeave/Magic/FlexibleChantParser.cs",
+      "bytes": 32033,
+      "sha256": "3bb422ff7a483e5250c4a19b41ee32995eaa79204a8b65ecb61f1269bc40b8f2"
+    },
+    {
+      "path": "Assets/ManaWeave/Magic/FlexibleChantParser.cs.meta",
+      "bytes": 236,
+      "sha256": "185600c0cb0fc3c4d4e6a8fd9070a73a32b0380ecf97d3d6928b8a59e9daa2e8"
+    },
+    {
       "path": "Assets/ManaWeave/Magic/MagicParser.cs",
-      "bytes": 18670,
-      "sha256": "17bd6f779210b1f4585a8b5060be0b82898ae05484f34029790707ccb1dc69ce"
+      "bytes": 26274,
+      "sha256": "08eec5e93ef85b547273b9bf977df447d4c758d0e22bd0c5ce0c493451989c7d"
     },
     {
       "path": "Assets/ManaWeave/Magic/MagicParser.cs.meta",
@@ -149,8 +189,8 @@
     },
     {
       "path": "Assets/ManaWeave/Runtime/ManaHud.cs",
-      "bytes": 39095,
-      "sha256": "faa8e79809231327ff89f621e163528743a2f94b03f81e288cd6285525481d69"
+      "bytes": 54525,
+      "sha256": "46294ee2f3603c4bc2adb9ae5b1f0170edcdd0176f903229a0b641d9fff081b7"
     },
     {
       "path": "Assets/ManaWeave/Runtime/ManaHud.cs.meta",
@@ -159,8 +199,8 @@
     },
     {
       "path": "Assets/ManaWeave/Runtime/ManaWorldController.cs",
-      "bytes": 39259,
-      "sha256": "d7fa9fab7c2e2bd316308666c002d09108ab0c8ae57a31fdc81dc29fe0e86522"
+      "bytes": 45436,
+      "sha256": "563e403a21c963e916320fb6def95175f68e168646d08094382d446818a6c806"
     },
     {
       "path": "Assets/ManaWeave/Runtime/ManaWorldController.cs.meta",
@@ -176,6 +216,16 @@
       "path": "Assets/ManaWeave/Runtime/RuntimeBootstrap.cs.meta",
       "bytes": 236,
       "sha256": "0600a6399700b721fef368ebe4778cab3a50ab469adeb841d612687eab678c9b"
+    },
+    {
+      "path": "Assets/ManaWeave/Runtime/SpellRecipe.cs",
+      "bytes": 6885,
+      "sha256": "9357bd73633059dafed6dbf1d74eaaae7178376884f98b131279f66b02f10236"
+    },
+    {
+      "path": "Assets/ManaWeave/Runtime/SpellRecipe.cs.meta",
+      "bytes": 236,
+      "sha256": "98ade1e5842924d7cd743bad68f06eeba897bda55601fb525180cc55115a4145"
     },
     {
       "path": "Assets/ManaWeave/Runtime/VoxelWorldRenderer.cs",
@@ -269,8 +319,8 @@
     },
     {
       "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/SOURCE.json",
-      "bytes": 2962,
-      "sha256": "556118c4319486e730feb6c46dc5efed41d2fe73fb0444a3517c54dd4a70fd28"
+      "bytes": 3174,
+      "sha256": "fbc997559785873e80924c8e83f1d0504f13c713d3f0cf5ada14b56db296d9b6"
     },
     {
       "path": "Assets/StreamingAssets/ThirdPartyNotices/NotoFonts/SOURCE.json.meta",
@@ -279,43 +329,43 @@
     },
     {
       "path": "Documentation/ARCHITECTURE.md",
-      "bytes": 10955,
-      "sha256": "dd20463cf778959fa81e5d6818d17d4c933a2dd712ed2b831d33bf1848c4b463"
+      "bytes": 12905,
+      "sha256": "e75d6bc0b8e33ddf7e271a9c48c9e94c85481151d4aeff0c7a33257124276167"
+    },
+    {
+      "path": "Documentation/INCANTATION_MOBILITY_GUIDE.md",
+      "bytes": 7433,
+      "sha256": "8e1037de4d9cba221cf2a61f525f4a6ea33a30bc76cda8a012f8ed13104adad9"
+    },
+    {
+      "path": "Documentation/INCANTATION_VERIFICATION.json",
+      "bytes": 26685,
+      "sha256": "9d730a1611cbd1df946964ec6520aa9ec3f896f1ae4a6893dc03dcf769393299"
     },
     {
       "path": "Documentation/OPEN_MAGIC_PROGRAMS.md",
-      "bytes": 6418,
-      "sha256": "fad4e6aaf29bdb568f2d790029256341a1a5467aafbffcaf9bfc231d7366f55e"
-    },
-    {
-      "path": "Documentation/RESISTANCE_UPDATE_GUIDE.md",
-      "bytes": 8484,
-      "sha256": "7bcf88dcfcb156205acfa3e7f46186c894aae9bc8de8d45f46722a823cdd778f"
-    },
-    {
-      "path": "Documentation/RESISTANCE_VERIFICATION.json",
-      "bytes": 16334,
-      "sha256": "7c3046a14a16889178f0395b50339de25952e321293a138c3ae76c62b3a8a676"
+      "bytes": 6881,
+      "sha256": "8f2b23ebe2a385f0781a52064cbcd3f80afffd4cd0d65fe9c68d414e4c293535"
     },
     {
       "path": "Documentation/VERIFICATION.md",
-      "bytes": 7583,
-      "sha256": "ca52507aee963df157d5fbb83d8b397b116dedf0581c76c6ffc3d22073b69305"
+      "bytes": 9955,
+      "sha256": "d1c970084e5e7ed03a7053c1785368a4731a9af0fba72dbef4c15c45e1f5740e"
     },
     {
       "path": "Documentation/WORLD_LAWS.md",
-      "bytes": 14105,
-      "sha256": "6115298a92a792f438b9e9a038316129b9aac3afa9a58460670dbba4c14c6bf7"
+      "bytes": 17559,
+      "sha256": "5df5752212d7095e7ee71af6c5c8abebdff50c4e70e0663f6f9c3ce1904a3a2c"
     },
     {
       "path": "PATCH_VERIFICATION.json",
-      "bytes": 1185,
-      "sha256": "304a32fd49f68d047f5cbb5cdb3827d5563d2879adab82a27d995d305d462a07"
+      "bytes": 1457,
+      "sha256": "89324f58528736f94f26c720cbb0dbf7f390faca852b4fc91e7c8e10e901d778"
     },
     {
       "path": "README_PATCH_JA.md",
-      "bytes": 8484,
-      "sha256": "7bcf88dcfcb156205acfa3e7f46186c894aae9bc8de8d45f46722a823cdd778f"
+      "bytes": 7433,
+      "sha256": "8e1037de4d9cba221cf2a61f525f4a6ea33a30bc76cda8a012f8ed13104adad9"
     },
     {
       "path": "ThirdPartyNotices/NotoFonts/NOTICE.txt",
@@ -329,8 +379,8 @@
     },
     {
       "path": "ThirdPartyNotices/NotoFonts/SOURCE.json",
-      "bytes": 2962,
-      "sha256": "556118c4319486e730feb6c46dc5efed41d2fe73fb0444a3517c54dd4a70fd28"
+      "bytes": 3174,
+      "sha256": "fbc997559785873e80924c8e83f1d0504f13c713d3f0cf5ada14b56db296d9b6"
     }
   ]
 }

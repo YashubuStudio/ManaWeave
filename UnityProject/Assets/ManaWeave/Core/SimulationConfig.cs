@@ -18,6 +18,8 @@ namespace ManaWeave.Core
         public float CoherenceSlope = 1.4f;
         public float GasResistanceMultiplier = 8f;
         public float DirectedResistanceMultiplier = .08f;
+        // Prepaid local thermal control changes conductance; blocked heat stays at its source.
+        public float DirectedThermalTransferMultiplier = .08f;
         public float DirectedThermalSeconds = 1f;
         public float SpatialResistance = 3f;
         public const float MaximumDirectedThermalSeconds = 30f;
@@ -38,7 +40,9 @@ namespace ManaWeave.Core
                 if (!MaterialCatalog.Finite(positive[i]) || positive[i] <= 0f)
                     throw new ArgumentOutOfRangeException("config", "しきい値と単位量には、0より大きい有限な値を指定してください。");
             if (!MaterialCatalog.Finite(DirectedResistanceMultiplier) || DirectedResistanceMultiplier < 0f ||
-                DirectedResistanceMultiplier > 1f || DirectedThermalSeconds > MaximumDirectedThermalSeconds)
+                DirectedResistanceMultiplier > 1f || !MaterialCatalog.Finite(DirectedThermalTransferMultiplier) ||
+                DirectedThermalTransferMultiplier < 0f || DirectedThermalTransferMultiplier > 1f ||
+                DirectedThermalSeconds > MaximumDirectedThermalSeconds)
                 throw new ArgumentOutOfRangeException("config", "指定中の抵抗倍率は0～1、指定の有効時間は0～30秒にしてください。");
         }
     }
@@ -49,7 +53,7 @@ namespace ManaWeave.Core
         public double DirectManifestedMana, StoredManifestedMana, NaturalEnergyJoules, CombustionJoules;
         public double SandboxEnergyJoules, SandboxMassKg, ExperimentMana, ReactionJoules;
         public double TransferredMana;
-        public double SuppressedTransportJoules, DirectedStabilizedJoules;
+        public double SuppressedTransportJoules, DirectedStabilizedJoules, DirectedSuppressedTransportJoules;
         public int ActivePhenomena;
         public string LastEvent = "世界を生成しました。命令されていない魔力は熱変化と伝播に抵抗し、自然な増幅は起こしません。";
     }

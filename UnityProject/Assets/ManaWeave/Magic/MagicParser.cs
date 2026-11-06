@@ -17,6 +17,13 @@ namespace ManaWeave.Magic
         public int Radius;
         public float Power;
         public MaterialId Material;
+        public ThermalMode ThermalMode;
+        public float TargetTemperature, DurationSeconds;
+        public bool HasMaterialFilter;
+        public MaterialId TargetMaterial;
+        public SpellDirection Direction = SpellDirection.Up;
+        public int Distance = 1;
+        public string Incantation;
         // Grammar-conditioned model probability; NOT a calibrated semantic guarantee.
         public float Confidence;
     }
@@ -27,6 +34,7 @@ namespace ManaWeave.Magic
         public const int MaxLearnedInputLength = 80;
         public const string LearnedSourceLabel = "短文解析";
         public const string DslSourceLabel = "数値指定";
+        public const string ExtendedSourceLabel = "拡張詠唱解析";
         private readonly RuneLanguageModel model;
         private readonly Func<string, MagicParseResult> directInterpreter;
         public string LearnedModelStatus { get; private set; }
@@ -47,7 +55,7 @@ namespace ManaWeave.Magic
                 if (!(e is ArgumentException || e is System.IO.IOException || e is System.IO.InvalidDataException || e is OverflowException)) throw;
                 LearnedModelStatus = "学習型短文モデルを読み込めません: " + e.Message;
             }
-            ModelStatus = directInterpreter == null ? LearnedModelStatus : "詠唱解析を使用中 / " + LearnedModelStatus;
+            ModelStatus = directInterpreter == null ? LearnedModelStatus : "詠唱解析（WSP＋数量・対象・移動の構文解析） / " + LearnedModelStatus;
         }
 
         public MagicParseResult Parse(string text)
@@ -57,14 +65,27 @@ namespace ManaWeave.Magic
             if (early != null) return early;
             MagicParseResult dsl = TryDsl(normalized);
             if (dsl != null) return dsl;
-            string invalid = ValidateNatural(normalized, directInterpreter == null);
-            if (invalid != null) return Fail(invalid, "入力確認");
             if (directInterpreter != null)
             {
-                MagicParseResult direct = directInterpreter(normalized);
-                if (direct != null) return direct;
+                // Preserve the numeric WSP model's accepted language exactly.
+                // Explicit quantities and new actions are interpreted by a
+                // separate, declared syntax layer, not attributed to its weights.
+                string legacyGuard = ValidateNatural(normalized, false);
+                if (legacyGuard == null)
+                {
+                    MagicParseResult direct = directInterpreter(normalized);
+                    if (direct != null && direct.Success) return Natural(direct, normalized);
+                }
+                return Natural(FlexibleChantParser.Parse(normalized), normalized);
             }
-            return ParseModel(normalized);
+            string invalid = ValidateNatural(normalized, true);
+            return invalid == null ? Natural(ParseModel(normalized), normalized) : Fail(invalid, "入力確認");
+        }
+
+        private static MagicParseResult Natural(MagicParseResult result, string text)
+        {
+            if (result != null && result.Success) result.Incantation = text;
+            return result;
         }
 
         // Explicitly selects the learned original Transformer, bypassing optional
@@ -77,7 +98,7 @@ namespace ManaWeave.Magic
             MagicParseResult dsl = TryDsl(normalized);
             if (dsl != null) return dsl;
             string invalid = ValidateNatural(normalized, true);
-            return invalid == null ? ParseModel(normalized) : Fail(invalid, "入力確認");
+            return invalid == null ? Natural(ParseModel(normalized), normalized) : Fail(invalid, "入力確認");
         }
 
         public static string Normalize(string text)
@@ -211,56 +232,134 @@ namespace ManaWeave.Magic
 
         private static MagicParseResult TryDsl(string text)
         {
-            bool starts = Regex.IsMatch(text, @"^(heat|cool|excavate|build|charge|transmute)(\s+[a-z]+\s*=|$)");
+            bool starts = Regex.IsMatch(text, @"^(heat|cool|excavate|build|charge|transmute|move)(\s+[a-z]+\s*=|$)");
             if (!starts)
-                return text.Contains("=") ? Fail("数値指定の効果名が不明です。加熱 heat・冷却 cool・掘削 excavate・建築 build・充填 charge・錬成 transmute を使います。", DslSourceLabel) : null;
+                return text.Contains("=") ? Fail("数値指定の効果名が不明です。heat・cool・excavate・build・charge・transmute・moveを使います。", DslSourceLabel) : null;
             string[] parts = Regex.Split(text, @"\s+");
             SpellOperation operation;
             if (!Enum.TryParse<SpellOperation>(parts[0], true, out operation)) return Fail("未対応の効果です。", DslSourceLabel);
-            int radius = operation == SpellOperation.Heat || operation == SpellOperation.Cool ? 2 : 1;
-            float power = operation == SpellOperation.Heat || operation == SpellOperation.Cool ? 120000f : (operation == SpellOperation.Charge ? 50f : 0f);
-            MaterialId material = MaterialId.Stone;
+            bool thermal = operation == SpellOperation.Heat || operation == SpellOperation.Cool;
+            var result = new MagicParseResult {
+                Success = true, Operation = operation, Source = DslSourceLabel, Confidence = 1f,
+                Radius = thermal ? 2 : (operation == SpellOperation.Move ? 0 : 1),
+                Power = thermal ? 120000f : (operation == SpellOperation.Charge ? 50f : 0f),
+                Material = MaterialId.Stone, Incantation = ""
+            };
             var seen = new HashSet<string>(StringComparer.Ordinal);
             for (int i = 1; i < parts.Length; i++)
             {
-                var pair = parts[i].Split('=');
+                string[] pair = parts[i].Split('=');
                 if (pair.Length != 2 || !seen.Add(pair[0])) return Fail("項目=値の形で指定してください。同じ項目の重複や、=の前後の空白は使えません。", DslSourceLabel);
-                if (pair[0] == "r")
+                double value;
+                switch (pair[0])
                 {
-                    if (!Int32.TryParse(pair[1], NumberStyles.None, CultureInfo.InvariantCulture, out radius) || radius < 1 || radius > 5)
-                        return Fail("半径 r は1～5の整数で指定してください。", DslSourceLabel);
+                    case "r":
+                        if (!FlexibleChantParser.TryScalar(pair[1], "distance", out value) || value != Math.Truncate(value) || value < 0 || value > 5)
+                            return Fail("半径 r は0～5の整数で指定してください。0は照準先の1セルです。", DslSourceLabel);
+                        result.Radius = (int)value;
+                        break;
+                    case "power":
+                        if (!thermal && operation != SpellOperation.Charge)
+                            return Fail("この効果では出力 power を指定しません。消費魔力は世界法則で決まります。", DslSourceLabel);
+                        if (!FlexibleChantParser.TryScalar(pair[1], operation == SpellOperation.Charge ? "mana" : "energy", out value) || value <= 0 || value > (operation == SpellOperation.Charge ? 10000 : 8000000))
+                            return Fail("出力が範囲外です。熱量は0より大きく8 MJ以下、充填は0より大きく10,000 MU以下です。", DslSourceLabel);
+                        result.Power = (float)value;
+                        break;
+                    case "temperature":
+                        if (!thermal || !FlexibleChantParser.TryScalar(pair[1], "temperature", out value) || value < -273.15 || value > 5000)
+                            return Fail("目標温度 temperature は加熱・冷却で、−273.15～5000℃を指定してください。", DslSourceLabel);
+                        result.ThermalMode = ThermalMode.Temperature;
+                        result.TargetTemperature = (float)value;
+                        break;
+                    case "duration":
+                        if (!thermal || !FlexibleChantParser.TryScalar(pair[1], "duration", out value) || value < 1 || value > 30)
+                            return Fail("保護時間 duration は加熱・冷却で、1～30シミュレーション秒を指定してください。", DslSourceLabel);
+                        result.DurationSeconds = (float)value;
+                        break;
+                    case "material":
+                        if (operation != SpellOperation.Build) return Fail("生成素材 material は建築 build に指定します。対象の選別にはtargetを使います。", DslSourceLabel);
+                        if (!FlexibleChantParser.TryMaterial(pair[1], out result.Material) || result.Material == MaterialId.Air || result.Material == MaterialId.Steam)
+                            return Fail("建築に使えない素材、または不明な素材です。", DslSourceLabel);
+                        break;
+                    case "target":
+                        if (operation == SpellOperation.Build || !FlexibleChantParser.TryMaterial(pair[1], out result.TargetMaterial))
+                            return Fail("targetには対象素材を指定します。建築の生成素材はmaterialで指定してください。", DslSourceLabel);
+                        result.HasMaterialFilter = true;
+                        break;
+                    case "direction":
+                        if (operation != SpellOperation.Move || !FlexibleChantParser.TryDirection(pair[1], out result.Direction))
+                            return Fail("directionは移動moveに指定します。up/down/north/south/east/west/forward/backward/left/rightが使えます。", DslSourceLabel);
+                        break;
+                    case "distance":
+                        if (operation != SpellOperation.Move || !FlexibleChantParser.TryScalar(pair[1], "distance", out value) || value != Math.Truncate(value) || value < 1 || value > 8)
+                            return Fail("移動距離 distance は1～8 mの整数で指定してください。", DslSourceLabel);
+                        result.Distance = (int)value;
+                        break;
+                    default: return Fail("数値指定に存在しない項目です: " + pair[0], DslSourceLabel);
                 }
-                else if (pair[0] == "power")
-                {
-                    if (operation != SpellOperation.Heat && operation != SpellOperation.Cool && operation != SpellOperation.Charge)
-                        return Fail("この効果では出力 power を指定しません。消費魔力は世界法則で決まります。", DslSourceLabel);
-                    if (!Single.TryParse(pair[1], NumberStyles.Float, CultureInfo.InvariantCulture, out power) ||
-                        Single.IsNaN(power) || Single.IsInfinity(power) || power <= 0 ||
-                        power > (operation == SpellOperation.Charge ? 500f : 2000000f))
-                        return Fail("出力 power が範囲外です。熱量は0より大きく2,000,000 J以下、充填は0より大きく500 MU以下です。", DslSourceLabel);
-                }
-                else if (pair[0] == "material")
-                {
-                    if (operation != SpellOperation.Build) return Fail("素材 material を指定できるのは建築 build だけです。", DslSourceLabel);
-                    if (!Enum.TryParse<MaterialId>(pair[1], true, out material) || !Enum.IsDefined(typeof(MaterialId), material) ||
-                        material == MaterialId.Air || material == MaterialId.Steam || Regex.IsMatch(pair[1], @"^[0-9]"))
-                        return Fail("建築に使えない素材、または不明な素材です。", DslSourceLabel);
-                }
-                else return Fail("数値指定に存在しない項目です: " + pair[0], DslSourceLabel);
             }
-            return Valid(operation, radius, power, material, DslSourceLabel, 1f);
+            if (seen.Contains("power") && seen.Contains("temperature"))
+                return Fail("熱量powerと目標温度temperatureは同時に指定できません。どちらか一方を選んでください。", DslSourceLabel);
+            if (result.ThermalMode == ThermalMode.Temperature)
+            {
+                result.Power = 0f;
+                if (!seen.Contains("r")) result.Radius = 0;
+            }
+            if (result.HasMaterialFilter && !seen.Contains("r")) result.Radius = 0;
+            return FinalizeResult(result);
         }
 
         private static MagicParseResult Valid(SpellOperation op, int radius, float power, MaterialId material, string source, float confidence)
         {
-            if (radius < 1 || radius > 5 || Single.IsNaN(power) || Single.IsInfinity(power))
-                return Fail("生成された範囲・出力が有効な値ではありません。", source, confidence);
-            string canonical = op.ToString().ToLowerInvariant() + " r=" + radius.ToString(CultureInfo.InvariantCulture);
-            if (op == SpellOperation.Heat || op == SpellOperation.Cool || op == SpellOperation.Charge)
-                canonical += " power=" + power.ToString("0.###", CultureInfo.InvariantCulture);
-            if (op == SpellOperation.Build) canonical += " material=" + material.ToString().ToLowerInvariant();
-            return new MagicParseResult { Success = true, Operation = op, Radius = radius, Power = power,
-                Material = material, Source = source, Canonical = canonical, Error = "", Confidence = confidence };
+            return FinalizeResult(new MagicParseResult { Success = true, Operation = op, Radius = radius,
+                Power = power, Material = material, Source = source, Confidence = confidence });
+        }
+
+        internal static MagicParseResult FinalizeResult(MagicParseResult result)
+        {
+            bool thermal = result.Operation == SpellOperation.Heat || result.Operation == SpellOperation.Cool;
+            if (!Enum.IsDefined(typeof(SpellOperation), result.Operation) || result.Radius < 0 || result.Radius > 5 ||
+                !Enum.IsDefined(typeof(ThermalMode), result.ThermalMode) || Single.IsNaN(result.Power) || Single.IsInfinity(result.Power))
+                return Fail("生成された術式の効果・範囲・出力が有効な値ではありません。", result.Source);
+            if (thermal)
+            {
+                if (result.ThermalMode == ThermalMode.Temperature)
+                {
+                    if (Single.IsNaN(result.TargetTemperature) || Single.IsInfinity(result.TargetTemperature) || result.TargetTemperature < -273.15f || result.TargetTemperature > 5000f)
+                        return Fail("目標温度は−273.15～5000℃で指定してください。", result.Source);
+                    result.Power = 0f;
+                }
+                else if (result.Power <= 0 || result.Power > 8000000)
+                    return Fail("総熱量は0より大きく8 MJ以下で指定してください。", result.Source);
+                if (Single.IsNaN(result.DurationSeconds) || Single.IsInfinity(result.DurationSeconds) ||
+                    (result.DurationSeconds != 0 && (result.DurationSeconds < 1 || result.DurationSeconds > 30)))
+                    return Fail("熱の保護時間は1～30シミュレーション秒です。", result.Source);
+            }
+            else if (result.ThermalMode != ThermalMode.Energy || result.DurationSeconds != 0)
+                return Fail("温度と熱の保護時間を指定できるのは加熱・冷却です。", result.Source);
+            if (result.Operation == SpellOperation.Charge && (result.Power <= 0 || result.Power > 10000))
+                return Fail("充填量は0より大きく10,000 MU以下で指定してください。", result.Source);
+            if (result.HasMaterialFilter && (!MaterialCatalog.IsValid(result.TargetMaterial) || result.Operation == SpellOperation.Build))
+                return Fail("対象素材の指定がこの効果に対応していません。", result.Source);
+            if (result.Operation == SpellOperation.Move &&
+                (!Enum.IsDefined(typeof(SpellDirection), result.Direction) || result.Distance < 1 || result.Distance > 8 ||
+                 (result.HasMaterialFilter && MaterialCatalog.IsGas(result.TargetMaterial))))
+                return Fail("移動は気体以外を、上・下・前後左右・東西南北の一方向へ1～8 mで指定してください。", result.Source);
+            if (result.Operation == SpellOperation.Build && (!MaterialCatalog.IsValid(result.Material) || MaterialCatalog.IsGas(result.Material)))
+                return Fail("建築に使えない生成素材です。", result.Source);
+            string canonical = result.Operation.ToString().ToLowerInvariant() + " r=" + result.Radius.ToString(CultureInfo.InvariantCulture);
+            if (thermal && result.ThermalMode == ThermalMode.Temperature)
+                canonical += " temperature=" + result.TargetTemperature.ToString("R", CultureInfo.InvariantCulture);
+            else if (thermal || result.Operation == SpellOperation.Charge)
+                canonical += " power=" + result.Power.ToString("R", CultureInfo.InvariantCulture);
+            if (thermal && result.DurationSeconds > 0)
+                canonical += " duration=" + result.DurationSeconds.ToString("R", CultureInfo.InvariantCulture);
+            if (result.Operation == SpellOperation.Build) canonical += " material=" + result.Material.ToString().ToLowerInvariant();
+            if (result.HasMaterialFilter) canonical += " target=" + result.TargetMaterial.ToString().ToLowerInvariant();
+            if (result.Operation == SpellOperation.Move)
+                canonical += " direction=" + result.Direction.ToString().ToLowerInvariant() + " distance=" + result.Distance.ToString(CultureInfo.InvariantCulture);
+            result.Success = true; result.Error = ""; result.Canonical = canonical;
+            return result;
         }
 
         private static MagicParseResult Fail(string error, string source, float confidence = 0f)

@@ -51,6 +51,7 @@ namespace ManaWeave.Editor
             var directResult = direct.Parse("目の前を小さく熱して");
             if (!directResult.Success || directResult.Operation != SpellOperation.Heat)
                 throw new InvalidOperationException("直接生成モデルの検証に失敗しました。");
+            VerifyExpressiveMagic(new MagicParser(model.bytes, direct.Parse));
             if (Resources.Load<Shader>("ManaWeave/Voxel") == null)
                 throw new FileNotFoundException("ManaWeaveの地形描画用シェーダーが見つかりません。");
             string path = Path.Combine(Application.temporaryCachePath, "manaweave_verification.mw");
@@ -62,7 +63,7 @@ namespace ManaWeave.Editor
                     throw new InvalidOperationException("世界データの保存・読み込み検証に失敗しました。");
             }
             finally { if (File.Exists(path)) File.Delete(path); }
-            Debug.Log("ManaWeave：世界法則と魔法の検証に成功しました。熱の抵抗と温度下限も確認しました。" + parser.ModelStatus +
+            Debug.Log("ManaWeave：世界法則と魔法の検証に成功しました。熱抵抗・温度下限・錬金用加熱・詠唱効率・物質移動を確認しました。" + parser.ModelStatus +
                       "。実際の操作と描画はPlayモードで確認してください。");
         }
 
@@ -88,6 +89,39 @@ namespace ManaWeave.Editor
             if (!(world.Cells[0].Energy < hot.Energy) || !(world.Cells[2].Energy > cold.Energy) ||
                 sim.Stats.AmplifiedJoules != 0 || sim.Stats.StabilizedJoules <= 0)
                 throw new InvalidOperationException("命令のない魔力が、加熱・冷却の両方へ抵抗する法則の検証に失敗しました。");
+        }
+
+        private static void VerifyExpressiveMagic(MagicParser parser)
+        {
+            var heat=parser.Parse("紅蓮を統べる精霊よ、我が呼び声に応えよ。照準先の鉄を三百五十度まで熱し、十秒間その熱を守れ。");
+            var movement=parser.Parse("対象を上へ3メートル移動させよ。");
+            if(!heat.Success||heat.Operation!=SpellOperation.Heat||heat.ThermalMode!=ThermalMode.Temperature||
+                heat.TargetTemperature!=350||heat.DurationSeconds!=10||heat.Radius!=0||
+                !heat.HasMaterialFilter||heat.TargetMaterial!=MaterialId.Iron||
+                !movement.Success||movement.Operation!=SpellOperation.Move||movement.Direction!=SpellDirection.Up||movement.Distance!=3)
+                throw new InvalidOperationException("温度・保護時間・素材・移動の詠唱解析の検証に失敗しました。");
+            var world=new WorldState(9,7,9,731);
+            world.SetMaterial(4,2,4,MaterialId.Iron);
+            var sim=new WorldSimulator(world);
+            var command=new SpellCommand {
+                Operation=heat.Operation,X=4,Y=2,Z=4,Radius=heat.Radius,Power=heat.Power,Material=heat.Material,
+                ThermalMode=heat.ThermalMode,TargetTemperature=heat.TargetTemperature,DurationSeconds=heat.DurationSeconds,
+                HasMaterialFilter=heat.HasMaterialFilter,TargetMaterial=heat.TargetMaterial,Incantation=heat.Incantation
+            };
+            SpellQuote quote=sim.Quote(command);
+            if(!quote.Success||quote.ManaCost>=quote.BaseManaCost||quote.EffectiveChantLength<=0||!sim.Cast(command).Success)
+                throw new InvalidOperationException("加熱の費用見積りまたは詠唱効率の検証に失敗しました。");
+            for(int i=0;i<50;i++)sim.Step(.1f);
+            if(!sim.Cast(new SpellCommand {Operation=SpellOperation.Charge,X=4,Y=2,Z=4,Radius=0,Power=10}).Success)
+                throw new InvalidOperationException("錬金用の魔力充填に失敗しました。");
+            for(int i=0;i<10;i++)sim.Step(.1f);
+            if(!sim.Cast(new SpellCommand {Operation=SpellOperation.Transmute,X=4,Y=2,Z=4,Radius=0,Power=0}).Success)
+                throw new InvalidOperationException("通常の加熱・充填から錬成までの操作時間を確保できませんでした。");
+            double energy=world.TotalEnergy(),mass=world.TotalMass();
+            var move=new SpellCommand {Operation=SpellOperation.Move,X=4,Y=2,Z=4,Radius=0,Power=0,OffsetY=3,Incantation=movement.Incantation};
+            if(!sim.Cast(move).Success||world.Cells[world.Index(4,5,4)].Material!=MaterialId.Alloy||
+                Math.Abs(world.TotalEnergy()-energy)>.0001||Math.Abs(world.TotalMass()-mass)>.00001)
+                throw new InvalidOperationException("物質移動の位置または熱・質量収支の検証に失敗しました。");
         }
 
         [MenuItem("Tools/ManaWeave/Windows版をビルド")]

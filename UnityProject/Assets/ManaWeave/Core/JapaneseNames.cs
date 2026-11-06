@@ -32,6 +32,7 @@ namespace ManaWeave.Core
                 case SpellOperation.Build: return "建築";
                 case SpellOperation.Charge: return "魔力充填";
                 case SpellOperation.Transmute: return "錬成";
+                case SpellOperation.Move: return "物質移動";
                 default: return "不明な術式";
             }
         }
